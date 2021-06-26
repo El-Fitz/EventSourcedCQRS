@@ -2,14 +2,14 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-19 17:26:53 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2021-06-23 23:45:46
+ * @Last Modified time: 2021-06-26 16:33:20
  */
 
 import test from 'ava';
 
 import Core from "event-sourced-cqrs-core";
 import Platform from "../../../../src/index.js";
-import { aggregateRepositoryFactory } from "../aggregates-repository.factory";
+import { aggregateRepositoryFactory } from "../_aggregates-repository.factory";
 
 test('Aggregates Service Creation succeeds with proper parameter', async t => {
 	let service = Platform.Aggregates.ServicesService();

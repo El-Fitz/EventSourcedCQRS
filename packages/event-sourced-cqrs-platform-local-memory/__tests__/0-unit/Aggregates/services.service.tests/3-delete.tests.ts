@@ -2,14 +2,14 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-19 17:27:33 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2021-06-23 23:38:45
+ * @Last Modified time: 2021-06-26 16:33:23
  */
 
 import test from 'ava';
 
 import Core from "event-sourced-cqrs-core";
 import Platform from "../../../../src/index.js";
-import { aggregateRepositoryFactory } from "../aggregates-repository.factory";
+import { aggregateRepositoryFactory } from "../_aggregates-repository.factory";
 
 test('Aggregates Service can be deleted after creation', async t => {
 	let service = Platform.Aggregates.ServicesService();

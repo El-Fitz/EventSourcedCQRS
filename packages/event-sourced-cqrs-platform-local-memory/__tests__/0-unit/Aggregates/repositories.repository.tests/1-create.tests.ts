@@ -2,7 +2,7 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-19 17:26:53 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2021-06-24 00:40:51
+ * @Last Modified time: 2021-06-26 16:34:25
  */
 
 import test from 'ava';

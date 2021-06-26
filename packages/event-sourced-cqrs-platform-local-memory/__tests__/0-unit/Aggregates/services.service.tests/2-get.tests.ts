@@ -2,7 +2,7 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-19 17:27:26 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2021-06-23 23:45:59
+ * @Last Modified time: 2021-06-26 16:33:21
  */
 
 
@@ -11,7 +11,7 @@ import { v4 as uuid } from "uuid";
 
 import Core from "event-sourced-cqrs-core";
 import Platform from "../../../../src/index.js";
-import { aggregateRepositoryFactory } from "../aggregates-repository.factory";
+import { aggregateRepositoryFactory } from "../_aggregates-repository.factory";
 
 test('Aggregates Service can be retrieved after creation', async t => {
 	let service = Platform.Aggregates.ServicesService();

@@ -2,7 +2,7 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-11 16:26:39 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2021-06-23 23:22:00
+ * @Last Modified time: 2021-06-26 18:46:31
  */
 
 import Aggregates from "../Aggregates";
@@ -38,4 +38,4 @@ export const EventsReducer = (event: Events.Event) =>
 						))
 					)
 				)
-				.then((eventPromises) => eventPromises.flatMap((eventPromise) => eventPromise));
+				.then((outputEvents) => outputEvents.flatMap((outputEvent) => outputEvent));

@@ -4,7 +4,7 @@
   "description": "> TODO: description",
   "author": "Thomas Léger <8971906+El-Fitz@users.noreply.github.com>",
   "homepage": "",
-  "license": "NONE",
+  "license": "MIT",
   "main": "lib/index.js",
   "type": "module",
   "directories": {
@@ -45,7 +45,8 @@
     },
     "nodeArguments": [
       "--loader=ts-node/esm",
-      "--experimental-specifier-resolution=node"
+      "--experimental-specifier-resolution=node",
+      "--no-warnings"
     ]
   }
 }
