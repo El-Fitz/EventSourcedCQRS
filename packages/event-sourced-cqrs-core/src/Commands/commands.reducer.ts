@@ -5,7 +5,7 @@
  * @Last Modified time: 2021-06-17 01:51:36
  */
 
-import Commands from "./"
+import * as Commands from "./"
 
 export const CommandsReducer = (command: Commands.Command) => 
 	(commandReducersDefinitionsService: Commands.Reducers.Definitions.ServiceInterface) =>

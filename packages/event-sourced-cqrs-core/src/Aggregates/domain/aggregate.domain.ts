@@ -6,7 +6,7 @@
  */
 
 
-import Types from "../../types";
+import * as Types from "../../types";
 
 export interface AggregateDomain {
 	id: Types.UUID;

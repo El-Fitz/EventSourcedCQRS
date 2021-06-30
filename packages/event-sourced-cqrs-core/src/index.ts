@@ -2,21 +2,14 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-12 23:50:36 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2021-06-18 16:37:33
+ * @Last Modified time: 2021-06-30 02:00:17
  */
 
-import AggregatesImport from "./Aggregates";
-import CommandsImport from "./Commands";
-import EventsImport from "./Events";
-import ObservabilityImports from "./Observability";
-import TypesImport from "./Types";
+export * as Aggregates from "./Aggregates";
+export * as Commands from "./Commands";
+export * as Events from "./Events";
+export * as Observability from "./Observability";
+export * as Types from "./Types";
+export * as Tests from "./Tests";
 
-namespace Core {
-	export import Aggregates = AggregatesImport;
-	export import Commands = CommandsImport;
-	export import Events = EventsImport;
-	export import Observability = ObservabilityImports;
-	export import Types = TypesImport;
-}
-
-export default Core;
+export { PlatformInterface } from "./Platform";

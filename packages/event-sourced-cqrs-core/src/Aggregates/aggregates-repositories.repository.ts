@@ -2,11 +2,11 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-11 20:15:10 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2021-06-23 23:10:47
+ * @Last Modified time: 2021-06-30 00:36:52
  */
 
-import Aggregates from "./";
-import Types from "../types";
+import * as Aggregates from "./";
+import * as Types from "../types";
 
 export interface AggregatesRepositoriesRepository {
 	create: (aggregate: Aggregates.Repository) => Promise<Aggregates.Repository>;

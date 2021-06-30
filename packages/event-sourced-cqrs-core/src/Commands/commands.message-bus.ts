@@ -5,7 +5,7 @@
  * @Last Modified time: 2021-06-17 01:54:22
  */
 
-import Commands from "./"
+import * as Commands from "./"
 
 export interface CommandsMessageBus {
 	emit: (command: Commands.Command) => Promise<void>;

@@ -5,7 +5,7 @@
  * @Last Modified time: 2021-06-18 16:45:52
  */
 
-import Core from "event-sourced-cqrs-core";
+import * as Core from "event-sourced-cqrs-core";
 import { CommandsRepository } from "./commands.repository";
 
 export const CommandsService = (): Core.Commands.ServiceInterface => Core.Commands.Service(CommandsRepository());

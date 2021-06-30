@@ -5,8 +5,8 @@
  * @Last Modified time: 2021-06-26 18:46:31
  */
 
-import Aggregates from "../Aggregates";
-import Events from "./";
+import * as Aggregates from "../Aggregates";
+import * as Events from "./";
 
 export const EventsReducer = (event: Events.Event) => 
 	(eventReducersDefinitionsService: Events.Reducers.Definitions.ServiceInterface) =>

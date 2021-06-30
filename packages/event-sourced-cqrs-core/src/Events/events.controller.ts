@@ -5,8 +5,8 @@
  * @Last Modified time: 2021-06-23 23:21:37
  */
 
-import Aggregates from "../Aggregates";
-import Events from "./";
+import * as Aggregates from "../Aggregates";
+import * as Events from "./";
 
 // This return Promise<[void, Promise<blabla>[]]> instead of Promise<[void, blabla[]]>
 export const EventsController = (event: Events.Event) =>

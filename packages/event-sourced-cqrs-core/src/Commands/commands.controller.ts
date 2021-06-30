@@ -5,8 +5,8 @@
  * @Last Modified time: 2021-06-17 01:51:31
  */
 
-import Commands from "./";
-import Events from "../Events";
+import * as Commands from "./";
+import * as Events from "../Events";
 
 export const CommandsController = (command: Commands.Command) =>
 	(commandsService: Commands.ServiceInterface) =>

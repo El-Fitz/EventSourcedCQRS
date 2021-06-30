@@ -2,22 +2,12 @@
 * @Author: Thomas Léger 
 * @Date: 2021-06-11 16:25:02 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2021-06-12 22:29:35
+ * @Last Modified time: 2021-06-28 19:09:06
 */
 
-import * as AggregateDomain from "./aggregate.domain";
-import * as AggregateReducer from "./aggregate-reducer.domain";
-import * as AggregatesReducerDefintion from "./aggregate-reducer-definition.domain";
-import * as AggregatesRepository from "./aggregates-repository.domain";
-import * as AggregatesService from "./aggregates-service.domain";
-
-namespace Domain {
-	export import Aggregate = AggregateDomain.AggregateDomain;
-	export import Repository = AggregatesRepository.AggregatesRepository;
-	export import ServiceInterface = AggregatesService.AggregatesServiceInterface;
-	export import Service = AggregatesService.AggregatesService;
-	export import Reducer = AggregateReducer.AggregateReducer;
-	export import ReducerDefinition = AggregatesReducerDefintion.AggregateReducerDefinition;
-}
-
-export default Domain;
+export { AggregateDomain as Aggregate } from "./aggregate.domain";
+export { AggregatesRepository as Repository } from "./aggregates-repository.domain";
+export { AggregatesServiceInterface as ServiceInterface } from "./aggregates-service.domain";
+export { AggregatesService as Service } from "./aggregates-service.domain";
+export { AggregateReducer as Reducer } from "../Reducers/domain/aggregate-reducer.domain";
+export { AggregateReducerDefinition as ReducerDefinition } from "../Reducers/Definitions/domain/aggregate-reducer-definition.domain";

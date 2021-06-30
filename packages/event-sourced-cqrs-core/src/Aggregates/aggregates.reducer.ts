@@ -2,11 +2,11 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-11 19:07:34 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2021-06-23 23:19:45
+ * @Last Modified time: 2021-06-29 22:51:30
  */
 
-import Events from "../Events"
-import Aggregates from "./";
+import * as Events from "../Events"
+import * as Aggregates from ".";
 
 export const AggregatesReducer = (event: Events.Event) =>
 	(aggregatesServicesService: Aggregates.ServicesServiceInterface) =>

@@ -5,7 +5,7 @@
  * @Last Modified time: 2021-06-17 01:51:56
  */
 
-import Types from "../../types";
+import * as Types from "../../types";
 
 export interface CommandDomain {
 	id: Types.UUID;

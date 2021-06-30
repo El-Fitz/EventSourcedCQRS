@@ -5,8 +5,8 @@
  * @Last Modified time: 2021-06-23 23:17:05
  */
 
-import Aggregates from "./";
-import Types from "../types";
+import * as Aggregates from "./";
+import * as Types from "../types";
 
 export interface AggregatesRepositoriesServiceInterface {
 	create: (aggregatesRepository: Aggregates.Repository) => Promise<Aggregates.ServiceInterface>;

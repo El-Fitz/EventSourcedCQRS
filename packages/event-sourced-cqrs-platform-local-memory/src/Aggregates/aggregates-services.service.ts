@@ -5,7 +5,7 @@
  * @Last Modified time: 2021-06-17 02:17:13
  */
 
-import Core from "event-sourced-cqrs-core";
+import * as Core from "event-sourced-cqrs-core";
 import { AggregatesRepositoriesRepositoryInstance } from "./aggregates-repositories.repository";
 
 export const AggregatesServicesService = () => Core.Aggregates.ServicesService(AggregatesRepositoriesRepositoryInstance);

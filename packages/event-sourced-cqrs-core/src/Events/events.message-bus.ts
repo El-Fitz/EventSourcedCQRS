@@ -5,7 +5,7 @@
  * @Last Modified time: 2021-06-17 01:54:55
  */
 
-import Events from "./";
+import * as Events from "./";
 
 export interface EventsMessageBus {
 	emit: (event: Events.Event) => Promise<void>;

@@ -2,13 +2,13 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-11 16:26:12 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2021-06-18 16:40:29
+ * @Last Modified time: 2021-06-30 00:54:38
  */
 
-import Types from "../types";
-import Commands from "./"
+import * as Types from "../types";
+import * as Commands from "./"
 
 export interface CommandsRepository {
 	create: (command: Commands.Command) => Promise<Commands.Command>;
-	get: (commandId: Types.UUID) => Promise<Commands.Command | null>;
+	get: (commandId: Types.UUID, commandInstanceId: Types.UUID) => Promise<Commands.Command | null>;
 }

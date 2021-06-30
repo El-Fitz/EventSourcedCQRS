@@ -5,9 +5,9 @@
  * @Last Modified time: 2021-06-17 01:52:24
  */
 
-import Aggregates from "../Aggregates";
-import Commands from "../Commands";
-import Events from "../Events";
+import * as Aggregates from "../Aggregates";
+import * as Commands from "../Commands";
+import * as Events from "../Events";
 import Observability from "./";
 
 export interface ObservabilityServiceInterface {

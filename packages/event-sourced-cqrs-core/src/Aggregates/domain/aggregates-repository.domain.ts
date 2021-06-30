@@ -5,8 +5,8 @@
  * @Last Modified time: 2021-06-17 01:48:10
  */
 
-import Aggregates from "../";
-import Types from "../../types";
+import * as Aggregates from "../";
+import * as Types from "../../types";
 
 export interface AggregatesRepository {
 	id: Types.UUID,
