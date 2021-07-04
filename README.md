@@ -2,4 +2,4 @@
 
 This is a work in progress Event Sourced CQRS Framework in Typescript.
 
-©2021 Thomas Léger. All rights reserved.
+Copyright ©2021 Thomas Léger. All rights reserved.
