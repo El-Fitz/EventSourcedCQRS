@@ -1,5 +1,5 @@
 {
-  "name": "event-sourced-cqrs-platform-aws-cdk",
+  "name": "event-sourced-cqrs-platform-aws-amplify",
   "version": "1.0.0",
   "description": "> TODO: description",
   "author": "Thomas Léger <8971906+El-Fitz@users.noreply.github.com>",
