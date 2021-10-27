@@ -1,6 +1,6 @@
 
 import * as Events from "../../../";
-import * as Types from "../../../../types";
+import * as Types from "../../../../Types";
 
 export interface EventReducerDefinition {
 	id: Types.UUID;

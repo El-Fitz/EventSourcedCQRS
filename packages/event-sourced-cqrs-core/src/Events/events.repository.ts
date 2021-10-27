@@ -5,7 +5,7 @@
  * @Last Modified time: 2021-06-27 00:42:35
  */
 
-import * as Types from "../types";
+import * as Types from "../Types";
 import * as Events from "./";
 
 export interface EventsRepository {

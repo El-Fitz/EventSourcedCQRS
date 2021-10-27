@@ -6,7 +6,7 @@
  */
 
 import * as Aggregates from "./";
-import * as Types from "../types";
+import * as Types from "../Types";
 
 export interface AggregatesRepositoriesRepository {
 	create: (aggregate: Aggregates.Repository) => Promise<Aggregates.Repository>;

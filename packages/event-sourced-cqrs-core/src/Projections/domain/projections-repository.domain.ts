@@ -5,12 +5,12 @@
  * @Last Modified time: 2021-06-17 01:48:10
  */
 
-import * as Aggregates from "../";
+import * as Projections from "../";
 import * as Types from "../../Types";
 
-export interface AggregatesRepository {
+export interface ProjectionsRepository {
 	id: Types.UUID,
-	create: (aggregate: Aggregates.Aggregate) => Promise<Aggregates.Aggregate>;
-	get: (id: Types.UUID) => Promise<Aggregates.Aggregate>;
+	create: (projections: Projections.Projection) => Promise<Projections.Projection>;
+	get: (id: Types.UUID) => Promise<Projections.Projection>;
 	delete: (id: Types.UUID) => Promise<void>;
 }

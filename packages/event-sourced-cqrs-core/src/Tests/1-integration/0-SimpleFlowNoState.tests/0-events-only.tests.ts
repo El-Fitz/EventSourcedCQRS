@@ -1,9 +1,9 @@
-// /*
-//  * @Author: Thomas Léger 
-//  * @Date: 2021-06-19 17:19:14 
-//  * @Last Modified by: Thomas Léger
-//  * @Last Modified time: 2021-06-28 00:27:36
-//  */
+/*
+ * @Author: Thomas Léger 
+ * @Date: 2021-06-19 17:19:14 
+ * @Last Modified by: Thomas Léger
+ * @Last Modified time: 2021-06-28 00:27:36
+ */
 
 import test from 'ava';
 
@@ -151,4 +151,4 @@ test('fn() returns foo', t => {
 	// 	const eventsList = await eventsService.list()
 	// 	t.is(eventsList.length, bodyLimit)
 	// });
-}
+	// }

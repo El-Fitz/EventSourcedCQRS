@@ -8,7 +8,7 @@
 
 import * as Types from "../../Types";
 
-export interface AggregateDomain {
+export interface ProjectionDomain {
 	id: Types.UUID;
 	tracingId: Types.UUID;
 	creationDate: Types.DateTime;

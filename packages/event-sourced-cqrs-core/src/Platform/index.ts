@@ -6,6 +6,7 @@
  */
 
 import * as Aggregates from "../Aggregates"
+import * as Projections from '../Projections';
 import * as Commands from "../Commands"
 import * as Events from "../Events"
 
@@ -30,7 +31,7 @@ export interface PlatformInterface {
 				Service: Commands.Reducers.Definitions.ServiceInterface,
 			}
 		}
-	}
+	},
 	Events:  {
 		Repository: Events.Repository,
 		Service: Events.ServiceInterface,
@@ -41,5 +42,15 @@ export interface PlatformInterface {
 				Service: Events.Reducers.Definitions.ServiceInterface,
 			}
 		}
-	}
+	},
+	Projections: {
+		RepositoriesRepository: Projections.RepositoriesRepository,
+		ServicesService: Projections.ServicesServiceInterface,
+		Reducers: {
+			Definitions: {
+				Repository: Projections.Reducers.Definitions.Repository,
+				Service: Projections.Reducers.Definitions.ServiceInterface,
+			}
+		}
+	},
 }

@@ -7,7 +7,7 @@
 
 
 import * as Events from "../../"
-import * as Types from "../../../types";
+import * as Types from "../../../Types";
 
 export interface EventReducersDefinitionsServiceInterface {
 	create: (eventReducerDefinition: Events.Reducers.Definitions.Definition) => Promise<Events.Reducers.Definitions.Definition>;

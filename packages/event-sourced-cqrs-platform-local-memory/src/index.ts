@@ -11,10 +11,12 @@ import { PlatformInterface } from "event-sourced-cqrs-core"
 export * as Aggregates from "./Aggregates";
 export * as Commands from "./Commands";
 export * as Events from "./Events";
+export * as Projections from "./Projections";
 
 import * as Aggregates from "./Aggregates";
 import * as Commands from "./Commands";
 import * as Events from "./Events";
+import * as Projections from "./Projections";
 
 export const Platform = (): PlatformInterface => {
 	const aggregatesRepositoriesRepository = Aggregates.RepositoriesRepositoryInstance
@@ -25,6 +27,9 @@ export const Platform = (): PlatformInterface => {
 
 	const eventsRepository = Events.Repository()
 	const eventsReducersDefinitionsRepository = Events.Reducers.Definitions.RepositoryInstance
+
+	const projectionsRepositoriesRepository = Projections.RepositoriesRepositoryInstance
+	const projectionsReducersDefinitionsRepository = Projections.Reducers.Definitions.RepositoryInstance
 
 	return {
 		Aggregates: {
@@ -58,6 +63,16 @@ export const Platform = (): PlatformInterface => {
 					Service: Core.Events.Reducers.Definitions.Service(eventsReducersDefinitionsRepository),
 				}
 			}
-		}
+		},
+		Projections: {
+			RepositoriesRepository: Projections.RepositoriesRepositoryInstance,
+			ServicesService: Core.Projections.ServicesService(projectionsRepositoriesRepository),
+			Reducers: {
+				Definitions: {
+					Repository: projectionsReducersDefinitionsRepository,
+					Service: Core.Projections.Reducers.Definitions.Service(projectionsReducersDefinitionsRepository),
+				}
+			}
+		},
 	}
 }

@@ -5,7 +5,7 @@
  * @Last Modified time: 2021-06-17 01:47:05
  */
 
-import * as Types from "../../types";
+import * as Types from "../../Types";
 
 export interface EventDomain {
 	id: Types.UUID;

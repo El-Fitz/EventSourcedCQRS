@@ -7,7 +7,7 @@
 
 import * as Aggregates from "../../";
 import * as Events from "../../../Events"
-import * as Types from "../../../types";
+import * as Types from "../../../Types";
 
 export interface AggregateReducersDefinitionsServiceInterface {
 	create: (aggregateBuilderDefinition: Aggregates.Reducers.Definitions.Definition) => Promise<Aggregates.Reducers.Definitions.Definition>;

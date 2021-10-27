@@ -5,13 +5,13 @@
  * @Last Modified time: 2021-06-29 22:48:00
  */
 
-import * as Aggregates from "../../..";
+import * as Projections from "../../..";
 import * as Types from "../../../../Types";
 
-export interface AggregateReducerDefinition {
+export interface ProjectionReducerDefinition {
 	id: Types.UUID;
 	creationDate: Types.DateTime;
 	triggeringEventId: Types.UUID;
 	requiredAggregates: { id: Types.UUID, repositoryId: Types.UUID }[];
-	reducer: () => Promise<Aggregates.Reducers.Reducer>
+	reducer: () => Promise<Projections.Reducers.Reducer>
 }

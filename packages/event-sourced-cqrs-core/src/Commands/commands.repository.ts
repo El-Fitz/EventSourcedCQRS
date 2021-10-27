@@ -5,7 +5,7 @@
  * @Last Modified time: 2021-06-30 00:54:38
  */
 
-import * as Types from "../types";
+import * as Types from "../Types";
 import * as Commands from "./"
 
 export interface CommandsRepository {

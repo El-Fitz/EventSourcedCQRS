@@ -6,7 +6,7 @@
  */
 
 import * as Commands from "../.."
-import * as Types from "../../../types";
+import * as Types from "../../../Types";
 
 export interface CommandReducersDefinitionsRepository {
 	create: (commandReducerDefinition: Commands.Reducers.Definitions.Definition) => Promise<Commands.Reducers.Definitions.Definition>;
