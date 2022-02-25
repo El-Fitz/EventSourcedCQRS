@@ -5,4 +5,4 @@
  * @Last Modified time: 2021-06-30 00:43:14
  */
 
-export { EventDomain } from "./event.domain";
+export { EventDomain } from "./event.domain";

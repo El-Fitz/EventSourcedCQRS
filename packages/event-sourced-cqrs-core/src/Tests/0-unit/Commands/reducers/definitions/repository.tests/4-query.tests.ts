@@ -7,7 +7,7 @@
 
 // import test from 'ava';
 // import { v4 as uuid } from "uuid";
-// import { DateTime } from "luxon";
+// import { DateTime } from "luxon";
 
 // import Core from "event-sourced-cqrs-core";
 // import Platform from "../../../../../../index.js"
@@ -21,7 +21,7 @@
 //     tracingId: uuid(),
 //     version: "1.0.0",
 //     name: "name",
-//     body:  { }
+//     body:  { }
 // 	}
 // 	await t.notThrows(async () => await repository.query(command))
 // });
@@ -35,7 +35,7 @@
 //     tracingId: uuid(),
 //     version: "1.0.0",
 //     name: "name",
-//     body:  { }
+//     body:  { }
 // 	}
 // 	let fetchedDefinitions = await repository.query(command)
 // 	t.deepEqual(fetchedDefinitions, [])
@@ -50,7 +50,7 @@
 //     tracingId: uuid(),
 //     version: "1.0.0",
 //     name: "name",
-//     body:  { }
+//     body:  { }
 // 	}
 // 	let definition: Core.Commands.Reducers.Definitions.Definition = {
 // 		id: uuid(),
@@ -72,7 +72,7 @@
 //     tracingId: uuid(),
 //     version: "1.0.0",
 //     name: "name",
-//     body:  { }
+//     body:  { }
 // 	}
 // 	let definition: Core.Commands.Reducers.Definitions.Definition = {
 // 		id: uuid(),
@@ -94,7 +94,7 @@
 //     tracingId: uuid(),
 //     version: "1.0.0",
 //     name: "name",
-//     body:  { }
+//     body:  { }
 // 	}
 // 	let matchingDefinition: Core.Commands.Reducers.Definitions.Definition = {
 // 		id: uuid(),
@@ -126,7 +126,7 @@
 //     tracingId: uuid(),
 //     version: "1.0.0",
 //     name: "name",
-//     body:  { }
+//     body:  { }
 // 	}
 // 	let firstMatchingDefinition: Core.Commands.Reducers.Definitions.Definition = {
 // 		id: uuid(),

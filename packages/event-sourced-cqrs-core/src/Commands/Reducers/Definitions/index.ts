@@ -5,6 +5,6 @@
  * @Last Modified time: 2021-06-30 00:56:14
  */
 
-export { CommandReducerDefinition as Definition } from "./domain/command-reducer-definition.domain"
-export { CommandReducersDefinitionsRepository as Repository } from "./command-reducers-definitions.repository"
-export { CommandReducersDefinitionsServiceInterface as ServiceInterface, CommandReducersDefinitionsService as Service } from "./command-reducers-definitions.service"
+export { CommandReducerDefinition as Definition } from "./domain/command-reducer-definition.domain"
+export { CommandReducersDefinitionsRepository as Repository } from "./command-reducers-definitions.repository"
+export { CommandReducersDefinitionsServiceInterface as ServiceInterface, CommandReducersDefinitionsService as Service } from "./command-reducers-definitions.service"

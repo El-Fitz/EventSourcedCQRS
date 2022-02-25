@@ -6,4 +6,4 @@
  */
 
 export * as Definitions from "./Definitions"
-export { ProjectionReducer as Reducer } from "./domain/projection-reducer.domain"
+export { ProjectionReducer as Reducer } from "./domain/projection-reducer.domain"

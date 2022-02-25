@@ -8,7 +8,7 @@
 
 // import test from 'ava';
 // import { v4 as uuid } from "uuid";
-// import { DateTime } from "luxon"
+// import { DateTime } from "luxon"
 // import Core from "event-sourced-cqrs-core"
 // import Platform from "../../../../index.js"
 
@@ -21,7 +21,7 @@
 // 		tracingId: uuid(),
 // 		version: "1.0.0",
 // 		name: "command_name",
-// 		body: { }
+// 		body: { }
 // 	}
 // 	await service.create(command)
 // 	await t.notThrows(async () => await service.get(command.id, command.instanceId))
@@ -36,7 +36,7 @@
 // 		tracingId: uuid(),
 // 		version: "1.0.0",
 // 		name: "command_name",
-// 		body: { }
+// 		body: { }
 // 	}
 // 	await service.create(command)
 // 	let fetchedDefinition = await service.get(command.id, command.instanceId)
@@ -52,7 +52,7 @@
 // 		tracingId: uuid(),
 // 		version: "1.0.0",
 // 		name: "command_name",
-// 		body: { }
+// 		body: { }
 // 	}
 // 	let fetchedDefinition = await service.get(command.id, command.instanceId)
 // 	t.deepEqual(fetchedDefinition, null);

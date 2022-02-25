@@ -5,4 +5,4 @@
  * @Last Modified time: 2021-06-30 00:43:25
  */
 
-export { EventReducer } from "./event-reducer.domain"
+export { EventReducer } from "./event-reducer.domain"

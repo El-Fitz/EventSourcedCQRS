@@ -5,5 +5,5 @@
  * @Last Modified time: 2021-06-30 00:46:10
  */
 
-export { EventReducer as Reducer } from "./domain"
+export { EventReducer as Reducer } from "./domain"
 export * as Definitions from "./Definitions"

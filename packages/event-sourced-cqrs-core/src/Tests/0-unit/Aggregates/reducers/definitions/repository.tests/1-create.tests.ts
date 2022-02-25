@@ -5,12 +5,12 @@
  * @Last Modified time: 2021-06-30 01:58:10
  */
 
-import { TestInterface } from 'ava';
+import { TestInterface } from 'ava';
 import { v4 as uuid } from "uuid";
-import { DateTime } from "luxon";
+import { DateTime } from "luxon";
 
 import * as Core from "../../../../../../index.js";
-import { PlatformInterface } from "../../../../../../index.js";
+import { PlatformInterface } from "../../../../../../index.js";
 
 export default (platform: PlatformInterface) => (test: TestInterface<unknown>) => {
 	test('Agggregates - Reducers - Definitions - Repository - Reducers Definitions Creation succeeds with proper parameter', async t => {

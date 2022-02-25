@@ -6,5 +6,5 @@
  */
 
 export * as Reducers from "./Reducers"
-export { ProjectionsRepositoriesRepository as RepositoriesRepository, ProjectionsRepositoriesRepositoryInstance as RepositoriesRepositoryInstance } from "./projections-repositories.repository"
-export { ProjectionsServicesService as ServicesService } from "./aggregates-services.service"
+export { ProjectionsRepositoriesRepository as RepositoriesRepository, ProjectionsRepositoriesRepositoryInstance as RepositoriesRepositoryInstance } from "./projections-repositories.repository"
+export { ProjectionsServicesService as ServicesService } from "./aggregates-services.service"

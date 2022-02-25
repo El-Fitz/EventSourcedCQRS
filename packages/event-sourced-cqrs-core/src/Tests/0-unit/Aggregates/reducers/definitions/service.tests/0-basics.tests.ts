@@ -6,8 +6,8 @@
 */
 
 
-import { TestInterface } from 'ava';
-import { PlatformInterface } from "../../../../../../index.js";
+import { TestInterface } from 'ava';
+import { PlatformInterface } from "../../../../../../index.js";
 
 export default (platform: PlatformInterface) => (test: TestInterface<unknown>) => {
 	test('Agggregates - Reducers - Definitions - Service - Succesfully initializes Reducers Definitions Service', t => {

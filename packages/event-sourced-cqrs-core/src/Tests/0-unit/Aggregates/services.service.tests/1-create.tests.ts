@@ -5,11 +5,11 @@
  * @Last Modified time: 2021-06-30 18:10:00
  */
 
-import { TestInterface } from 'ava';
+import { TestInterface } from 'ava';
 
 import * as Core from "../../../../index.js";
-import { PlatformInterface } from "../../../../index.js";
-import { aggregateRepositoryFactory } from "../_aggregates-repository.factory";
+import { PlatformInterface } from "../../../../index.js";
+import { aggregateRepositoryFactory } from "../_aggregates-repository.factory";
 
 export default (platform: PlatformInterface) => (test: TestInterface<unknown>) => {
 	test('Agggregates - Services Service - Aggregates Service Creation succeeds with proper parameter', async t => {

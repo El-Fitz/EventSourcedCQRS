@@ -5,4 +5,4 @@
  * @Last Modified time: 2021-06-12 23:08:16
  */
 
-export type PayloadType = string | number | boolean | null | { [key: string]: PayloadType } | Array<PayloadType>;
+export type PayloadType = string | number | boolean | null | { [key: string]: PayloadType } | Array<PayloadType>;

@@ -6,7 +6,7 @@
  */
 
 import * as Core from "event-sourced-cqrs-core";
-import { v4 as uuid } from "uuid";
+import { v4 as uuid } from "uuid";
 
 interface LocalMemoryEventsMessageBus extends Core.Events.MessageBus {
 	subscribe: (subscriptionCallback: (event: Core.Events.Event) => Promise<void>) => Core.Types.UUID;
@@ -14,7 +14,7 @@ interface LocalMemoryEventsMessageBus extends Core.Events.MessageBus {
 }
 
 export const EventsMessageBus = (): LocalMemoryEventsMessageBus => {
-	let subscribers: { [key: string]: (event: Core.Events.Event) => Promise<void> } = {};
+	let subscribers: { [key: string]: (event: Core.Events.Event) => Promise<void> } = {};
 
 	return ({
 		subscribe: (subscriptionCallback: (event: Core.Events.Event) => Promise<void>) => {
@@ -27,12 +27,12 @@ export const EventsMessageBus = (): LocalMemoryEventsMessageBus => {
 			return
 		},
 		emit: (event: Core.Events.Event) => {
-			return Promise.all(Object.values(subscribers).map((subscriber) => subscriber(event))).then(() => { });
+			return Promise.all(Object.values(subscribers).map((subscriber) => subscriber(event))).then(() => { });
 		},
 		emitMultiple: (events: Core.Events.Event[]) => {
 			return Promise.all(
 				events.map((event) => Promise.all(Object.values(subscribers).map((subscriber) => subscriber(event))))
-			).then(() => { });
+			).then(() => { });
 		}
 	})
 }

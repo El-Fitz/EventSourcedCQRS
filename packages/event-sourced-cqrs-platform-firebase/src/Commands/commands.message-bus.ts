@@ -6,7 +6,7 @@
  */
 
 import Core from "event-sourced-cqrs-core";
-import { v4 as uuid } from "uuid";
+import { v4 as uuid } from "uuid";
 
 interface LocalMemoryCommandsMessageBus extends Core.Commands.MessageBus {
 	subscribe: (subscriptionCallback: (command: Core.Commands.Command) => Promise<void>) => Core.Types.UUID;
@@ -14,7 +14,7 @@ interface LocalMemoryCommandsMessageBus extends Core.Commands.MessageBus {
 }
 
 export const CommandsMessageBus = (): LocalMemoryCommandsMessageBus => {
-	let subscribers: { [key: string]: (command: Core.Commands.Command) => Promise<void> } = {};
+	let subscribers: { [key: string]: (command: Core.Commands.Command) => Promise<void> } = {};
 
 	return ({
 		subscribe: (subscriptionCallback: (command: Core.Commands.Command) => Promise<void>) => {
@@ -27,12 +27,12 @@ export const CommandsMessageBus = (): LocalMemoryCommandsMessageBus => {
 			return
 		},
 		emit: (command: Core.Commands.Command) => {
-			return Promise.all(Object.values(subscribers).map((subscriber) => subscriber(command))).then(() => { });
+			return Promise.all(Object.values(subscribers).map((subscriber) => subscriber(command))).then(() => { });
 		},
 		emitMultiple: (commands: Core.Commands.Command[]) => {
 			return Promise.all(
 				commands.map((command) => Promise.all(Object.values(subscribers).map((subscriber) => subscriber(command))))
-			).then(() => { });
+			).then(() => { });
 		}
 	})
 }

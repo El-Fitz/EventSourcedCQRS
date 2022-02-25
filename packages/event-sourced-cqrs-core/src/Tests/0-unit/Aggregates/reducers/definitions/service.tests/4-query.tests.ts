@@ -5,12 +5,12 @@
  * @Last Modified time: 2021-06-30 17:58:35
  */
 
-import { TestInterface } from 'ava';
+import { TestInterface } from 'ava';
 import { v4 as uuid } from "uuid";
-import { DateTime } from "luxon";
+import { DateTime } from "luxon";
 
 import * as Core from "../../../../../../index.js";
-import { PlatformInterface } from "../../../../../../index.js";
+import { PlatformInterface } from "../../../../../../index.js";
 
 export default (platform: PlatformInterface) => (test: TestInterface<unknown>) => {
 	test('Agggregates - Reducers - Definitions - Service - Querying the service will not throw when there are no definitions', async t => {
@@ -22,7 +22,7 @@ export default (platform: PlatformInterface) => (test: TestInterface<unknown>) =
 			tracingId: uuid(),
 			version: "1.0.0",
 			name: "name",
-			body:  { }
+			body:  { }
 		}
 		await t.notThrows(async () => await service.query(event))
 	});
@@ -36,7 +36,7 @@ export default (platform: PlatformInterface) => (test: TestInterface<unknown>) =
 			tracingId: uuid(),
 			version: "1.0.0",
 			name: "name",
-			body:  { }
+			body:  { }
 		}
 		let fetchedDefinitions = await service.query(event)
 		t.deepEqual(fetchedDefinitions, [])
@@ -51,7 +51,7 @@ export default (platform: PlatformInterface) => (test: TestInterface<unknown>) =
 			tracingId: uuid(),
 			version: "1.0.0",
 			name: "name",
-			body:  { }
+			body:  { }
 		}
 		let reducer: Core.Aggregates.Reducers.Reducer = (event: Core.Events.Event) => (_aggregates: Core.Aggregates.Aggregate[]) => {
 			return {
@@ -85,7 +85,7 @@ export default (platform: PlatformInterface) => (test: TestInterface<unknown>) =
 			tracingId: uuid(),
 			version: "1.0.0",
 			name: "name",
-			body:  { }
+			body:  { }
 		}
 		let reducer: Core.Aggregates.Reducers.Reducer = (event: Core.Events.Event) => (_aggregates: Core.Aggregates.Aggregate[]) => {
 			return {
@@ -119,7 +119,7 @@ export default (platform: PlatformInterface) => (test: TestInterface<unknown>) =
 			tracingId: uuid(),
 			version: "1.0.0",
 			name: "name",
-			body:  { }
+			body:  { }
 		}
 		let reducer: Core.Aggregates.Reducers.Reducer = (event: Core.Events.Event) => (_aggregates: Core.Aggregates.Aggregate[]) => {
 			return {
@@ -164,7 +164,7 @@ export default (platform: PlatformInterface) => (test: TestInterface<unknown>) =
 			tracingId: uuid(),
 			version: "1.0.0",
 			name: "name",
-			body:  { }
+			body:  { }
 		}
 		let reducer: Core.Aggregates.Reducers.Reducer = (event: Core.Events.Event) => (_aggregates: Core.Aggregates.Aggregate[]) => {
 			return {

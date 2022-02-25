@@ -5,12 +5,12 @@
  * @Last Modified time: 2021-06-30 18:10:04
  */
 
-import { TestInterface } from 'ava';
+import { TestInterface } from 'ava';
 import { v4 as uuid } from "uuid";
 
 import * as Core from "../../../../index.js";
-import { PlatformInterface } from "../../../../index.js";
-import { aggregateRepositoryFactory } from "../_aggregates-repository.factory";
+import { PlatformInterface } from "../../../../index.js";
+import { aggregateRepositoryFactory } from "../_aggregates-repository.factory";
 
 export default (platform: PlatformInterface) => (test: TestInterface<unknown>) => {
 	test('Agggregates - Services Service - Aggregates Service can be retrieved after creation', async t => {

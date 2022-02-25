@@ -8,7 +8,7 @@
 import * as Core from "event-sourced-cqrs-core";
 
 export const EventsRepository = (): Core.Events.Repository => {
-	let repository: { [key: string]: Core.Events.Event } = { };
+	let repository: { [key: string]: Core.Events.Event } = { };
 
 	return {
 		create: (event: Core.Events.Event) => {

@@ -5,10 +5,10 @@
  * @Last Modified time: 2021-06-30 18:09:39
 */
 
-import { TestInterface } from 'ava';
+import { TestInterface } from 'ava';
 import { v4 as uuid } from "uuid";
-import { PlatformInterface } from "../../../../index.js";
-import { aggregateRepositoryFactory } from "../_aggregates-repository.factory";
+import { PlatformInterface } from "../../../../index.js";
+import { aggregateRepositoryFactory } from "../_aggregates-repository.factory";
 
 export default (platform: PlatformInterface) => (test: TestInterface<unknown>) => {
 	test('Agggregates - Repositories Repository - Aggregates Repository can be retrieved after creation', async t => {

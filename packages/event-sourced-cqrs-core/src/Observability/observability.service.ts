@@ -17,7 +17,7 @@ export interface ObservabilityServiceInterface {
 }
 
 export const ObservabilityService = (repositories: Observability.Repository[]): ObservabilityServiceInterface => ({
-	logAggregate: (aggregate: Aggregates.Aggregate) => Promise.all(repositories.map((repository) => repository.logAggregate(aggregate))).then(() => { }),
-	logCommand: (command: Commands.Command) => Promise.all(repositories.map((repository) => repository.logCommand(command))).then(() => { }),
-	logEvent: (event: Events.Event) => Promise.all(repositories.map((repository) => repository.logEvent(event))).then(() => { }),
+	logAggregate: (aggregate: Aggregates.Aggregate) => Promise.all(repositories.map((repository) => repository.logAggregate(aggregate))).then(() => { }),
+	logCommand: (command: Commands.Command) => Promise.all(repositories.map((repository) => repository.logCommand(command))).then(() => { }),
+	logEvent: (event: Events.Event) => Promise.all(repositories.map((repository) => repository.logEvent(event))).then(() => { }),
 })

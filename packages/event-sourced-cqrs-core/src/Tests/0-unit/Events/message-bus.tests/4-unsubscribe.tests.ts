@@ -6,8 +6,8 @@
 //  */
 
 // import test from "ava";
-// import { v4 as uuid } from "uuid";
-// import { DateTime } from "luxon";
+// import { v4 as uuid } from "uuid";
+// import { DateTime } from "luxon";
 
 // import Core from "event-sourced-cqrs-core";
 // import Platform from "../../../../index.js";
@@ -45,7 +45,7 @@
 // 		tracingId: uuid(),
 // 		version: "1.0.0",
 // 		name: "event_name",
-// 		body: { }
+// 		body: { }
 // 	}
 // 	const messageBusSubscriptionCallback = (emittedEvent: Core.Events.Event) => {
 // 		t.deepEqual(emittedEvent, event)

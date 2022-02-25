@@ -13,4 +13,4 @@ export * as Projections from './Projections';
 export * as Types from "./Types";
 export * as Tests from "./Tests";
 
-export { PlatformInterface } from "./Platform";
+export { PlatformInterface } from "./Platform";

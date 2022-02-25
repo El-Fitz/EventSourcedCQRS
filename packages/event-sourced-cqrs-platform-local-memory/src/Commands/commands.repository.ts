@@ -8,7 +8,7 @@
 import * as Core from "event-sourced-cqrs-core";
 
 export const CommandsRepository = (): Core.Commands.Repository => {
-	let repository: { [key: string]: Core.Commands.Command } = { };
+	let repository: { [key: string]: Core.Commands.Command } = { };
 
 	return {
 		create: (command: Core.Commands.Command) => {

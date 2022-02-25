@@ -6,8 +6,8 @@
 //  */
 
 // import test from "ava";
-// import { v4 as uuid } from "uuid";
-// import { DateTime } from "luxon";
+// import { v4 as uuid } from "uuid";
+// import { DateTime } from "luxon";
 
 // import Core from "event-sourced-cqrs-core";
 // import Platform from "../../../../index.js";
@@ -21,7 +21,7 @@
 // 		tracingId: uuid(),
 // 		version: "1.0.0",
 // 		name: "command_name",
-// 		body: { }
+// 		body: { }
 // 	}
 // 	await t.notThrows(async () => await await messageBus.emit(command))
 // });
@@ -35,7 +35,7 @@
 // 		tracingId: uuid(),
 // 		version: "1.0.0",
 // 		name: "command_name",
-// 		body: { }
+// 		body: { }
 // 	}
 // 	let result = await t.notThrows(async () => await await messageBus.emit(command))
 // 	t.is(result, (() => { return })());

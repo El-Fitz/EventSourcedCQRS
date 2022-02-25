@@ -6,4 +6,4 @@
  */
 
 export * as Definitions from "./Definitions"
-export { AggregateReducer as Reducer } from "./domain/aggregate-reducer.domain"
+export { AggregateReducer as Reducer } from "./domain/aggregate-reducer.domain"

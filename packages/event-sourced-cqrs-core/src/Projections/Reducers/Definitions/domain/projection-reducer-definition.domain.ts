@@ -12,6 +12,6 @@ export interface ProjectionReducerDefinition {
 	id: Types.UUID;
 	creationDate: Types.DateTime;
 	triggeringEventId: Types.UUID;
-	requiredAggregates: { id: Types.UUID, repositoryId: Types.UUID }[];
+	requiredAggregates: { id: Types.UUID, repositoryId: Types.UUID }[];
 	reducer: () => Promise<Projections.Reducers.Reducer>
 }

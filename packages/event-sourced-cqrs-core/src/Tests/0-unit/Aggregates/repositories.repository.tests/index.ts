@@ -5,13 +5,13 @@
  * @Last Modified time: 2021-06-30 18:03:44
  */
 
-import { TestInterface } from 'ava';
-import { PlatformInterface } from "../../../../"
+import { TestInterface } from 'ava';
+import { PlatformInterface } from "../../../../"
 
-export { default as Basic } from "./0-basics.tests"
-export { default as Create } from "./1-create.tests"
-export { default as Get } from "./2-get.tests"
-export { default as Delete } from "./3-delete.tests"
+export { default as Basic } from "./0-basics.tests"
+export { default as Create } from "./1-create.tests"
+export { default as Get } from "./2-get.tests"
+export { default as Delete } from "./3-delete.tests"
 
 import Basic from "./0-basics.tests"
 import Create from "./1-create.tests"

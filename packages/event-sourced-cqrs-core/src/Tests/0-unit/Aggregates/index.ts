@@ -5,8 +5,8 @@
  * @Last Modified time: 2021-06-30 18:11:32
  */
 
-import { TestInterface } from 'ava';
-import { PlatformInterface } from "../../../"
+import { TestInterface } from 'ava';
+import { PlatformInterface } from "../../../"
 
 export * as Reducers from "./reducers"
 export * as RepositoriesRepository from "./repositories.repository.tests"

@@ -5,8 +5,8 @@
  * @Last Modified time: 2021-06-30 02:15:47
  */
 
-import { TestInterface } from 'ava';
-import { PlatformInterface } from "../../../../"
+import { TestInterface } from 'ava';
+import { PlatformInterface } from "../../../../"
 
 export * as Definitions from './definitions'
 

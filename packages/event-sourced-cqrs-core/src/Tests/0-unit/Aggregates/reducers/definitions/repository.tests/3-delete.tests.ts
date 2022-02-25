@@ -6,11 +6,11 @@
  */
 
 import { v4 as uuid } from "uuid";
-import { DateTime } from "luxon";
+import { DateTime } from "luxon";
 
-import { TestInterface } from 'ava';
+import { TestInterface } from 'ava';
 import * as Core from "../../../../../../index.js";
-import { PlatformInterface } from "../../../../../../index.js";
+import { PlatformInterface } from "../../../../../../index.js";
 
 export default (platform: PlatformInterface) => (test: TestInterface<unknown>) => {
 	test('Agggregates - Reducers - Definitions - Repository - Reducer Definition can be deleted after creation', async t => {

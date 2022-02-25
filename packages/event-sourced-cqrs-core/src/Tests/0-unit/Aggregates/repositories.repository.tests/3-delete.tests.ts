@@ -5,9 +5,9 @@
  * @Last Modified time: 2021-06-30 18:09:42
  */
 
-import { TestInterface } from 'ava';
-import { PlatformInterface } from "../../../../index.js";
-import { aggregateRepositoryFactory } from "../_aggregates-repository.factory";
+import { TestInterface } from 'ava';
+import { PlatformInterface } from "../../../../index.js";
+import { aggregateRepositoryFactory } from "../_aggregates-repository.factory";
 
 export default (platform: PlatformInterface) => (test: TestInterface<unknown>) => {
 	test('Agggregates - Repositories Repository - Aggregates Repository can be deleted after creation', async t => {

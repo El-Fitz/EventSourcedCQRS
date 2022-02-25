@@ -1,6 +1,6 @@
 
-import { TestInterface } from 'ava';
-import { PlatformInterface } from "../../"
+import { TestInterface } from 'ava';
+import { PlatformInterface } from "../../"
 
 export * as Aggregates from "./Aggregates"
 

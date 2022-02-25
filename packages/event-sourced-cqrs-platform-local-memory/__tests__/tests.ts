@@ -7,7 +7,7 @@
 
 import test from 'ava';
 import * as Core from "event-sourced-cqrs-core"
-import { Platform } from "../src/index.js";
+import { Platform } from "../src/index.js";
 
 const platform = Platform();
 

@@ -6,8 +6,8 @@
 //  */
 
 // import test from "ava";
-// import { v4 as uuid } from "uuid";
-// import { DateTime } from "luxon";
+// import { v4 as uuid } from "uuid";
+// import { DateTime } from "luxon";
 
 // import Core from "event-sourced-cqrs-core";
 // import Platform from "../../../../index.js";
@@ -35,7 +35,7 @@
 // 		tracingId: uuid(),
 // 		version: "1.0.0",
 // 		name: "command_name",
-// 		body: { }
+// 		body: { }
 // 	}
 // 	const messageBusSubscriptionCallback = (emittedCommand: Core.Commands.Command) => {
 // 		t.deepEqual(emittedCommand, command)
@@ -55,7 +55,7 @@
 // 		tracingId: uuid(),
 // 		version: "1.0.0",
 // 		name: "command_name",
-// 		body: { }
+// 		body: { }
 // 	}, {
 // 		id: uuid(),
 // 		creationDate: DateTime.now(),
@@ -63,7 +63,7 @@
 // 		tracingId: uuid(),
 // 		version: "2.0.0",
 // 		name: "second_command",
-// 		body: { }
+// 		body: { }
 // 	}, {
 // 		id: uuid(),
 // 		creationDate: DateTime.now(),
@@ -71,7 +71,7 @@
 // 		tracingId: uuid(),
 // 		version: "2.0.0",
 // 		name: "third_command",
-// 		body: { }
+// 		body: { }
 // 	}]
 // 	t.plan(commands.length)
 // 	const messageBusSubscriptionCallback = (emittedCommand: Core.Commands.Command) => {
@@ -95,7 +95,7 @@
 // 		tracingId: uuid(),
 // 		version: "1.0.0",
 // 		name: "command_name",
-// 		body: { }
+// 		body: { }
 // 	}, {
 // 		id: uuid(),
 // 		creationDate: DateTime.now(),
@@ -103,7 +103,7 @@
 // 		tracingId: uuid(),
 // 		version: "2.0.0",
 // 		name: "second_command",
-// 		body: { }
+// 		body: { }
 // 	}, {
 // 		id: uuid(),
 // 		creationDate: DateTime.now(),
@@ -111,7 +111,7 @@
 // 		tracingId: uuid(),
 // 		version: "3.0.0",
 // 		name: "third_command",
-// 		body: { }
+// 		body: { }
 // 	}]
 // 	const subscribers: ((emittedCommand: Core.Commands.Command) => Promise<void>)[] = (() => {
 // 		return new Array(subscribersCount)

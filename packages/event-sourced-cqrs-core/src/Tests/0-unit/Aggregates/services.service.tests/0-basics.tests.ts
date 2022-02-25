@@ -5,8 +5,8 @@
  * @Last Modified time: 2021-06-30 18:09:57
  */
 
-import { TestInterface } from 'ava';
-import { PlatformInterface } from "../../../../index.js";
+import { TestInterface } from 'ava';
+import { PlatformInterface } from "../../../../index.js";
 
 export default (platform: PlatformInterface) => (test: TestInterface<unknown>) => {
 	test('Agggregates - Services Service - Succesfully initializes Aggregates Services Service', t => {

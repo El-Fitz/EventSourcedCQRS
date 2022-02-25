@@ -5,4 +5,4 @@
  * @Last Modified time: 2021-06-30 00:55:38
  */
 
-export { CommandReducer } from "./command-reducer.domain"
+export { CommandReducer } from "./command-reducer.domain"

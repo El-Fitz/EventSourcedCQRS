@@ -5,5 +5,5 @@
  * @Last Modified time: 2021-06-30 01:07:27
  */
 
-export { ProjectionReducersDefinitionsRepository as Repository, ProjectionReducersDefinitionsRepositoryInstance as RepositoryInstance } from "./projection-reducers-definitions.repository"
-export { ProjectionReducersDefinitionsService as Service } from "./projection-reducers-definitions.service"
+export { ProjectionReducersDefinitionsRepository as Repository, ProjectionReducersDefinitionsRepositoryInstance as RepositoryInstance } from "./projection-reducers-definitions.repository"
+export { ProjectionReducersDefinitionsService as Service } from "./projection-reducers-definitions.service"

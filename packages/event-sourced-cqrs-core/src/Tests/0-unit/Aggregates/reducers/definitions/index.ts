@@ -5,8 +5,8 @@
  * @Last Modified time: 2021-06-30 17:57:02
  */
 
-import { TestInterface } from 'ava';
-import { PlatformInterface } from "../../../../../"
+import { TestInterface } from 'ava';
+import { PlatformInterface } from "../../../../../"
 
 export * as Repository from './repository.tests'
 export * as Service from "./service.tests"

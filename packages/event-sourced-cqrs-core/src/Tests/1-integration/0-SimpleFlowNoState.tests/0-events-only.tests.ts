@@ -13,9 +13,9 @@ test('fn() returns foo', t => {
 	t.is(fn(), 'foo');
 });
 
-// import { TestInterface } from 'ava';
+// import { TestInterface } from 'ava';
 // import { v4 as uuid } from "uuid";
-// import { DateTime } from "luxon";
+// import { DateTime } from "luxon";
 
 // import * as Core from "../../../"
 // import { PlatformInterface } from "../../../"
@@ -79,7 +79,7 @@ test('fn() returns foo', t => {
 // 				if (event.body === bodyLimit) {
 // 					resolve()
 // 				}
-// 				return eventsController(event).then(() => { })
+// 				return eventsController(event).then(() => { })
 // 			})
 
 // 			await Promise.all(
@@ -141,7 +141,7 @@ test('fn() returns foo', t => {
 	// 			if (event.body === bodyLimit) {
 	// 				resolve()
 	// 			}
-	// 			return eventsController(event).then(() => { })
+	// 			return eventsController(event).then(() => { })
 	// 		})
 	// 		await Promise.all(
 	// 			eventsAndReducers.map((eventAndReducers) => eventsService.create(eventAndReducers.event))

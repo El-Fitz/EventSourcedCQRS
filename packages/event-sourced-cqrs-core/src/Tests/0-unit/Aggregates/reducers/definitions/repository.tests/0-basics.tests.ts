@@ -5,8 +5,8 @@
  * @Last Modified time: 2021-06-30 01:57:50
  */
 
-import { TestInterface } from 'ava';
-import { PlatformInterface } from "../../../../../../index.js";
+import { TestInterface } from 'ava';
+import { PlatformInterface } from "../../../../../../index.js";
 
 export default (platform: PlatformInterface) => (test: TestInterface<unknown>) => {
 	test('Agggregates - Reducers - Definitions - Repository - Succesfully initializes Reducers Definitions Repository', t => {

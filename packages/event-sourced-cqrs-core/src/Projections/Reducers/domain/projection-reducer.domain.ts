@@ -5,7 +5,7 @@
  * @Last Modified time: 2021-06-29 22:50:19
  */
 
-import { Aggregates } from "../../../"
+import { Aggregates } from "../../../"
 import * as Projections from "../.."
 import * as Events from "../../../Events";
 

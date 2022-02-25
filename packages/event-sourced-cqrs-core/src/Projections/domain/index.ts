@@ -6,8 +6,8 @@
 */
 
 export { ProjectionDomain as Projection } from "./projection.domain";
-export { ProjectionsRepository as Repository } from "./projections-repository.domain";
-export { ProjectionsServiceInterface as ServiceInterface } from "./projections-service.domain";
-export { ProjectionsService as Service } from "./projections-service.domain";
+export { ProjectionsRepository as Repository } from "./projections-repository.domain";
+export { ProjectionsServiceInterface as ServiceInterface } from "./projections-service.domain";
+export { ProjectionsService as Service } from "./projections-service.domain";
 export { ProjectionReducer as Reducer } from "../Reducers/domain/projection-reducer.domain";
-export { ProjectionReducerDefinition as ReducerDefinition } from "../Reducers/Definitions/domain/projection-reducer-definition.domain";
+export { ProjectionReducerDefinition as ReducerDefinition } from "../Reducers/Definitions/domain/projection-reducer-definition.domain";

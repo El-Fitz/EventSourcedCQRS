@@ -9,7 +9,7 @@ import { v4 as uuid } from "uuid";
 import * as Core from "../../../";
 
 export const aggregateRepositoryFactory = (): Core.Aggregates.Repository => {
-	let aggregatesHashmap: { [key: string]: Core.Aggregates.Aggregate } = {};
+	let aggregatesHashmap: { [key: string]: Core.Aggregates.Aggregate } = {};
 	return {
 		id: uuid(),
 		create: (aggregate: Core.Aggregates.Aggregate) => {

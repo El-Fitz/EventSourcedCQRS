@@ -6,10 +6,10 @@
  */
 
 import * as Core from "event-sourced-cqrs-core"
-import { PlatformInterface } from "event-sourced-cqrs-core"
+import { PlatformInterface } from "event-sourced-cqrs-core"
 
 export * as Aggregates from "./Aggregates";
-export * as Commands from "./Commands";
+export * as Commands from "./Commands";
 export * as Events from "./Events";
 export * as Projections from "./Projections";
 
