@@ -2,7 +2,7 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-30 01:53:48 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-12 02:31:29
+ * @Last Modified time: 2022-03-12 16:57:57
  */
 
 import test from 'ava';
@@ -25,7 +25,8 @@ const platformParams: PlatformParams = {
 						return acc;
 					}, { } as { [key: string]: Core.Aggregates.Reducers.Definitions.Definition})
 				)
-			}
+			},
+			repository: Aggregates.Reducers.RepositoryInstance,
 		}
 	},
 	commands: {

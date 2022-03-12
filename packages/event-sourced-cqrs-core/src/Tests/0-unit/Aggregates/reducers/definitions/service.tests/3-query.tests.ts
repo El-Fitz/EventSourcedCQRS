@@ -2,7 +2,7 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-19 17:27:30 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-12 14:21:39
+ * @Last Modified time: 2022-03-12 16:48:47
  */
 
 import { TestInterface } from 'ava';
@@ -15,7 +15,7 @@ export const testDefinitions = [
 		let events: Core.Events.Event[] = [Factories.Events.Events()];
 		let reducers: Core.Aggregates.Reducers.Reducer[] = [];
 		let definitions: Core.Aggregates.Reducers.Definitions.Definition[] =
-			reducers.map((reducer) => Factories.Aggregates.Reducers.Definitions(reducer, events[0].id));
+			reducers.map(() => Factories.Aggregates.Reducers.Definitions(events[0].id));
 		return {
 			events,
 			reducers,
@@ -28,7 +28,7 @@ export const testDefinitions = [
 		let events: Core.Events.Event[] = [Factories.Events.Events()];
 		let reducers: Core.Aggregates.Reducers.Reducer[] = [];
 		let definitions: Core.Aggregates.Reducers.Definitions.Definition[] =
-			reducers.map((reducer) => Factories.Aggregates.Reducers.Definitions(reducer));
+			reducers.map(() => Factories.Aggregates.Reducers.Definitions());
 		return {
 			events,
 			reducers,
@@ -41,7 +41,7 @@ export const testDefinitions = [
 		let events: Core.Events.Event[] = [Factories.Events.Events()];
 		let reducers: Core.Aggregates.Reducers.Reducer[] = [Factories.Aggregates.Reducers.Reducers()];
 		let definitions: Core.Aggregates.Reducers.Definitions.Definition[] =
-			reducers.map((reducer) => Factories.Aggregates.Reducers.Definitions(reducer));
+			reducers.map(() => Factories.Aggregates.Reducers.Definitions());
 		return {
 			events,
 			reducers,
@@ -54,7 +54,7 @@ export const testDefinitions = [
 		let events: Core.Events.Event[] = [Factories.Events.Events()];
 		let reducers: Core.Aggregates.Reducers.Reducer[] = [Factories.Aggregates.Reducers.Reducers()];
 		let definitions: Core.Aggregates.Reducers.Definitions.Definition[] =
-			reducers.map((reducer) => Factories.Aggregates.Reducers.Definitions(reducer, events[0].id));
+			reducers.map(() => Factories.Aggregates.Reducers.Definitions(events[0].id));
 		return {
 			events,
 			reducers,
@@ -75,9 +75,9 @@ export const testDefinitions = [
 			Factories.Aggregates.Reducers.Reducers()
 		]
 		let definitionsToLoad: Core.Aggregates.Reducers.Definitions.Definition[] =
-			reducersToLoad.map((reducer) => Factories.Aggregates.Reducers.Definitions(reducer, events[0].id));
+			reducersToLoad.map(() => Factories.Aggregates.Reducers.Definitions(events[0].id));
 		let definitions =
-			reducers.map((reducer) => Factories.Aggregates.Reducers.Definitions(reducer, events[0].id));
+			reducers.map(() => Factories.Aggregates.Reducers.Definitions(events[0].id));
 		return {
 			events,
 			reducers,
@@ -98,9 +98,9 @@ export const testDefinitions = [
 			Factories.Aggregates.Reducers.Reducers(),
 		]
 		let definitionsToLoad: Core.Aggregates.Reducers.Definitions.Definition[] =
-			reducersToLoad.map((reducer) => Factories.Aggregates.Reducers.Definitions(reducer, events[0].id));
+			reducersToLoad.map(() => Factories.Aggregates.Reducers.Definitions(events[0].id));
 		let definitions =
-			reducers.map((reducer) => Factories.Aggregates.Reducers.Definitions(reducer, events[0].id));
+			reducers.map(() => Factories.Aggregates.Reducers.Definitions(events[0].id));
 		return {
 			events,
 			reducers,

@@ -2,7 +2,7 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-19 17:27:26 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-12 14:20:29
+ * @Last Modified time: 2022-03-12 16:39:19
  */
 
 import { v4 as uuid } from "uuid";
@@ -16,7 +16,7 @@ export const testDefinitions = [
 	(() => {
 		let reducers: Core.Aggregates.Reducers.Reducer[] = [Factories.Aggregates.Reducers.Reducers()];
 		let definitions: Core.Aggregates.Reducers.Definitions.Definition[] =
-			reducers.map((reducer) => Factories.Aggregates.Reducers.Definitions(reducer));
+			reducers.map(() => Factories.Aggregates.Reducers.Definitions());
 		return {
 			reducers,
 			definitions,
@@ -27,7 +27,7 @@ export const testDefinitions = [
 	(() => {
 		let reducers: Core.Aggregates.Reducers.Reducer[] = [Factories.Aggregates.Reducers.Reducers()];
 		let definitions: Core.Aggregates.Reducers.Definitions.Definition[] =
-			reducers.map((reducer) => Factories.Aggregates.Reducers.Definitions(reducer));
+			reducers.map(() => Factories.Aggregates.Reducers.Definitions());
 		return {
 			reducers,
 			definitions,
@@ -38,7 +38,7 @@ export const testDefinitions = [
 	(() => {
 		let reducers: Core.Aggregates.Reducers.Reducer[] = [Factories.Aggregates.Reducers.Reducers()];
 		let definitions: Core.Aggregates.Reducers.Definitions.Definition[] =
-			reducers.map((reducer) => Factories.Aggregates.Reducers.Definitions(reducer));
+			reducers.map(() => Factories.Aggregates.Reducers.Definitions());
 		return {
 			reducers,
 			definitions,

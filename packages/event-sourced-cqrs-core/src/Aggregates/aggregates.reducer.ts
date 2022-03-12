@@ -1,36 +1,34 @@
 /*
- * @Author: Thomas Léger 
- * @Date: 2021-06-11 19:07:34 
+* @Author: Thomas Léger 
+* @Date: 2021-06-11 19:07:34 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2021-06-29 22:51:30
- */
+ * @Last Modified time: 2022-03-12 16:33:53
+*/
 
 import * as Events from "../Events"
 import * as Aggregates from ".";
 
 export const AggregatesReducer = (event: Events.Event) =>
 	(aggregatesServicesService: Aggregates.ServicesServiceInterface) =>
-		(aggregateReducersDefinitionsService: Aggregates.Reducers.Definitions.ServiceInterface) =>
-				aggregateReducersDefinitionsService
-				.query(event)
-				.then((aggregateReducersDefinitions) =>
-					Promise.all(
-						[... new Set(
-							aggregateReducersDefinitions
-								.flatMap((aggregateBuildersDefinitions) => aggregateBuildersDefinitions.requiredAggregates)
-						)]
-						.map((requiredAggregate) => aggregatesServicesService.get(requiredAggregate.repositoryId).then((aggregatesService) => aggregatesService === null ? Promise.resolve(null) : aggregatesService.get(requiredAggregate.id)))
-					).then((aggregates) => {
-						if (aggregates.includes(null)) {
-							return Promise.reject("Failed resolving some aggregates")
-						}
-						return aggregates as Aggregates.Aggregate[]
-					}).then((aggregates) => 
+		(aggregatesReducersController: Aggregates.Reducers.ControllerInterface) =>
+			aggregatesReducersController.query(event)
+					.then((definitionsWithReducers) =>
 						Promise.all(
-							aggregateReducersDefinitions.map((aggregateReducerDefinition) =>
-								aggregateReducerDefinition
-									.reducer()
-									.then((aggregateBuilderReducer) => aggregateBuilderReducer(event)(aggregates))
-						))
-					).then((res) => res)
-				).then((aggregatesPromises) => aggregatesPromises.flatMap((aggregatePromise) => aggregatePromise));
+							[... new Set(
+								definitionsWithReducers
+								.flatMap(( { definition: { requiredAggregates } }) => requiredAggregates)
+							)]
+							.map(( { id: aggregateId, repositoryId } ) => aggregatesServicesService.get(repositoryId).then((aggregatesService) => aggregatesService === null ? Promise.resolve(null) : aggregatesService.get(aggregateId)))
+						).then((aggregates) => {
+							if (aggregates.includes(null)) {
+								return Promise.reject("Failed resolving some aggregates")
+							}
+							return aggregates as Aggregates.Aggregate[]
+						}).then((aggregates) => 
+							Promise.all(
+								definitionsWithReducers
+									.map(( { reducer }) => reducer(event)(aggregates))
+							))
+						).then((res) => res)
+						.then((aggregatesPromises) => aggregatesPromises.flatMap((aggregatePromise) => aggregatePromise));
+								

@@ -2,7 +2,7 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-11 18:44:09 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2021-06-23 23:21:37
+ * @Last Modified time: 2022-03-12 16:35:16
  */
 
 import * as Aggregates from "../Aggregates";
@@ -14,12 +14,12 @@ export const EventsController = (event: Events.Event) =>
 		(aggregatesServicesService: Aggregates.ServicesServiceInterface) =>
 			(eventsService: Events.ServiceInterface) =>
 				(eventsMessageBus?: Events.MessageBus) =>
-					(aggregateReducersDefinitionsService: Aggregates.Reducers.Definitions.ServiceInterface) =>
+					(aggregatesReducersController: Aggregates.Reducers.ControllerInterface) =>
 						Promise.all([
 							Events.Reducer(event)(eventReducersDefinitionsService)(aggregatesServicesService)
 								.then((events) => Promise.all(events.map(eventsService.create)))
 								.then(eventsMessageBus?.emitMultiple),
-							Aggregates.Reducer(event)(aggregatesServicesService)(aggregateReducersDefinitionsService)
+							Aggregates.Reducer(event)(aggregatesServicesService)(aggregatesReducersController)
 								.then((aggregates) => 
 									Promise.all(
 										aggregates.map((aggregate) =>

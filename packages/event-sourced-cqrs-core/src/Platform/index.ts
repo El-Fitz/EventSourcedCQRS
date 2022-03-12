@@ -2,7 +2,7 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-28 18:40:50 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-12 15:39:33
+ * @Last Modified time: 2022-03-12 16:55:48
  */
 
 import * as Aggregates from "../Aggregates"
@@ -15,6 +15,7 @@ export interface PlatformInterface {
 		RepositoriesRepository: Aggregates.RepositoriesRepository,
 		ServicesService: Aggregates.ServicesServiceInterface,
 		Reducers: {
+			Controller: Aggregates.Reducers.ControllerInterface,
 			Definitions: {
 				Repository: Aggregates.Reducers.Definitions.Repository,
 				Service: Aggregates.Reducers.Definitions.ServiceInterface,
