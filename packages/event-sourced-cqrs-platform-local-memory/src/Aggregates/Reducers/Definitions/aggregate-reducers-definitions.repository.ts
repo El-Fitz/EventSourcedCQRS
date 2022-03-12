@@ -2,7 +2,7 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-17 01:04:10 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-12 15:20:23
+ * @Last Modified time: 2022-03-12 15:26:34
  */
 
 import * as Core from "event-sourced-cqrs-core";
@@ -15,8 +15,8 @@ export const AggregateReducersDefinitionsRepository = (repository: { [key: strin
 		},
 		get: (id: Core.Types.UUID) => Promise.resolve(repository[id] === undefined ? [] : [repository[id]]),
 		query: (event: Core.Events.Event) => Promise.resolve(Object.values(repository).filter((definition) => definition.triggeringEventId === event.id)),
-		delete: (aggregateReducerDefinition: Core.Aggregates.Reducers.Definitions.Definition) => {
-			delete repository[aggregateReducerDefinition.id]
+		delete: (id: Core.Types.UUID) => {
+			delete repository[id];
 			return Promise.resolve();
 		}
 	})

@@ -2,7 +2,7 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-11 18:03:04 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2021-06-29 22:47:00
+ * @Last Modified time: 2022-03-12 15:23:49
  */
 
 import * as Aggregates from "../..";
@@ -13,5 +13,5 @@ export interface AggregateReducersDefinitionsRepository {
 	create: (aggregateReducerDefinition: Aggregates.Reducers.Definitions.Definition) => Promise<Aggregates.Reducers.Definitions.Definition>;
 	get: (id: Types.UUID) => Promise<Aggregates.Reducers.Definitions.Definition[]>;
 	query: (event: Events.Event) => Promise<Aggregates.Reducers.Definitions.Definition[]>;
-	delete: (aggregateReducerDefinition: Aggregates.Reducers.Definitions.Definition) => Promise<void>;
+	delete: (id: Types.UUID) => Promise<void>;
 }
