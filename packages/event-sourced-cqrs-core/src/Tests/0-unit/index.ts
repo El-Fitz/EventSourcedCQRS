@@ -1,11 +1,14 @@
-
-import { TestInterface } from 'ava';
-import { PlatformInterface } from "../../"
+/*
+ * @Author: Thomas Léger 
+ * @Date: 2022-03-12 14:29:07 
+ * @Last Modified by:   Thomas Léger 
+ * @Last Modified time: 2022-03-12 14:29:07 
+ */
 
 export * as Aggregates from "./Aggregates"
 
 import * as Aggregates from"./Aggregates"
 
-export const RunTests = (platform: PlatformInterface) => (test: TestInterface) => {
-	Aggregates.RunTests(platform)(test)
-}
+export const TestSuites = [
+	...Aggregates.TestSuites,
+];
