@@ -2,7 +2,7 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-28 19:03:17 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-12 17:38:43
+ * @Last Modified time: 2022-03-12 17:58:23
  */
 
 import * as Core from "event-sourced-cqrs-core"
@@ -39,7 +39,8 @@ export interface PlatformParams {
 		reducers: {
 			definitions: {
 				repository: Core.Events.Reducers.Definitions.Repository
-			}
+			},
+			repository: Core.Events.Reducers.Repository
 		}
 	},
 	projections: {
@@ -65,7 +66,10 @@ export const PlatformFactory = (params: PlatformParams): PlatformInterface => {
 	const commandsReducersDefinitionsService = Core.Commands.Reducers.Definitions.Service(commandsReducersDefinitionsRepository);
 
 	const eventsRepository = Events.Repository()
-	const eventsReducersDefinitionsRepository = params.events.reducers.definitions.repository
+	const eventsReducersRepository = params.events.reducers.repository;
+	const eventsReducersService = Core.Events.Reducers.Service(eventsReducersRepository);
+	const eventsReducersDefinitionsRepository = params.events.reducers.definitions.repository;
+	const eventsReducersDefinitionsService = Core.Events.Reducers.Definitions.Service(eventsReducersDefinitionsRepository);
 
 	const projectionsRepositoriesRepository = Projections.RepositoriesRepositoryInstance
 	const projectionsReducersDefinitionsRepository = params.projections.reducers.definitions.repository
@@ -103,10 +107,13 @@ export const PlatformFactory = (params: PlatformParams): PlatformInterface => {
 			Service: Core.Events.Service(eventsRepository),
 			MessageBus: Events.MessageBus(),
 			Reducers: {
+				Controller: Core.Events.Reducers.Controller(eventsReducersDefinitionsService)(eventsReducersService),
 				Definitions: {
 					Repository: eventsReducersDefinitionsRepository,
 					Service: Core.Events.Reducers.Definitions.Service(eventsReducersDefinitionsRepository),
-				}
+				},
+				Repository: eventsReducersRepository,
+				Service: eventsReducersService,
 			}
 		},
 		Projections: {

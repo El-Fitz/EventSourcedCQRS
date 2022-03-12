@@ -2,7 +2,7 @@
 * @Author: Thomas Léger 
 * @Date: 2021-06-11 19:07:34 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-12 16:33:53
+ * @Last Modified time: 2022-03-12 17:51:19
 */
 
 import * as Events from "../Events"
@@ -29,6 +29,6 @@ export const AggregatesReducer = (event: Events.Event) =>
 								definitionsWithReducers
 									.map(( { reducer }) => reducer(event)(aggregates))
 							))
-						).then((res) => res)
+						)
 						.then((aggregatesPromises) => aggregatesPromises.flatMap((aggregatePromise) => aggregatePromise));
 								

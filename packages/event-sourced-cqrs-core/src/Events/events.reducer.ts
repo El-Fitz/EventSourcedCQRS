@@ -2,40 +2,37 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-11 16:26:39 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2021-06-26 18:46:31
+ * @Last Modified time: 2022-03-12 17:51:24
  */
 
 import * as Aggregates from "../Aggregates";
 import * as Events from "./";
 
 export const EventsReducer = (event: Events.Event) => 
-	(eventReducersDefinitionsService: Events.Reducers.Definitions.ServiceInterface) =>
+	(eventReducersController: Events.Reducers.ControllerInterface) =>
 		(aggregatesServicesService: Aggregates.ServicesServiceInterface) =>
-			eventReducersDefinitionsService
+			eventReducersController
 				.query(event)
-				.then((eventReducersDefinitions) => 
+				.then((definitionsWithReducers) => 
 				Promise.all(
 					[... new Set(
-						eventReducersDefinitions
-							.flatMap((eventReducerDefinition) => eventReducerDefinition.requiredAggregates)
+						definitionsWithReducers
+						.flatMap(( { definition: { requiredAggregates } }) => requiredAggregates)
 					)]
-					.map((requiredAggregate) =>
-						aggregatesServicesService.get(requiredAggregate.repositoryId)
+					.map(( { id: aggregateId, repositoryId } ) =>
+						aggregatesServicesService.get(repositoryId)
 							.then((aggregateService) => {
 								if (aggregateService === null) {
 									return Promise.reject("Failed Resolving Aggregate Service")
 								}
 								return aggregateService
 							})
-							.then((aggregatesService) => aggregatesService.get(requiredAggregate.id))
+							.then((aggregatesService) => aggregatesService.get(aggregateId))
 					)
 				).then((aggregates) =>
-						Promise.all(
-							eventReducersDefinitions.map((eventReducerDefinition) =>
-								eventReducerDefinition
-									.reducer()
-									.then((reducer) => reducer(event)(aggregates))
-						))
-					)
+					Promise.all(
+						definitionsWithReducers
+								.map(( { reducer }) => reducer(event)(aggregates))
+					))
 				)
 				.then((outputEvents) => outputEvents.flatMap((outputEvent) => outputEvent));
