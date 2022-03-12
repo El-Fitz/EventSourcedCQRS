@@ -2,7 +2,7 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-30 01:53:48 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-12 18:00:41
+ * @Last Modified time: 2022-03-12 18:10:57
  */
 
 import test from 'ava';
@@ -49,7 +49,8 @@ const platformParams: PlatformParams = {
 		reducers: {
 			definitions: {
 				repository: Projections.Reducers.Definitions.Repository({ })
-			}
+			},
+			repository: Projections.Reducers.RepositoryInstance,
 		}
 	}
 };

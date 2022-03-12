@@ -2,7 +2,7 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-28 18:40:50 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-12 17:57:46
+ * @Last Modified time: 2022-03-12 18:07:33
  */
 
 import * as Aggregates from "../Aggregates"
@@ -56,10 +56,13 @@ export interface PlatformInterface {
 		RepositoriesRepository: Projections.RepositoriesRepository,
 		ServicesService: Projections.ServicesServiceInterface,
 		Reducers: {
+			Controller: Projections.Reducers.ControllerInterface,
 			Definitions: {
 				Repository: Projections.Reducers.Definitions.Repository,
 				Service: Projections.Reducers.Definitions.ServiceInterface,
-			}
+			},
+			Repository: Projections.Reducers.Repository,
+			Service: Projections.Reducers.ServiceInterface,
 		}
 	},
 }

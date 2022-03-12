@@ -2,7 +2,7 @@
  * @Author: Thomas Léger 
  * @Date: 2022-03-12 16:03:30 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-12 16:26:55
+ * @Last Modified time: 2022-03-12 18:02:57
  */
 
 import * as Aggregates from "../";

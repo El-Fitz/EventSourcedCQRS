@@ -2,7 +2,7 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-11 19:07:34 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2021-06-29 22:51:30
+ * @Last Modified time: 2022-03-12 18:05:11
  */
 
 import * as Aggregates from "../Aggregates";
@@ -11,14 +11,14 @@ import * as Projections from ".";
 
 export const ProjectionsReducer = (event: Events.Event) =>
 	(aggregatesServicesService: Aggregates.ServicesServiceInterface) =>
-		(projectionReducersDefinitionsService: Projections.Reducers.Definitions.ServiceInterface) =>
-				projectionReducersDefinitionsService
+		(projectionReducersController: Projections.Reducers.ControllerInterface) =>
+			projectionReducersController
 				.query(event)
-				.then((projectionReducersDefinitions) =>
+				.then((definitionsWithReducers) =>
 					Promise.all(
 						[... new Set(
-							projectionReducersDefinitions
-								.flatMap((projectionBuildersDefinitions) => projectionBuildersDefinitions.requiredAggregates)
+							definitionsWithReducers
+							.flatMap(( { definition: { requiredAggregates } }) => requiredAggregates)
 						)]
 						.map((requiredAggregate) => aggregatesServicesService.get(requiredAggregate.repositoryId).then((aggregatesService) => aggregatesService === null ? Promise.resolve(null) : aggregatesService.get(requiredAggregate.id)))
 					).then((aggregates) => {
@@ -28,10 +28,7 @@ export const ProjectionsReducer = (event: Events.Event) =>
 						return aggregates as Aggregates.Aggregate[]
 					}).then((aggregates) => 
 						Promise.all(
-							projectionReducersDefinitions.map((projectionReducerDefinition) =>
-								projectionReducerDefinition
-									.reducer()
-									.then((projectionBuilderReducer) => projectionBuilderReducer(event)(aggregates))
+							definitionsWithReducers
+								.map(( { reducer }) => reducer(event)(aggregates))
 						))
-					).then((res) => res)
 				).then((projectionsPromises) => projectionsPromises.flatMap((projectionPromise) => projectionPromise));

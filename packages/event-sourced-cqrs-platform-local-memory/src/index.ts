@@ -2,7 +2,7 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-28 19:03:17 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-12 17:58:23
+ * @Last Modified time: 2022-03-12 18:10:29
  */
 
 import * as Core from "event-sourced-cqrs-core"
@@ -47,7 +47,8 @@ export interface PlatformParams {
 		reducers: {
 			definitions: {
 				repository: Core.Projections.Reducers.Definitions.Repository
-			}
+			},
+			repository: Core.Projections.Reducers.Repository
 		}
 	},
 }
@@ -72,7 +73,10 @@ export const PlatformFactory = (params: PlatformParams): PlatformInterface => {
 	const eventsReducersDefinitionsService = Core.Events.Reducers.Definitions.Service(eventsReducersDefinitionsRepository);
 
 	const projectionsRepositoriesRepository = Projections.RepositoriesRepositoryInstance
-	const projectionsReducersDefinitionsRepository = params.projections.reducers.definitions.repository
+	const projectionsReducersRepository = params.projections.reducers.repository;
+	const projectionsReducersService = Core.Projections.Reducers.Service(projectionsReducersRepository);
+	const projectionsReducersDefinitionsRepository = params.projections.reducers.definitions.repository;
+	const projectionsReducersDefinitionsService = Core.Projections.Reducers.Definitions.Service(projectionsReducersDefinitionsRepository);
 
 	return {
 		Aggregates: {
@@ -120,10 +124,13 @@ export const PlatformFactory = (params: PlatformParams): PlatformInterface => {
 			RepositoriesRepository: Projections.RepositoriesRepositoryInstance,
 			ServicesService: Core.Projections.ServicesService(projectionsRepositoriesRepository),
 			Reducers: {
+				Controller: Core.Projections.Reducers.Controller(projectionsReducersDefinitionsService)(projectionsReducersService),
 				Definitions: {
 					Repository: projectionsReducersDefinitionsRepository,
 					Service: Core.Projections.Reducers.Definitions.Service(projectionsReducersDefinitionsRepository),
-				}
+				},
+				Repository: projectionsReducersRepository,
+				Service: projectionsReducersService,
 			}
 		},
 	}
