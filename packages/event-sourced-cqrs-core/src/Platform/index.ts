@@ -2,7 +2,7 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-28 18:40:50 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-12 16:55:48
+ * @Last Modified time: 2022-03-12 17:34:44
  */
 
 import * as Aggregates from "../Aggregates"
@@ -29,10 +29,13 @@ export interface PlatformInterface {
 		Service: Commands.ServiceInterface,
 		MessageBus: Commands.MessageBus,
 		Reducers: {
+			Controller: Commands.Reducers.ControllerInterface,
 			Definitions: {
 				Repository: Commands.Reducers.Definitions.Repository,
 				Service: Commands.Reducers.Definitions.ServiceInterface,
-			}
+			},
+			Repository: Commands.Reducers.Repository,
+			Service: Commands.Reducers.ServiceInterface,
 		}
 	},
 	Events:  {

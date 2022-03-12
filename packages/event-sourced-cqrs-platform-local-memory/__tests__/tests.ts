@@ -2,7 +2,7 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-30 01:53:48 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-12 16:57:57
+ * @Last Modified time: 2022-03-12 17:33:09
  */
 
 import test from 'ava';
@@ -33,7 +33,8 @@ const platformParams: PlatformParams = {
 		reducers: {
 			definitions: {
 				repository: Commands.Reducers.Definitions.Repository({ })
-			}
+			},
+			repository: Commands.Reducers.RepositoryInstance,
 		}
 	},
 	events: {
