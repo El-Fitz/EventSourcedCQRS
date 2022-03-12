@@ -23,17 +23,17 @@
     "coverage": "c8 report --reporter=text-lcov | coveralls"
   },
   "dependencies": {
-    "ava": "^3.15.0",
-    "commitizen": "^4.2.4",
-    "event-sourced-cqrs-core": "^1.0.0",
-    "semantic-release": "^17.4.4",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/uuid": "^8.3.0",
+    "ava": "3.15.0",
     "c8": "^7.7.3",
+    "commitizen": "^4.2.4",
     "coveralls": "^3.1.0",
+    "event-sourced-cqrs-core": "^1.0.0",
     "nyc": "^15.1.0",
+    "semantic-release": "^19.0.2",
     "ts-node": "^10.0.0"
   },
   "ava": {

@@ -1,6 +1,6 @@
 'use strict';
 
-const eventSourcedCqrsPlatformAwsServerless = require('..');
+const eventSourcedCqrsPlatformAwsServerless = require('../component/src/serverless');
 
 describe('event-sourced-cqrs-platform-aws-serverless', () => {
     it('needs tests');

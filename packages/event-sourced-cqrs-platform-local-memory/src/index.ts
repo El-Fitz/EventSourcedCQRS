@@ -2,7 +2,7 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-28 19:03:17 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2021-06-30 01:25:43
+ * @Last Modified time: 2022-03-12 02:19:22
  */
 
 import * as Core from "event-sourced-cqrs-core"
@@ -18,18 +18,49 @@ import * as Commands from "./Commands";
 import * as Events from "./Events";
 import * as Projections from "./Projections";
 
-export const Platform = (): PlatformInterface => {
+export interface PlatformParams {
+	aggregates: {
+		reducers: {
+			definitions: {
+				repository: Core.Aggregates.Reducers.Definitions.Repository
+			}
+		}
+	},
+	commands: {
+		reducers: {
+			definitions: {
+				repository: Core.Commands.Reducers.Definitions.Repository
+			}
+		}
+	},
+	events: {
+		reducers: {
+			definitions: {
+				repository: Core.Events.Reducers.Definitions.Repository
+			}
+		}
+	},
+	projections: {
+		reducers: {
+			definitions: {
+				repository: Core.Projections.Reducers.Definitions.Repository
+			}
+		}
+	},
+}
+
+export const PlatformFactory = (params: PlatformParams): PlatformInterface => {
 	const aggregatesRepositoriesRepository = Aggregates.RepositoriesRepositoryInstance
-	const aggregatesReducersDefinitionsRepository = Aggregates.Reducers.Definitions.RepositoryInstance
+	const aggregatesReducersDefinitionsRepository = params.aggregates.reducers.definitions.repository;
 
 	const commandsRepository = Commands.Repository()
-	const commandsReducersDefinitionsRepository = Commands.Reducers.Definitions.RepositoryInstance
+	const commandsReducersDefinitionsRepository = params.commands.reducers.definitions.repository;
 
 	const eventsRepository = Events.Repository()
-	const eventsReducersDefinitionsRepository = Events.Reducers.Definitions.RepositoryInstance
+	const eventsReducersDefinitionsRepository = params.events.reducers.definitions.repository
 
 	const projectionsRepositoriesRepository = Projections.RepositoriesRepositoryInstance
-	const projectionsReducersDefinitionsRepository = Projections.Reducers.Definitions.RepositoryInstance
+	const projectionsReducersDefinitionsRepository = params.projections.reducers.definitions.repository
 
 	return {
 		Aggregates: {
