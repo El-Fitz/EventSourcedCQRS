@@ -2,22 +2,45 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-19 17:38:11 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2021-06-30 18:09:57
+ * @Last Modified time: 2022-03-14 19:30:29
  */
 
 import { TestInterface } from 'ava';
-import { PlatformInterface } from "../../../../index.js";
 
-export default (platform: PlatformInterface) => (test: TestInterface<unknown>) => {
-	test('Agggregates - Services Service - Succesfully initializes Projections Services Service', t => {
-		let service = platform.Projections.ServicesService;
-		t.not(service, undefined);
-	});
-	
-	test('Agggregates - Services Service - Projections Services Service has the proper methods', t => {
-		let service = platform.Projections.ServicesService;
-		t.not(service.create, undefined);
-		t.not(service.get, undefined);
-		t.not(service.delete, undefined);
-	});
-}
+import * as Core from "../../../../index.js";
+import { TestSuite, TestSuiteExpectedResult, TestSuiteParameters } from '../../../Domain';
+
+export const testSuites: TestSuite[] = [
+	(() => {
+		const implementation = (title: string) => (_parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Core.PlatformInterface) => (test: TestInterface<unknown>) => {
+			test(title, async t => {
+				let service = platform.Projections.ServicesService;
+				t.not(service, undefined);
+			});
+		};
+		return {
+			title: 'Succesfully initializes Projections Services Service',
+			expectedResult: null,
+			initialState: undefined,
+			parameters: undefined,
+			implementation,
+		};
+	})(),
+	(() => {
+		const implementation = (title: string) => (_parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Core.PlatformInterface) => (test: TestInterface<unknown>) => {
+			test(title, async t => {
+				let service = platform.Projections.ServicesService;
+				t.not(service.create, undefined);
+				t.not(service.get, undefined);
+				t.not(service.delete, undefined);
+			});
+		};
+		return {
+			title: 'Projections Services Service has the proper methods',
+			expectedResult: null,
+			initialState: undefined,
+			parameters: undefined,
+			implementation,
+		};
+	})(),
+];

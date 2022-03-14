@@ -2,7 +2,7 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-30 01:53:48 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-14 18:16:25
+ * @Last Modified time: 2022-03-14 19:23:22
  */
 
 import test from 'ava';
@@ -45,4 +45,4 @@ const platformParams: PlatformParams = {
 };
 const platform = PlatformFactory(platformParams);
 
-Core.Tests.RunTests(undefined)(undefined)(platform)(test);
+Core.Tests.TestRunner(platform)(test);

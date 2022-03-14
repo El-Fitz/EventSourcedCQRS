@@ -2,35 +2,83 @@
 * @Author: Thomas Léger 
 * @Date: 2021-06-19 17:27:26 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2021-06-30 18:09:39
+ * @Last Modified time: 2022-03-14 19:03:12
 */
 
 import { TestInterface } from 'ava';
-import { v4 as uuid } from "uuid";
-import { PlatformInterface } from "../../../../index.js";
+import { v4 as uuid } from 'uuid';
+
+import * as Core from "../../../../index.js";
+import { TestSuite, TestSuiteExpectedResult, TestSuiteParameters } from '../../../Domain';
 import { projectionRepositoryFactory } from "../_projections-repository.factory";
 
-export default (platform: PlatformInterface) => (test: TestInterface<unknown>) => {
-	test('Agggregates - Repositories Repository - Projections Repository can be retrieved after creation', async t => {
-		let repository = platform.Projections.RepositoriesRepository;
-		let projectionsRepository = projectionRepositoryFactory();
-		await repository.create(projectionsRepository);
-		await t.notThrows(async () => await repository.get(projectionsRepository.id))
-	});
-	
-	test('Agggregates - Repositories Repository - The repository returns the expected Projections Repository', async t => {
-		let repository = platform.Projections.RepositoriesRepository;
-		let projectionsRepository = projectionRepositoryFactory();
-		await repository.create(projectionsRepository);
-		let fetchedRepository = await repository.get(projectionsRepository.id)
-		t.deepEqual(fetchedRepository, projectionsRepository)
-	});
-	
-	test('Agggregates - Repositories Repository - The repository returns null when the requested Projections Repository does not exist', async t => {
-		let repository = platform.Projections.RepositoriesRepository;
-		let projectionsRepository = projectionRepositoryFactory();
-		await repository.create(projectionsRepository);
-		let fetchedRepository = await repository.get(uuid());
-		t.deepEqual(fetchedRepository, null);
-	});
-}
+export const testSuites: TestSuite[] = [
+	(() => {
+		const parameters = {
+			projections: {
+				repositories: [projectionRepositoryFactory()]
+			}
+		}
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Core.PlatformInterface) => (test: TestInterface<unknown>) => {
+			test(title, async t => {
+				let repository = platform.Projections.RepositoriesRepository;
+				let [projectionsRepository] = parameters?.projections?.repositories ?? [];
+				await repository.create(projectionsRepository);
+				await t.notThrows(async () => await repository.get(projectionsRepository.id));
+			});
+		};
+		return {
+			title: 'Agggregates - Repositories Repository - Projections Repository can be retrieved after creation',
+			expectedResult: null,
+			initialState: undefined,
+			parameters,
+			implementation,
+		};
+	})(),
+	(() => {
+		const parameters = {
+			projections: {
+				repositories: [projectionRepositoryFactory()]
+			}
+		}
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Core.PlatformInterface) => (test: TestInterface<unknown>) => {
+			test(title, async t => {
+				let repository = platform.Projections.RepositoriesRepository;
+				let [projectionsRepository] = parameters?.projections?.repositories ?? [];
+				await repository.create(projectionsRepository);
+				let fetchedRepository = await repository.get(projectionsRepository.id)
+				t.deepEqual(fetchedRepository, expectedResult)
+			});
+		};
+		return {
+			title: 'Agggregates - Repositories Repository - The repository returns the expected Projections Repository',
+			expectedResult: parameters.projections.repositories[0],
+			initialState: undefined,
+			parameters,
+			implementation,
+		};
+	})(),
+	(() => {
+		const parameters = {
+			projections: {
+				repositories: [projectionRepositoryFactory()]
+			}
+		}
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Core.PlatformInterface) => (test: TestInterface<unknown>) => {
+			test(title, async t => {
+				let repository = platform.Projections.RepositoriesRepository;
+				let [projectionsRepository] = parameters?.projections?.repositories ?? [];
+				await repository.create(projectionsRepository);
+				let fetchedRepository = await repository.get(uuid());
+				t.deepEqual(fetchedRepository, expectedResult)
+			});
+		};
+		return {
+			title: 'Agggregates - Repositories Repository - The repository returns null when the requested Projections Repository does not exist',
+			expectedResult: null,
+			initialState: undefined,
+			parameters,
+			implementation,
+		};
+	})(),
+];

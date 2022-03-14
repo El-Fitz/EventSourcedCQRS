@@ -2,22 +2,22 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-30 02:02:50 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-11 23:48:23
+ * @Last Modified time: 2022-03-14 18:41:19
  */
 
-import { TestInterface } from 'ava';
-import { PlatformInterface } from "../../../../../../"
+import * as Basic from "./0-basics.tests"
+import * as Create from './1-create.tests';
+import * as Get from "./2-get.tests"
+import * as Query from "./3-query.tests"
+import * as Delete from "./4-delete.tests";
 
-export { default as Basic } from "./0-basics.tests"
-export { default as Get } from "./1-get.tests"
-export { default as Query } from "./2-query.tests"
-
-import Basic from "./0-basics.tests"
-import Get from "./1-get.tests"
-import Query from "./2-query.tests"
-
-export const RunTests = (platform: PlatformInterface) => (test: TestInterface) => {
-	Basic(platform)(test)
-	Get(platform)(test)
-	Query(platform)(test)
-}
+export const TestSuites = [
+	...Basic.testSuites,
+	...Create.testSuites,
+	...Get.testSuites,
+	...Query.testSuites,
+	...Delete.testSuites,
+].map((testSuite) => ({
+	...testSuite,
+	title: `[REPOSITORY] - ${testSuite.title}`
+}));

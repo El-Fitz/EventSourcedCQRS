@@ -2,36 +2,83 @@
 * @Author: Thomas Léger 
 * @Date: 2021-06-19 17:27:26 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-14 18:03:29
+ * @Last Modified time: 2022-03-14 19:03:12
 */
 
 import { TestInterface } from 'ava';
-import { v4 as uuid } from "uuid";
-import { PlatformInterface } from "../../../../index.js";
-import { aggregateRepositoryFactory } from "../_aggregates-repository.factory";
-import { TestSuiteParameters, TestSuiteExpectedResult } from '../../../Domain/index.js';
+import { v4 as uuid } from 'uuid';
 
-export default (_parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: PlatformInterface) => (test: TestInterface<unknown>) => {
-	test('Agggregates - Repositories Repository - Aggregates Repository can be retrieved after creation', async t => {
-		let repository = platform.Aggregates.RepositoriesRepository;
-		let aggregatesRepository = aggregateRepositoryFactory();
-		await repository.create(aggregatesRepository);
-		await t.notThrows(async () => await repository.get(aggregatesRepository.id))
-	});
-	
-	test('Agggregates - Repositories Repository - The repository returns the expected Aggregates Repository', async t => {
-		let repository = platform.Aggregates.RepositoriesRepository;
-		let aggregatesRepository = aggregateRepositoryFactory();
-		await repository.create(aggregatesRepository);
-		let fetchedRepository = await repository.get(aggregatesRepository.id)
-		t.deepEqual(fetchedRepository, aggregatesRepository)
-	});
-	
-	test('Agggregates - Repositories Repository - The repository returns null when the requested Aggregates Repository does not exist', async t => {
-		let repository = platform.Aggregates.RepositoriesRepository;
-		let aggregatesRepository = aggregateRepositoryFactory();
-		await repository.create(aggregatesRepository);
-		let fetchedRepository = await repository.get(uuid());
-		t.deepEqual(fetchedRepository, null);
-	});
-}
+import * as Core from "../../../../index.js";
+import { TestSuite, TestSuiteExpectedResult, TestSuiteParameters } from '../../../Domain';
+import { aggregateRepositoryFactory } from "../_aggregates-repository.factory";
+
+export const testSuites: TestSuite[] = [
+	(() => {
+		const parameters = {
+			aggregates: {
+				repositories: [aggregateRepositoryFactory()]
+			}
+		}
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Core.PlatformInterface) => (test: TestInterface<unknown>) => {
+			test(title, async t => {
+				let repository = platform.Aggregates.RepositoriesRepository;
+				let [aggregatesRepository] = parameters?.aggregates?.repositories ?? [];
+				await repository.create(aggregatesRepository);
+				await t.notThrows(async () => await repository.get(aggregatesRepository.id));
+			});
+		};
+		return {
+			title: 'Agggregates - Repositories Repository - Aggregates Repository can be retrieved after creation',
+			expectedResult: null,
+			initialState: undefined,
+			parameters,
+			implementation,
+		};
+	})(),
+	(() => {
+		const parameters = {
+			aggregates: {
+				repositories: [aggregateRepositoryFactory()]
+			}
+		}
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Core.PlatformInterface) => (test: TestInterface<unknown>) => {
+			test(title, async t => {
+				let repository = platform.Aggregates.RepositoriesRepository;
+				let [aggregatesRepository] = parameters?.aggregates?.repositories ?? [];
+				await repository.create(aggregatesRepository);
+				let fetchedRepository = await repository.get(aggregatesRepository.id)
+				t.deepEqual(fetchedRepository, expectedResult)
+			});
+		};
+		return {
+			title: 'Agggregates - Repositories Repository - The repository returns the expected Aggregates Repository',
+			expectedResult: parameters.aggregates.repositories[0],
+			initialState: undefined,
+			parameters,
+			implementation,
+		};
+	})(),
+	(() => {
+		const parameters = {
+			aggregates: {
+				repositories: [aggregateRepositoryFactory()]
+			}
+		}
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Core.PlatformInterface) => (test: TestInterface<unknown>) => {
+			test(title, async t => {
+				let repository = platform.Aggregates.RepositoriesRepository;
+				let [aggregatesRepository] = parameters?.aggregates?.repositories ?? [];
+				await repository.create(aggregatesRepository);
+				let fetchedRepository = await repository.get(uuid());
+				t.deepEqual(fetchedRepository, expectedResult)
+			});
+		};
+		return {
+			title: 'Agggregates - Repositories Repository - The repository returns null when the requested Aggregates Repository does not exist',
+			expectedResult: null,
+			initialState: undefined,
+			parameters,
+			implementation,
+		};
+	})(),
+];
