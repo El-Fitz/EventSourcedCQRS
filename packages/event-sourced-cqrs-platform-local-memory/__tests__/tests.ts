@@ -2,7 +2,7 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-30 01:53:48 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-12 18:10:57
+ * @Last Modified time: 2022-03-14 18:16:25
  */
 
 import test from 'ava';
@@ -13,18 +13,7 @@ const platformParams: PlatformParams = {
 	aggregates: {
 		reducers: {
 			definitions: {
-				repository: Aggregates.Reducers.Definitions.Repository(
-					[
-						...Core.Tests.Unit.Aggregates.Reducers.Definitions.Repository.Get.testDefinitions.map(({ definitionsToLoad }) => definitionsToLoad),
-						...Core.Tests.Unit.Aggregates.Reducers.Definitions.Repository.Query.testDefinitions.map(({ definitionsToLoad }) => definitionsToLoad),
-						...Core.Tests.Unit.Aggregates.Reducers.Definitions.Service.Get.testDefinitions.map(({ definitionsToLoad }) => definitionsToLoad),
-						...Core.Tests.Unit.Aggregates.Reducers.Definitions.Service.Query.testDefinitions.map(({ definitionsToLoad }) => definitionsToLoad),
-					].reduce((acc, items) => acc.concat(items))
-					.reduce((acc, definition) => {
-						acc[definition.id] = definition;
-						return acc;
-					}, { } as { [key: string]: Core.Aggregates.Reducers.Definitions.Definition})
-				)
+				repository: Aggregates.Reducers.Definitions.Repository({ })
 			},
 			repository: Aggregates.Reducers.RepositoryInstance,
 		}
@@ -56,4 +45,4 @@ const platformParams: PlatformParams = {
 };
 const platform = PlatformFactory(platformParams);
 
-Core.Tests.RunTests(platform)(test);
+Core.Tests.RunTests(undefined)(undefined)(platform)(test);

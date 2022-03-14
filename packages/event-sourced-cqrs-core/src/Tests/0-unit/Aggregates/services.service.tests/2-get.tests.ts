@@ -2,7 +2,7 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-19 17:27:26 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2021-06-30 18:10:04
+ * @Last Modified time: 2022-03-14 18:03:50
  */
 
 import { TestInterface } from 'ava';
@@ -11,8 +11,9 @@ import { v4 as uuid } from "uuid";
 import * as Core from "../../../../index.js";
 import { PlatformInterface } from "../../../../index.js";
 import { aggregateRepositoryFactory } from "../_aggregates-repository.factory";
+import { TestSuiteParameters, TestSuiteExpectedResult } from '../../../Domain/index.js';
 
-export default (platform: PlatformInterface) => (test: TestInterface<unknown>) => {
+export default (_parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: PlatformInterface) => (test: TestInterface<unknown>) => {
 	test('Agggregates - Services Service - Aggregates Service can be retrieved after creation', async t => {
 		let service = platform.Aggregates.ServicesService;
 		let aggregatesRepository = aggregateRepositoryFactory();

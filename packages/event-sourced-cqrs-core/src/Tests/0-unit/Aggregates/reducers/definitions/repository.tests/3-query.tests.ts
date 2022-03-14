@@ -2,164 +2,204 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-30 02:05:03 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-12 16:40:12
+ * @Last Modified time: 2022-03-14 18:42:04
  */
 
 import { TestInterface } from 'ava';
 import * as Core from "../../../../../../index.js";
+import { TestSuite, TestSuiteExpectedResult, TestSuiteParameters } from '../../../../../Domain';
 import * as Factories from '../../../../../Factories/index.js';
-import { PlatformInterface } from "../../../../../../index.js";
 
-export const testDefinitions = [
+export const testSuites: TestSuite[] = [
 	(() => {
-		let events: Core.Events.Event[] = [Factories.Events.Events()];
-		let reducers: Core.Aggregates.Reducers.Reducer[] = [];
-		let definitions: Core.Aggregates.Reducers.Definitions.Definition[] =
-			reducers.map(() => Factories.Aggregates.Reducers.Definitions(events[0].id));
+		const title = 'Querying the repository will not throw when there are no definitions';
+		const initialState = undefined;
+		const eventsParameters = {
+			items: [Factories.Events.Events()]
+		};
+		const parameters = {
+			events: eventsParameters
+		};
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Core.PlatformInterface) => (test: TestInterface<unknown>) => {
+			test(title, async t => {
+				const repository = platform.Aggregates.Reducers.Definitions.Repository;
+				const [event] = parameters?.events?.items ?? [];
+				await t.notThrows(async () => await repository.query(event))
+			});
+		};
 		return {
-			events,
-			reducers,
-			definitions,
-			definitionsToLoad: definitions,
-			expectedResults: [],
-		}
+			title,
+			expectedResult: null,
+			initialState,
+			parameters,
+			implementation,
+		};
 	})(),
 	(() => {
-		let events: Core.Events.Event[] = [Factories.Events.Events()];
-		let reducers: Core.Aggregates.Reducers.Reducer[] = [];
-		let definitions: Core.Aggregates.Reducers.Definitions.Definition[] =
-			reducers.map(() => Factories.Aggregates.Reducers.Definitions());
+		const title = 'Querying the repository will return an empty array when there are no definitions';
+		const initialState = undefined;
+		const parameters = {
+			events: {
+				items: [Factories.Events.Events()]
+			}
+		};
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Core.PlatformInterface) => (test: TestInterface<unknown>) => {
+			test(title, async t => {
+				const repository = platform.Aggregates.Reducers.Definitions.Repository;
+				const [event] = parameters?.events?.items ?? [];
+				let fetchedDefinitions = await repository.query(event)
+				t.deepEqual(fetchedDefinitions, expectedResult);
+			});
+		};
 		return {
-			events,
-			reducers,
-			definitions,
-			definitionsToLoad: definitions,
-			expectedResults: [],
-		}
+			title,
+			expectedResult: [],
+			initialState,
+			parameters,
+			implementation,
+		};
 	})(),
 	(() => {
-		let events: Core.Events.Event[] = [Factories.Events.Events()];
-		let reducers: Core.Aggregates.Reducers.Reducer[] = [Factories.Aggregates.Reducers.Reducers()];
-		let definitions: Core.Aggregates.Reducers.Definitions.Definition[] =
-			reducers.map(() => Factories.Aggregates.Reducers.Definitions());
+		const title = 'Querying the repository will return an empty array when no definitions match the event';
+		const initialState = undefined;
+		const parameters = {
+			aggregates: {
+				reducersDefinitions: [Factories.Aggregates.Reducers.Definitions()]
+			},
+			events: {
+				items: [Factories.Events.Events()]
+			}
+		};
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Core.PlatformInterface) => (test: TestInterface<unknown>) => {
+			test(title, async t => {
+				const repository = platform.Aggregates.Reducers.Definitions.Repository;
+				const [definition] = parameters?.aggregates?.reducersDefinitions ?? [];
+				const [event] = parameters?.events?.items ?? [];
+				await repository.create(definition);
+				let fetchedDefinitions = await repository.query(event)
+				t.deepEqual(fetchedDefinitions, expectedResult);
+			});
+		};
 		return {
-			events,
-			reducers,
-			definitions,
-			definitionsToLoad: definitions,
-			expectedResults: [],
-		}
+			title,
+			expectedResult: [],
+			initialState,
+			parameters,
+			implementation,
+		};
 	})(),
 	(() => {
-		let events: Core.Events.Event[] = [Factories.Events.Events()];
-		let reducers: Core.Aggregates.Reducers.Reducer[] = [Factories.Aggregates.Reducers.Reducers()];
-		let definitions: Core.Aggregates.Reducers.Definitions.Definition[] =
-			reducers.map(() => Factories.Aggregates.Reducers.Definitions(events[0].id));
-		return {
-			events,
-			reducers,
-			definitions,
-			definitionsToLoad: definitions,
-			expectedResults: definitions,
+		const title = 'Querying the repository will return a definition when one matches the event';
+		const initialState = undefined;
+		const eventsParameters = {
+			items: [Factories.Events.Events()]
+		};
+		const aggregatesParameters = {
+			reducersDefinitions: eventsParameters.items.map(( { id }) => Factories.Aggregates.Reducers.Definitions(id))
 		}
+		const parameters = {
+			aggregates: aggregatesParameters,
+			events: eventsParameters
+		};
+		const expectedResults = aggregatesParameters.reducersDefinitions;
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Core.PlatformInterface) => (test: TestInterface<unknown>) => {
+			test(title, async t => {
+				const repository = platform.Aggregates.Reducers.Definitions.Repository;
+				const [definition] = parameters?.aggregates?.reducersDefinitions ?? [];
+				const [event] = parameters?.events?.items ?? [];
+				await repository.create(definition);
+				let fetchedDefinitions = await repository.query(event)
+				t.deepEqual(fetchedDefinitions, expectedResult);
+			});
+		};
+		return {
+			title,
+			expectedResult: expectedResults,
+			initialState,
+			parameters,
+			implementation,
+		};
 	})(),
 	(() => {
-		let events: Core.Events.Event[] = [Factories.Events.Events()];
-		let reducersToLoad: Core.Aggregates.Reducers.Reducer[] = [
-			Factories.Aggregates.Reducers.Reducers()
+		const title = 'Querying the repository will only return the definition matching the event';
+		const initialState = undefined;
+		const eventsParameters = {
+			items: [Factories.Events.Events()]
+		};
+		const expectedResults = eventsParameters.items.map(( { id }) => Factories.Aggregates.Reducers.Definitions(id));
+		const aggregatesParamters = {
+			reducersDefinitions: [
+				...expectedResults,
+				Factories.Aggregates.Reducers.Definitions(),
+				Factories.Aggregates.Reducers.Definitions(),
+				Factories.Aggregates.Reducers.Definitions(),
+				Factories.Aggregates.Reducers.Definitions(),
+			]
+		}
+		const parameters = {
+			aggregates: aggregatesParamters,
+			events: eventsParameters
+		};
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Core.PlatformInterface) => (test: TestInterface<unknown>) => {
+			test(title, async t => {
+				const repository = platform.Aggregates.Reducers.Definitions.Repository;
+				const [definition] = parameters?.aggregates?.reducersDefinitions ?? [];
+				const [event] = parameters?.events?.items ?? [];
+				await repository.create(definition);
+				let fetchedDefinitions = await repository.query(event)
+				t.deepEqual(fetchedDefinitions, expectedResult);
+			});
+		};
+		return {
+			title,
+			expectedResult: expectedResults,
+			initialState,
+			parameters,
+			implementation,
+		};
+	})(),
+	(() => {
+		const title = 'Querying the repository will return every definition matching the event';
+		const initialState = undefined;
+		const eventsParameters = {
+			items: [Factories.Events.Events()]
+		};
+		const expectedResults = [
+			...eventsParameters.items.map(( { id }) => Factories.Aggregates.Reducers.Definitions(id)),
+			...eventsParameters.items.map(( { id }) => Factories.Aggregates.Reducers.Definitions(id)),
+			...eventsParameters.items.map(( { id }) => Factories.Aggregates.Reducers.Definitions(id)),
+			...eventsParameters.items.map(( { id }) => Factories.Aggregates.Reducers.Definitions(id)),
+			...eventsParameters.items.map(( { id }) => Factories.Aggregates.Reducers.Definitions(id))
 		];
-		let reducers = [
-			...reducersToLoad,
-			Factories.Aggregates.Reducers.Reducers(),
-			Factories.Aggregates.Reducers.Reducers(),
-			Factories.Aggregates.Reducers.Reducers()
-		]
-		let definitionsToLoad: Core.Aggregates.Reducers.Definitions.Definition[] =
-			reducersToLoad.map(() => Factories.Aggregates.Reducers.Definitions(events[0].id));
-		let definitions =
-			reducers.map(() => Factories.Aggregates.Reducers.Definitions(events[0].id));
-		return {
-			events,
-			reducers,
-			definitions,
-			definitionsToLoad,
-			expectedResults: definitionsToLoad,
+		const aggregatesParamters = {
+			reducersDefinitions: [
+				...expectedResults,
+				Factories.Aggregates.Reducers.Definitions(),
+				Factories.Aggregates.Reducers.Definitions(),
+				Factories.Aggregates.Reducers.Definitions(),
+				Factories.Aggregates.Reducers.Definitions(),
+			]
 		}
-	})(),
-	(() => {
-		let events: Core.Events.Event[] = [Factories.Events.Events()];
-		let reducersToLoad: Core.Aggregates.Reducers.Reducer[] = [
-			Factories.Aggregates.Reducers.Reducers(),
-			Factories.Aggregates.Reducers.Reducers(),
-			Factories.Aggregates.Reducers.Reducers()
-		];
-		let reducers = [
-			...reducersToLoad,
-			Factories.Aggregates.Reducers.Reducers(),
-		]
-		let definitionsToLoad: Core.Aggregates.Reducers.Definitions.Definition[] =
-			reducersToLoad.map(() => Factories.Aggregates.Reducers.Definitions(events[0].id));
-		let definitions =
-			reducers.map(() => Factories.Aggregates.Reducers.Definitions(events[0].id));
+		const parameters = {
+			aggregates: aggregatesParamters,
+			events: eventsParameters
+		};
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Core.PlatformInterface) => (test: TestInterface<unknown>) => {
+			test(title, async t => {
+				const repository = platform.Aggregates.Reducers.Definitions.Repository;
+				const reducersDefinitions = parameters?.aggregates?.reducersDefinitions ?? [];
+				const [event] = parameters?.events?.items ?? [];
+				await Promise.all(reducersDefinitions.map(repository.create));
+				let fetchedDefinitions = await repository.query(event)
+				t.deepEqual(fetchedDefinitions, expectedResult);
+			});
+		};
 		return {
-			events,
-			reducers,
-			definitions,
-			definitionsToLoad,
-			expectedResults: definitionsToLoad,
-		}
+			title,
+			expectedResult: expectedResults as TestSuiteExpectedResult,
+			initialState,
+			parameters,
+			implementation,
+		};
 	})(),
-]
-
-export default {
-	testDefinitions,
-	RunTests: (platform: PlatformInterface) => (test: TestInterface<unknown>) => {
-		test('Agggregates - Reducers - Definitions - Repository - Querying the repository will not throw when there are no definitions', async t => {
-			let repository = platform.Aggregates.Reducers.Definitions.Repository;
-			let testDefinition = testDefinitions[0];
-			let { events: [event] } = testDefinition;
-			await t.notThrows(async () => await repository.query(event))
-		});
-		
-		test('Agggregates - Reducers - Definitions - Repository - Querying the repository will return an empty array when there are no definitions', async t => {
-			let repository = platform.Aggregates.Reducers.Definitions.Repository;
-			let testDefinition = testDefinitions[1];
-			let { events: [event], expectedResults } = testDefinition;
-			let fetchedDefinitions = await repository.query(event)
-			t.deepEqual(fetchedDefinitions, expectedResults)
-		});
-		
-		test('Agggregates - Reducers - Definitions - Repository - Querying the repository will return an empty array when no definitions match the event', async t => {
-			let repository = platform.Aggregates.Reducers.Definitions.Repository;
-			let testDefinition = testDefinitions[2];
-			let { events: [event], expectedResults } = testDefinition;
-			let fetchedDefinition = await repository.query(event)
-			t.deepEqual(fetchedDefinition, expectedResults)
-		});
-		
-		test('Agggregates - Reducers - Definitions - Repository - Querying the repository will return a definition when one matches the event', async t => {
-			let repository = platform.Aggregates.Reducers.Definitions.Repository;
-			let testDefinition = testDefinitions[3];
-			let { events: [event], expectedResults } = testDefinition;
-			let fetchedDefinition = await repository.query(event)
-			t.deepEqual(fetchedDefinition, expectedResults)
-		});
-		
-		test('Agggregates - Reducers - Definitions - Repository - Querying the repository will only return the definition matching the event', async t => {
-			let repository = platform.Aggregates.Reducers.Definitions.Repository;
-			let testDefinition = testDefinitions[4];
-			let { events: [event], expectedResults } = testDefinition;
-			let fetchedDefinitions = await repository.query(event)
-			t.deepEqual(fetchedDefinitions,expectedResults)
-		});
-		
-		
-		test('Agggregates - Reducers - Definitions - Repository - Querying the repository will return every definition matching the event', async t => {
-			let repository = platform.Aggregates.Reducers.Definitions.Repository;
-			let testDefinition = testDefinitions[5];
-			let { events: [event], expectedResults } = testDefinition;
-			let fetchedDefinitions = await repository.query(event)
-			t.deepEqual(fetchedDefinitions,expectedResults)
-		});
-	}
-}
+];

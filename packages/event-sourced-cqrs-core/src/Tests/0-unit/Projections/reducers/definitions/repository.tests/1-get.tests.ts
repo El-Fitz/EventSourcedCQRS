@@ -13,7 +13,7 @@ import * as Core from "../../../../../../index.js";
 import { PlatformInterface } from "../../../../../../index.js";
 
 export default (platform: PlatformInterface) => (test: TestInterface<unknown>) => {
-	test('Agggregates - Reducers - Definitions - Repository - Reducer Definition can be retrieved after creation', async t => {
+	test('Reducer Definition can be retrieved after creation', async t => {
 		let repository = platform.Projections.Reducers.Definitions.Repository;
 		let reducer: Core.Projections.Reducers.Reducer = (event: Core.Events.Event) => (_projections: Core.Projections.Projection[]) => {
 			return {
@@ -36,7 +36,7 @@ export default (platform: PlatformInterface) => (test: TestInterface<unknown>) =
 		await t.notThrows(async () => await repository.get(definition.id))
 	});
 	
-	test('Agggregates - Reducers - Definitions - Repository - The repository returns the expected reducer definition', async t => {
+	test('The repository returns the expected reducer definition', async t => {
 		let repository = platform.Projections.Reducers.Definitions.Repository;
 		let reducer: Core.Projections.Reducers.Reducer = (event: Core.Events.Event) => (_projections: Core.Projections.Projection[]) => {
 			return {
@@ -60,7 +60,7 @@ export default (platform: PlatformInterface) => (test: TestInterface<unknown>) =
 		t.deepEqual(fetchedDefinition, [definition])
 	});
 	
-	test('Agggregates - Reducers - Definitions - Repository - The repository returns an empty array when the requested reducer definition does not exist', async t => {
+	test('The repository returns an empty array when the requested reducer definition does not exist', async t => {
 		let repository = platform.Projections.Reducers.Definitions.Repository;
 		// let reducer: Core.Projections.Reducers.Reducer = (event: Core.Events.Event) => (_projections: Core.Projections.Projection[]) => {
 		// 	return {

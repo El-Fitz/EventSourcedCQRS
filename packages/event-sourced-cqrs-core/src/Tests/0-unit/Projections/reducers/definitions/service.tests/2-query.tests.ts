@@ -13,7 +13,7 @@ import * as Core from "../../../../../../index.js";
 import { PlatformInterface } from "../../../../../../index.js";
 
 export default (platform: PlatformInterface) => (test: TestInterface<unknown>) => {
-	test('Agggregates - Reducers - Definitions - Service - Querying the service will not throw when there are no definitions', async t => {
+	test('Querying the service will not throw when there are no definitions', async t => {
 		let service = platform.Projections.Reducers.Definitions.Service
 		let event: Core.Events.Event = {
 			id: uuid(),
@@ -27,7 +27,7 @@ export default (platform: PlatformInterface) => (test: TestInterface<unknown>) =
 		await t.notThrows(async () => await service.query(event))
 	});
 	
-	test('Agggregates - Reducers - Definitions - Service - Querying the service will return an empty array when there are no definitions', async t => {
+	test('Querying the service will return an empty array when there are no definitions', async t => {
 		let service = platform.Projections.Reducers.Definitions.Service
 		let event: Core.Events.Event = {
 			id: uuid(),
@@ -42,7 +42,7 @@ export default (platform: PlatformInterface) => (test: TestInterface<unknown>) =
 		t.deepEqual(fetchedDefinitions, [])
 	});
 	
-	test('Agggregates - Reducers - Definitions - Service - Querying the service will return an empty array when no definitions match the event', async t => {
+	test('Querying the service will return an empty array when no definitions match the event', async t => {
 		let service = platform.Projections.Reducers.Definitions.Service
 		let event: Core.Events.Event = {
 			id: uuid(),
@@ -75,7 +75,7 @@ export default (platform: PlatformInterface) => (test: TestInterface<unknown>) =
 		t.deepEqual(fetchedDefinition, [])
 	});
 	
-	test('Agggregates - Reducers - Definitions - Service - Querying the service will return a definition when one matches the event', async t => {
+	test('Querying the service will return a definition when one matches the event', async t => {
 		let service = platform.Projections.Reducers.Definitions.Service
 		let event: Core.Events.Event = {
 			id: uuid(),
@@ -108,7 +108,7 @@ export default (platform: PlatformInterface) => (test: TestInterface<unknown>) =
 		t.deepEqual(fetchedDefinition, [definition])
 	});
 	
-	test('Agggregates - Reducers - Definitions - Service - Querying the service will only return the definition matching the event', async t => {
+	test('Querying the service will only return the definition matching the event', async t => {
 		let service = platform.Projections.Reducers.Definitions.Service
 		let event: Core.Events.Event = {
 			id: uuid(),
@@ -151,7 +151,7 @@ export default (platform: PlatformInterface) => (test: TestInterface<unknown>) =
 	});
 	
 	
-	test('Agggregates - Reducers - Definitions - Service - Querying the service will return every definition matching the event', async t => {
+	test('Querying the service will return every definition matching the event', async t => {
 		let service = platform.Projections.Reducers.Definitions.Service
 		let event: Core.Events.Event = {
 			id: uuid(),

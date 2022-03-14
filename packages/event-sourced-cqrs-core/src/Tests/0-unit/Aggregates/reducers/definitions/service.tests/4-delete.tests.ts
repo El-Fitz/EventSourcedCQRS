@@ -2,38 +2,64 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-19 17:27:33 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-12 16:01:19
+ * @Last Modified time: 2022-03-14 18:42:23
  */
 
-
 import { TestInterface } from 'ava';
-import { v4 as uuid } from "uuid";
 
 import * as Core from "../../../../../../index.js";
-import { PlatformInterface } from "../../../../../../index.js";
+import * as Factories from '../../../../../Factories/index.js';
+import { TestSuite, TestSuiteExpectedResult, TestSuiteParameters } from '../../../../../Domain';
 
-export default (platform: PlatformInterface) => (test: TestInterface<unknown>) => {
-	test('Agggregates - Reducers - Definitions - Service - Reducer Definition can be deleted after creation', async t => {
-		let service = platform.Aggregates.Reducers.Definitions.Service;
-		let definition: Core.Aggregates.Reducers.Definitions.Definition = {
-			id: uuid(),
-			triggeringEventId: uuid(),
-			requiredAggregates: [],
-		}
-		await service.create(definition);
-		await t.notThrows(async () => await service.delete(definition.id))
-	});
-	
-	test('Agggregates - Reducers - Definitions - Service - The service does not return the definition once it has been deleted', async t => {
-		let service = platform.Aggregates.Reducers.Definitions.Service;
-		let definition: Core.Aggregates.Reducers.Definitions.Definition = {
-			id: uuid(),
-			triggeringEventId: uuid(),
-			requiredAggregates: [],
-		}
-		await service.create(definition)
-		await service.delete(definition.id)
-		let fetchedDefinition = await service.get(definition.id)
-		t.deepEqual(fetchedDefinition, [])
-	});
-}
+export const testSuites: TestSuite[] = [
+	(() => {
+		const title = 'Reducer Definition can be deleted after creation';
+		const initialState = undefined;
+		const parameters = {
+			aggregates: {
+				reducersDefinitions: [Factories.Aggregates.Reducers.Definitions()]
+			}
+		};
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Core.PlatformInterface) => (test: TestInterface<unknown>) => {
+			test(title, async t => {
+				let service = platform.Aggregates.Reducers.Definitions.Service;
+				const [definition] = parameters?.aggregates?.reducersDefinitions ?? [];
+				await service.create(definition);
+				await t.notThrows(async () => service.delete(definition.id));
+			});
+		};
+		return {
+			title,
+			expectedResult: null,
+			initialState,
+			parameters,
+			implementation,
+		};
+	})(),
+	(() => {
+		const title = 'The service does not return the definition once it has been deleted';
+		const initialState = undefined;
+		const parameters = {
+			aggregates: {
+				reducersDefinitions: [Factories.Aggregates.Reducers.Definitions()]
+			}
+		};
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Core.PlatformInterface) => (test: TestInterface<unknown>) => {
+			test(title, async t => {
+				let service = platform.Aggregates.Reducers.Definitions.Service;
+				const [definition] = parameters?.aggregates?.reducersDefinitions ?? [];
+				await service.create(definition);
+				await service.delete(definition.id);
+				let fetchedDefinition = await service.get(definition.id)
+				t.deepEqual(fetchedDefinition, expectedResult)
+			});
+		};
+		return {
+			title,
+			expectedResult: [],
+			initialState,
+			parameters,
+			implementation,
+		};
+	})(),
+];

@@ -14,7 +14,7 @@ import * as Core from "../../../../../../index.js";
 import { PlatformInterface } from "../../../../../../index.js";
 
 export default (platform: PlatformInterface) => (test: TestInterface<unknown>) => {
-	test('Agggregates - Reducers - Definitions - Service - Reducer Definition can be retrieved after creation', async t => {
+	test('Reducer Definition can be retrieved after creation', async t => {
 		let service = platform.Projections.Reducers.Definitions.Service
 		let reducer: Core.Projections.Reducers.Reducer = (event: Core.Events.Event) => (_projections: Core.Projections.Projection[]) => {
 			return {
@@ -37,7 +37,7 @@ export default (platform: PlatformInterface) => (test: TestInterface<unknown>) =
 		await t.notThrows(async () => await service.get(definition.id))
 	});
 	
-	test('Agggregates - Reducers - Definitions - Service - The service returns the expected reducer definition', async t => {
+	test('The service returns the expected reducer definition', async t => {
 		let service = platform.Projections.Reducers.Definitions.Service
 		let reducer: Core.Projections.Reducers.Reducer = (event: Core.Events.Event) => (_projections: Core.Projections.Projection[]) => {
 			return {
@@ -61,7 +61,7 @@ export default (platform: PlatformInterface) => (test: TestInterface<unknown>) =
 		t.deepEqual(fetchedDefinition, [definition])
 	});
 	
-	test('Agggregates - Reducers - Definitions - Service - The service returns an empty array when the requested reducer definition does not exist', async t => {
+	test('The service returns an empty array when the requested reducer definition does not exist', async t => {
 		let service = platform.Projections.Reducers.Definitions.Service
 		// let reducer: Core.Projections.Reducers.Reducer = (event: Core.Events.Event) => (_projections: Core.Projections.Projection[]) => {
 		// 	return {
