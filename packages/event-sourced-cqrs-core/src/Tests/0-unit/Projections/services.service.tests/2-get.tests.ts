@@ -8,7 +8,7 @@
 import { TestInterface } from 'ava';
 import { v4 as uuid } from 'uuid';
 
-import * as Core from "../../../../index.js";
+import * as Core from "../../../../Core/index.js";
 import { TestSuite, TestSuiteExpectedResult, TestSuiteParameters } from '../../../Domain';
 import { projectionRepositoryFactory } from "../_projections-repository.factory";
 

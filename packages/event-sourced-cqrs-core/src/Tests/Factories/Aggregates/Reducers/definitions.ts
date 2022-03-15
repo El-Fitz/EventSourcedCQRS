@@ -2,14 +2,15 @@
  * @Author: Thomas Léger 
  * @Date: 2022-03-12 01:26:07 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-12 16:38:09
+ * @Last Modified time: 2022-03-15 18:55:06
  */
 
-import * as Core from "../../../../index.js";
+import * as Core from "../../../../Core/index.js";
 import { v4 as uuid } from "uuid";
 
-export default (triggeringEventId: string = uuid()): Core.Aggregates.Reducers.Definitions.Definition => ({
+export default (params?: { reducerId?: Core.Types.UUID, triggeringEventId?: Core.Types.UUID }): Core.Aggregates.Reducers.Definitions.Definition => ({
 	id: uuid(),
-	triggeringEventId,
+	reducerId: params?.reducerId ?? uuid(),
+	triggeringEventId: params?.triggeringEventId ?? uuid(),
 	requiredAggregates: []
 });

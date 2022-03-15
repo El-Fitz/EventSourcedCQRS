@@ -2,10 +2,10 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-17 01:04:10 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-12 15:26:34
+ * @Last Modified time: 2022-03-15 18:49:31
  */
 
-import * as Core from "event-sourced-cqrs-core";
+import { Core } from "event-sourced-cqrs-core";
 
 export const AggregateReducersDefinitionsRepository = (repository: { [key: string]: Core.Aggregates.Reducers.Definitions.Definition }): Core.Aggregates.Reducers.Definitions.Repository => {
 	return ({

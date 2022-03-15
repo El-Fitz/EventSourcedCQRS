@@ -6,7 +6,7 @@
  */
 
 import { v4 as uuid } from "uuid";
-import * as Core from "../../..";
+import * as Core from "../../../Core";
 
 export const projectionRepositoryFactory = (): Core.Projections.Repository => {
 	let projectionsHashmap: { [key: string]: Core.Projections.Projection } = {};

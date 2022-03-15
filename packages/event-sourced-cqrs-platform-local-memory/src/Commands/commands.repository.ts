@@ -5,7 +5,7 @@
  * @Last Modified time: 2021-06-27 00:49:00
  */
 
-import * as Core from "event-sourced-cqrs-core";
+import { Core } from "event-sourced-cqrs-core";
 
 export const CommandsRepository = (): Core.Commands.Repository => {
 	let repository: { [key: string]: Core.Commands.Command } = { };

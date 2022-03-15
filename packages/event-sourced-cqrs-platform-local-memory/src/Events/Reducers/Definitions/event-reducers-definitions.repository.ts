@@ -5,7 +5,7 @@
  * @Last Modified time: 2022-03-12 15:26:43
  */
 
-import * as Core from "event-sourced-cqrs-core";
+import { Core } from "event-sourced-cqrs-core";
 
 export const EventReducersDefinitionsRepository = (repository: { [key: string]: Core.Events.Reducers.Definitions.Definition }): Core.Events.Reducers.Definitions.Repository => {
 	return ({

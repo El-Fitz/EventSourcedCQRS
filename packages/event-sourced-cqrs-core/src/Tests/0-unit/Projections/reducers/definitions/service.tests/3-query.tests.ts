@@ -2,11 +2,11 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-19 17:27:30 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-14 18:42:20
+ * @Last Modified time: 2022-03-15 18:58:37
  */
 
 import { TestInterface } from 'ava';
-import * as Core from "../../../../../../index.js";
+import * as Core from "../../../../../../Core/index.js";
 import { TestSuite, TestSuiteExpectedResult, TestSuiteParameters } from '../../../../../Domain';
 import * as Factories from '../../../../../Factories/index.js';
 
@@ -95,7 +95,7 @@ export const testSuites: TestSuite[] = [
 			items: [Factories.Events.Events()]
 		};
 		const projectionsParameters = {
-			reducersDefinitions: eventsParameters.items.map(( { id }) => Factories.Projections.Reducers.Definitions(id))
+			reducersDefinitions: eventsParameters.items.map(( { id }) => Factories.Aggregates.Reducers.Definitions({ triggeringEventId: id })),
 		}
 		const parameters = {
 			projections: projectionsParameters,
@@ -126,8 +126,8 @@ export const testSuites: TestSuite[] = [
 		const eventsParameters = {
 			items: [Factories.Events.Events()]
 		};
-		const expectedResults = eventsParameters.items.map(( { id }) => Factories.Projections.Reducers.Definitions(id));
-		const projectionsParamters = {
+		const expectedResults = eventsParameters.items.map(( { id }) => Factories.Aggregates.Reducers.Definitions({ triggeringEventId: id }));
+		const projectionsParameters = {
 			reducersDefinitions: [
 				...expectedResults,
 				Factories.Projections.Reducers.Definitions(),
@@ -137,7 +137,7 @@ export const testSuites: TestSuite[] = [
 			]
 		}
 		const parameters = {
-			projections: projectionsParamters,
+			projections: projectionsParameters,
 			events: eventsParameters
 		};
 		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Core.PlatformInterface) => (test: TestInterface<unknown>) => {
@@ -165,13 +165,13 @@ export const testSuites: TestSuite[] = [
 			items: [Factories.Events.Events()]
 		};
 		const expectedResults = [
-			...eventsParameters.items.map(( { id }) => Factories.Projections.Reducers.Definitions(id)),
-			...eventsParameters.items.map(( { id }) => Factories.Projections.Reducers.Definitions(id)),
-			...eventsParameters.items.map(( { id }) => Factories.Projections.Reducers.Definitions(id)),
-			...eventsParameters.items.map(( { id }) => Factories.Projections.Reducers.Definitions(id)),
-			...eventsParameters.items.map(( { id }) => Factories.Projections.Reducers.Definitions(id))
+			...eventsParameters.items.map(( { id }) => Factories.Aggregates.Reducers.Definitions({ triggeringEventId: id })),
+			...eventsParameters.items.map(( { id }) => Factories.Aggregates.Reducers.Definitions({ triggeringEventId: id })),
+			...eventsParameters.items.map(( { id }) => Factories.Aggregates.Reducers.Definitions({ triggeringEventId: id })),
+			...eventsParameters.items.map(( { id }) => Factories.Aggregates.Reducers.Definitions({ triggeringEventId: id })),
+			...eventsParameters.items.map(( { id }) => Factories.Aggregates.Reducers.Definitions({ triggeringEventId: id })),
 		];
-		const projectionsParamters = {
+		const projectionsParameters = {
 			reducersDefinitions: [
 				...expectedResults,
 				Factories.Projections.Reducers.Definitions(),
@@ -181,7 +181,7 @@ export const testSuites: TestSuite[] = [
 			]
 		}
 		const parameters = {
-			projections: projectionsParamters,
+			projections: projectionsParameters,
 			events: eventsParameters
 		};
 		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Core.PlatformInterface) => (test: TestInterface<unknown>) => {
@@ -190,13 +190,16 @@ export const testSuites: TestSuite[] = [
 				const reducersDefinitions = parameters?.projections?.reducersDefinitions ?? [];
 				const [event] = parameters?.events?.items ?? [];
 				await Promise.all(reducersDefinitions.map(service.create));
+				console.log('Event: ', JSON.stringify(event));
 				let fetchedDefinitions = await service.query(event)
+				console.log(`Fetched definition: ${JSON.stringify(fetchedDefinitions)}`);
+				console.log(`Expected Result: ${JSON.stringify(expectedResult)}`)
 				t.deepEqual(fetchedDefinitions, expectedResult);
 			});
 		};
 		return {
 			title,
-			expectedResult: expectedResults as TestSuiteExpectedResult,
+			expectedResult: expectedResults,
 			initialState,
 			parameters,
 			implementation,

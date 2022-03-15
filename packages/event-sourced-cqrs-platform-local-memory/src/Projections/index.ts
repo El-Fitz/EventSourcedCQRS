@@ -7,4 +7,4 @@
 
 export * as Reducers from "./Reducers"
 export { ProjectionsRepositoriesRepository as RepositoriesRepository, ProjectionsRepositoriesRepositoryInstance as RepositoriesRepositoryInstance } from "./projections-repositories.repository"
-export { ProjectionsServicesService as ServicesService } from "./projjections-services.service"
+export { ProjectionsServicesService as ServicesService } from "./projections-services.service"

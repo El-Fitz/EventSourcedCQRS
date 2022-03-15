@@ -9,7 +9,7 @@ import { v4 as uuid } from "uuid";
 
 import { TestInterface } from 'ava';
 import { TestSuite, TestSuiteExpectedResult, TestSuiteParameters } from '../../../../../Domain';
-import * as Core from "../../../../../../index.js";
+import * as Core from "../../../../../../Core/index.js";
 import * as Factories from '../../../../../Factories/index.js';
 
 export const testSuites: TestSuite[] = [

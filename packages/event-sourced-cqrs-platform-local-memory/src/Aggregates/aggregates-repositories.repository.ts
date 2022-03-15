@@ -2,10 +2,10 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-17 02:03:48 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2021-06-30 01:12:59
+ * @Last Modified time: 2022-03-15 18:35:48
  */
 
-import * as Core from "event-sourced-cqrs-core";
+import { Core } from "event-sourced-cqrs-core";
 
 export const AggregatesRepositoriesRepository = (): Core.Aggregates.RepositoriesRepository => {
 

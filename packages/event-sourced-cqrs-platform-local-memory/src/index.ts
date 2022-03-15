@@ -5,7 +5,7 @@
  * @Last Modified time: 2022-03-12 18:10:29
  */
 
-import * as Core from "event-sourced-cqrs-core"
+import { Core } from "event-sourced-cqrs-core"
 import { PlatformInterface } from "event-sourced-cqrs-core"
 
 export * as Aggregates from "./Aggregates";

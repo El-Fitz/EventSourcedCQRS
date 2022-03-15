@@ -2,14 +2,18 @@
  * @Author: Thomas Léger 
  * @Date: 2022-03-12 17:40:15 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-12 17:59:20
+ * @Last Modified time: 2022-03-15 18:38:24
  */
 
-import * as Core from "event-sourced-cqrs-core";
+import { Core } from "event-sourced-cqrs-core";
 
 export const CommandsReducersRepository = (repository: { [key: string]: Core.Commands.Reducers.Reducer }): Core.Commands.Reducers.Repository => {
 	return ({
-		get: (definition: Core.Commands.Reducers.Definitions.Definition) => repository[definition.id] === undefined ? Promise.reject() : Promise.resolve(repository[definition.id]),
+		create: (id: Core.Types.UUID, reducer: Core.Commands.Reducers.Reducer) => {
+			repository[id] = reducer;
+			return Promise.resolve(reducer);
+		},
+		get: (definition: Core.Commands.Reducers.Definitions.Definition) => repository[definition.reducerId] === undefined ? Promise.reject() : Promise.resolve(repository[definition.id]),
 	})
 }
 

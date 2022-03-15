@@ -5,7 +5,7 @@
  * @Last Modified time: 2022-03-14 18:48:01
  */
 
-import * as Core from '../../'
+import * as Core from '../../Core'
 import { TestInterface } from 'ava';
 import { TestSuiteParameters } from './testSuiteParameters.domain';
 import { TestSuiteInitialState } from './testSuiteInitialState.domain';

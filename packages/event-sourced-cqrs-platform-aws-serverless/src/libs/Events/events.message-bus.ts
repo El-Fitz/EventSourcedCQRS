@@ -5,7 +5,7 @@
  * @Last Modified time: 2021-06-27 00:09:27
  */
 
-import * as Core from "event-sourced-cqrs-core";
+import { Core } from "event-sourced-cqrs-core";
 import { v4 as uuid } from "uuid";
 
 interface LocalMemoryEventsMessageBus extends Core.Events.MessageBus {

@@ -2,11 +2,11 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-19 17:27:30 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-14 18:42:20
+ * @Last Modified time: 2022-03-15 18:57:09
  */
 
 import { TestInterface } from 'ava';
-import * as Core from "../../../../../../index.js";
+import * as Core from "../../../../../../Core/index.js";
 import { TestSuite, TestSuiteExpectedResult, TestSuiteParameters } from '../../../../../Domain';
 import * as Factories from '../../../../../Factories/index.js';
 
@@ -95,7 +95,7 @@ export const testSuites: TestSuite[] = [
 			items: [Factories.Events.Events()]
 		};
 		const aggregatesParameters = {
-			reducersDefinitions: eventsParameters.items.map(( { id }) => Factories.Aggregates.Reducers.Definitions(id))
+			reducersDefinitions: eventsParameters.items.map(( { id }) => Factories.Aggregates.Reducers.Definitions({ triggeringEventId: id }))
 		}
 		const parameters = {
 			aggregates: aggregatesParameters,
@@ -126,8 +126,8 @@ export const testSuites: TestSuite[] = [
 		const eventsParameters = {
 			items: [Factories.Events.Events()]
 		};
-		const expectedResults = eventsParameters.items.map(( { id }) => Factories.Aggregates.Reducers.Definitions(id));
-		const aggregatesParamters = {
+		const expectedResults = eventsParameters.items.map(( { id }) => Factories.Aggregates.Reducers.Definitions({ triggeringEventId: id }));
+		const aggregatesParameters = {
 			reducersDefinitions: [
 				...expectedResults,
 				Factories.Aggregates.Reducers.Definitions(),
@@ -137,7 +137,7 @@ export const testSuites: TestSuite[] = [
 			]
 		}
 		const parameters = {
-			aggregates: aggregatesParamters,
+			aggregates: aggregatesParameters,
 			events: eventsParameters
 		};
 		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Core.PlatformInterface) => (test: TestInterface<unknown>) => {
@@ -165,13 +165,13 @@ export const testSuites: TestSuite[] = [
 			items: [Factories.Events.Events()]
 		};
 		const expectedResults = [
-			...eventsParameters.items.map(( { id }) => Factories.Aggregates.Reducers.Definitions(id)),
-			...eventsParameters.items.map(( { id }) => Factories.Aggregates.Reducers.Definitions(id)),
-			...eventsParameters.items.map(( { id }) => Factories.Aggregates.Reducers.Definitions(id)),
-			...eventsParameters.items.map(( { id }) => Factories.Aggregates.Reducers.Definitions(id)),
-			...eventsParameters.items.map(( { id }) => Factories.Aggregates.Reducers.Definitions(id))
+			...eventsParameters.items.map(( { id }) => Factories.Aggregates.Reducers.Definitions({ triggeringEventId: id })),
+			...eventsParameters.items.map(( { id }) => Factories.Aggregates.Reducers.Definitions({ triggeringEventId: id })),
+			...eventsParameters.items.map(( { id }) => Factories.Aggregates.Reducers.Definitions({ triggeringEventId: id })),
+			...eventsParameters.items.map(( { id }) => Factories.Aggregates.Reducers.Definitions({ triggeringEventId: id })),
+			...eventsParameters.items.map(( { id }) => Factories.Aggregates.Reducers.Definitions({ triggeringEventId: id }))
 		];
-		const aggregatesParamters = {
+		const aggregatesParameters = {
 			reducersDefinitions: [
 				...expectedResults,
 				Factories.Aggregates.Reducers.Definitions(),
@@ -181,7 +181,7 @@ export const testSuites: TestSuite[] = [
 			]
 		}
 		const parameters = {
-			aggregates: aggregatesParamters,
+			aggregates: aggregatesParameters,
 			events: eventsParameters
 		};
 		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Core.PlatformInterface) => (test: TestInterface<unknown>) => {

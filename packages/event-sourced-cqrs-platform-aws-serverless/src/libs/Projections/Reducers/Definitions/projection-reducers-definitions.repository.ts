@@ -5,7 +5,7 @@
  * @Last Modified time: 2022-03-12 15:26:17
  */
 
-import * as Core from "event-sourced-cqrs-core";
+import { Core } from "event-sourced-cqrs-core";
 
 export const ProjectionReducersDefinitionsRepository = (): Core.Projections.Reducers.Definitions.Repository => {
 

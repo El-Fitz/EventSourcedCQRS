@@ -2,11 +2,10 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-30 01:53:48 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-14 19:23:22
+ * @Last Modified time: 2022-03-15 18:34:31
  */
 
-import test from 'ava';
-import * as Core from "event-sourced-cqrs-core"
+import { Core } from "event-sourced-cqrs-core"
 import { Aggregates, Commands, Events, Projections, PlatformFactory, PlatformParams } from "../src/index.js";
 
 const platformParams: PlatformParams = {
@@ -43,6 +42,8 @@ const platformParams: PlatformParams = {
 		}
 	}
 };
-const platform = PlatformFactory(platformParams);
 
-Core.Tests.TestRunner(platform)(test);
+Core.Tests.TestController({
+	parameters: platformParams,
+	factory: PlatformFactory
+});

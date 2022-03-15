@@ -5,10 +5,10 @@
  * @Last Modified time: 2022-03-12 18:07:33
  */
 
-import * as Aggregates from "../Aggregates"
-import * as Projections from '../Projections';
-import * as Commands from "../Commands"
-import * as Events from "../Events"
+import * as Aggregates from "../Core/Aggregates"
+import * as Projections from '../Core/Projections';
+import * as Commands from "../Core/Commands"
+import * as Events from "../Core/Events"
 
 export interface PlatformInterface {
 	Aggregates: {

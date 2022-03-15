@@ -5,7 +5,7 @@
  * @Last Modified time: 2022-03-14 19:11:33
  */
 
-import * as Core from '../../'
+import * as Core from '../../Core'
 
 export interface TestSuiteParameters {
 	aggregates?: {

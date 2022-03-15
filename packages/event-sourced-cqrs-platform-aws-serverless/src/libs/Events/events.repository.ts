@@ -5,7 +5,7 @@
  * @Last Modified time: 2021-06-27 00:44:51
  */
 
-import * as Core from "event-sourced-cqrs-core";
+import { Core } from "event-sourced-cqrs-core";
 
 export const EventsRepository = (): Core.Events.Repository => {
 	let repository: { [key: string]: Core.Events.Event } = { };

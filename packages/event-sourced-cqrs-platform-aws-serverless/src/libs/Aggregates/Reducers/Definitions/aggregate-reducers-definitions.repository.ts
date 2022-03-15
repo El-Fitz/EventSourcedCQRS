@@ -5,7 +5,7 @@
  * @Last Modified time: 2022-03-12 15:25:31
  */
 
-import * as Core from "event-sourced-cqrs-core";
+import { Core } from "event-sourced-cqrs-core";
 import { DynamoDB } from 'aws-sdk'
 
 export const AggregateReducersDefinitionsRepository = (tableName: string, repository: DynamoDB.DocumentClient): Core.Aggregates.Reducers.Definitions.Repository => {

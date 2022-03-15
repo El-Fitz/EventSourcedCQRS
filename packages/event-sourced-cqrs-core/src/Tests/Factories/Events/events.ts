@@ -5,7 +5,7 @@
  * @Last Modified time: 2022-03-12 01:48:22
  */
 
-import * as Core from "../../../index.js";
+import * as Core from "../../../Core/index.js";
 import { DateTime } from "luxon";
 import { v4 as uuid } from "uuid";
 

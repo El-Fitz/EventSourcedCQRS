@@ -5,7 +5,7 @@
  * @Last Modified time: 2022-03-12 17:59:48
  */
 
-import * as Core from "event-sourced-cqrs-core";
+import { Core } from "event-sourced-cqrs-core";
 import { EventsReducersRepositoryInstance } from "./events-reducers.repository"
 
 export const EventReducersService = () => Core.Events.Reducers.Service(EventsReducersRepositoryInstance);
