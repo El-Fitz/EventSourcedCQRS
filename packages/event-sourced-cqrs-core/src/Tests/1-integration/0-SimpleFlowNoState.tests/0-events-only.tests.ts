@@ -18,9 +18,9 @@ test('fn() returns foo', t => {
 // import { DateTime } from "luxon";
 
 // import * as Core from "../../../"
-// import { PlatformInterface } from "../../../"
+// import { Platform } from  "../../../"
 
-// export default (platform: PlatformInterface) => (test: TestInterface<unknown>) => {
+// export default (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
 
 // 	test('A flow of events is ran the right number of times', async t => {
 		

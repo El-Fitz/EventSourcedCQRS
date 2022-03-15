@@ -6,7 +6,7 @@
  */
 
 import { Core } from "event-sourced-cqrs-core"
-import { PlatformInterface } from "event-sourced-cqrs-core"
+import { Platform } from  "event-sourced-cqrs-core"
 
 export * as Aggregates from "./Aggregates";
 export * as Commands from "./Commands";
@@ -18,7 +18,7 @@ import * as Commands from "./Commands";
 import * as Events from "./Events";
 import * as Projections from "./Projections";
 
-export const Platform = (): PlatformInterface => {
+export const Platform = (): Platform.PlatformInterface => {
 	const aggregatesRepositoriesRepository = Aggregates.RepositoriesRepositoryInstance
 	const aggregatesReducersDefinitionsRepository = Aggregates.Reducers.Definitions.RepositoryInstance
 

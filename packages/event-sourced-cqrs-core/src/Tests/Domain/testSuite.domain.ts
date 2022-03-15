@@ -2,10 +2,10 @@
  * @Author: Thomas Léger 
  * @Date: 2022-03-12 19:00:17 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-14 18:48:01
+ * @Last Modified time: 2022-03-15 19:22:54
  */
 
-import * as Core from '../../Core'
+import { Platform } from '../../';
 import { TestInterface } from 'ava';
 import { TestSuiteParameters } from './testSuiteParameters.domain';
 import { TestSuiteInitialState } from './testSuiteInitialState.domain';
@@ -20,7 +20,7 @@ export interface TestSuite {
 		(title: string) => 
 		(parameters?: TestSuiteParameters) =>
 		(expectedResult?: TestSuiteExpectedResult) =>
-		(platform: Core.PlatformInterface) =>
+		(platform: Platform.PlatformInterface) =>
 		(test: TestInterface<unknown>) =>
 		void;
 }

@@ -6,7 +6,7 @@
  */
 
 import { Core } from "event-sourced-cqrs-core"
-import { PlatformInterface } from "event-sourced-cqrs-core"
+import { Platform } from  "event-sourced-cqrs-core"
 
 export * as Aggregates from "./Aggregates";
 export * as Commands from "./Commands";
@@ -53,7 +53,7 @@ export interface PlatformParams {
 	},
 }
 
-export const PlatformFactory = (params: PlatformParams): PlatformInterface => {
+export const PlatformFactory = (params: PlatformParams): Platform.PlatformInterface => {
 	const aggregatesRepositoriesRepository = Aggregates.RepositoriesRepositoryInstance
 	const aggregatesReducersRepository = params.aggregates.reducers.repository;
 	const aggregatesReducersService = Core.Aggregates.Reducers.Service(aggregatesReducersRepository);

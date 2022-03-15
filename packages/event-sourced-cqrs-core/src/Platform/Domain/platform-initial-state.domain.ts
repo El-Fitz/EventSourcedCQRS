@@ -2,12 +2,12 @@
  * @Author: Thomas Léger 
  * @Date: 2022-03-14 15:10:57 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-15 19:23:10
+ * @Last Modified time: 2022-03-15 19:04:29
  */
 
-import { Core } from '../../'
+import * as Core from '../../Core'
 
-export interface TestSuiteInitialState {
+export interface PlatformInitialState {
 	aggregates?: {
 		items?: Core.Aggregates.Aggregate[];
 		reducers?: { id: Core.Types.UUID, reducer: Core.Aggregates.Reducers.Reducer }[];
