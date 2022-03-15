@@ -5,8 +5,8 @@
  * @Last Modified time: 2022-03-15 16:01:07
  */
 
-import { Core } from '../../';
-import Observability from "./";
+import { Core } from '../..';
+import Observability from ".";
 
 export interface ObservabilityServiceInterface {
 	logAggregate: (aggregate: Core.Aggregates.Aggregate) => Promise<void>;

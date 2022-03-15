@@ -5,7 +5,7 @@
  * @Last Modified time: 2022-03-15 16:00:32
  */
 
-import { Core } from '../../';
+import { Core } from '../..';
 
 export interface ObservabilityRepository {
 	logAggregate: (aggregate: Core.Aggregates.Aggregate) => Promise<void>;
