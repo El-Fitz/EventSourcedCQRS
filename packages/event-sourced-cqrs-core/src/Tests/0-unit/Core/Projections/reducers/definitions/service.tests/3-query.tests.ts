@@ -2,7 +2,7 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-19 17:27:30 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-15 19:19:11
+ * @Last Modified time: 2022-03-16 13:09:58
  */
 
 import { TestInterface } from 'ava';
@@ -190,10 +190,7 @@ export const testSuites: TestSuite[] = [
 				const reducersDefinitions = parameters?.projections?.reducersDefinitions ?? [];
 				const [event] = parameters?.events?.items ?? [];
 				await Promise.all(reducersDefinitions.map(service.create));
-				console.log('Event: ', JSON.stringify(event));
-				let fetchedDefinitions = await service.query(event)
-				console.log(`Fetched definition: ${JSON.stringify(fetchedDefinitions)}`);
-				console.log(`Expected Result: ${JSON.stringify(expectedResult)}`)
+				let fetchedDefinitions = await service.query(event);
 				t.deepEqual(fetchedDefinitions, expectedResult);
 			});
 		};

@@ -1,9 +1,10 @@
-// /*
-//  * @Author: Thomas Léger 
-//  * @Date: 2021-06-26 16:26:03 
-//  * @Last Modified by: Thomas Léger
-//  * @Last Modified time: 2021-06-26 16:47:19
-//  */
+/*
+ * @Author: Thomas Léger 
+ * @Date: 2022-03-16 13:26:07 
+ * @Last Modified by: Thomas Léger
+ * @Last Modified time: 2022-03-16 13:27:15
+ */
+
 
 import { TestInterface } from 'ava';
 
@@ -15,17 +16,23 @@ export const testSuites: TestSuite[] = [
 	(() => {
 		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
 			test(title, async t => {
-				let [command] = parameters?.commands?.items ?? [];
+				let commands = parameters?.commands?.items ?? [];
 				let messageBus = platform.Commands.MessageBus;
-				await t.notThrows(async () => await messageBus.emit(command))
+				await t.notThrows(async () => await messageBus.emitMultiple(commands))
 			});
 		};
 		return {
-			title: 'Command Emission succeeds with the proper parameters',
+			title: 'Multiple Command Emission succeeds with the proper parameters',
 			expectedResult: null,
 			initialState: undefined,
 			parameters: {
-				commands: { items: [Commands.CommandsFactory()] }
+				commands: { items: [
+					Commands.CommandsFactory(),
+					Commands.CommandsFactory(),
+					Commands.CommandsFactory(),
+					Commands.CommandsFactory(),
+					Commands.CommandsFactory(),
+				]}
 			},
 			implementation,
 		};
@@ -33,18 +40,24 @@ export const testSuites: TestSuite[] = [
 	(() => {
 		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
 			test(title, async t => {
-				let [command] = parameters?.commands?.items ?? [];
+				let commands = parameters?.commands?.items ?? [];
 				let messageBus = platform.Commands.MessageBus;
-				let result = await messageBus.emit(command);
+				let result = await messageBus.emitMultiple(commands)
 				t.is(result, (() => { })());
 			});
 		};
 		return {
-			title: 'Command Emission returns void on success',
+			title: 'Multiple Command Emission returns void on success',
 			expectedResult: null,
 			initialState: undefined,
 			parameters: {
-				commands: { items: [Commands.CommandsFactory()] }
+				commands: { items: [
+					Commands.CommandsFactory(),
+					Commands.CommandsFactory(),
+					Commands.CommandsFactory(),
+					Commands.CommandsFactory(),
+					Commands.CommandsFactory(),
+				]}
 			},
 			implementation,
 		};

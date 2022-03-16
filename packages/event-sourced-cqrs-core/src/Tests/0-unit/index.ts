@@ -2,16 +2,15 @@
  * @Author: Thomas Léger 
  * @Date: 2022-03-12 14:29:07 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-14 19:34:35
+ * @Last Modified time: 2022-03-16 13:08:46
  */
 
-export * as Aggregates from "./Core/Aggregates";
-export * as Projections from "./Core/Projections";
-
-import * as Aggregates from "./Core/Aggregates";
-import * as Projections from './Core/Projections';
+export * as Core from "./Core";
+import * as Core from "./Core";
 
 export const TestSuites = [
-	...Aggregates.TestSuites,
-	...Projections.TestSuites
-];
+	...Core.TestSuites,
+].map((testSuite) => ({
+	...testSuite,
+	title: `[UNIT] - ${testSuite.title}`
+}));;
