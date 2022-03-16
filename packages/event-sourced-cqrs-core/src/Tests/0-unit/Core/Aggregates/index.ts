@@ -5,11 +5,11 @@
  * @Last Modified time: 2022-03-14 19:19:55
  */
 
-export * as Reducers from "./reducers"
+export * as Reducers from "./Reducers"
 export * as RepositoriesRepository from "./repositories.repository.tests"
 export * as ServicesService from "./services.service.tests"
 
-import * as Reducers from "./reducers"
+import * as Reducers from "./Reducers"
 import * as RepositoriesRepository from "./repositories.repository.tests"
 import * as ServicesService from "./services.service.tests"
 

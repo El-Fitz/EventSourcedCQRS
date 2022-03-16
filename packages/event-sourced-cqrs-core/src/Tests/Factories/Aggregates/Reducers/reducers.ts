@@ -1,9 +1,9 @@
 /*
- * @Author: Thomas Léger 
- * @Date: 2022-03-12 01:28:57 
+* @Author: Thomas Léger 
+* @Date: 2022-03-12 01:28:57 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-15 18:54:26
- */
+ * @Last Modified time: 2022-03-16 15:50:32
+*/
 
 import * as Core from "../../../../Core/index.js";
 import { DateTime } from "luxon";

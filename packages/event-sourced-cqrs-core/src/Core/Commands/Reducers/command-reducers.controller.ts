@@ -2,7 +2,7 @@
  * @Author: Thomas Léger 
  * @Date: 2022-03-12 17:23:51 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-12 17:33:43
+ * @Last Modified time: 2022-03-16 18:50:56
  */
 
 import * as Commands from "../";
@@ -24,7 +24,14 @@ export const CommandsReducersController =
 		reducersDefinitionsService
 			.query(command)
 			.then((definitions) => Promise.all(
-				definitions.map((definition) =>
+				definitions
+				.reduce((acc: Commands.Reducers.Definitions.Definition[], definition) => {
+					if (acc.findIndex(({ reducerId }) => reducerId === definition.reducerId) === -1) {
+						return acc.concat(definition);
+					}
+					return acc;
+				}, [])
+				.map((definition) =>
 					reducersService
 						.get(definition)
 						.then((reducer) => ({ definition, reducer }))

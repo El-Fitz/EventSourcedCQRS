@@ -2,7 +2,7 @@
  * @Author: Thomas Léger 
  * @Date: 2022-03-12 16:03:30 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-12 18:02:57
+ * @Last Modified time: 2022-03-16 18:48:32
  */
 
 import * as Aggregates from "..";
@@ -25,7 +25,14 @@ export const AggregatesReducersController =
 		reducersDefinitionsService
 			.query(event)
 			.then((definitions) => Promise.all(
-				definitions.map((definition) =>
+				definitions
+				.reduce((acc: Aggregates.Reducers.Definitions.Definition[], definition) => {
+					if (acc.findIndex(({ reducerId }) => reducerId === definition.reducerId) === -1) {
+						return acc.concat(definition);
+					}
+					return acc;
+				}, [])
+				.map((definition) =>
 					reducersService
 						.get(definition)
 						.then((reducer) => ({ definition, reducer }))
