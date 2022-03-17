@@ -1,9 +1,10 @@
-// /*
-//  * @Author: Thomas Léger 
-//  * @Date: 2021-06-26 16:26:03 
-//  * @Last Modified by: Thomas Léger
-//  * @Last Modified time: 2021-06-26 16:47:19
-//  */
+/*
+ * @Author: Thomas Léger 
+ * @Date: 2022-03-16 13:26:07 
+ * @Last Modified by: Thomas Léger
+ * @Last Modified time: 2022-03-17 13:54:55
+ */
+
 
 import { TestInterface } from 'ava';
 
@@ -15,17 +16,23 @@ export const testSuites: TestSuite[] = [
 	(() => {
 		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
 			test(title, async t => {
-				let [event] = parameters?.events?.items ?? [];
+				let events = parameters?.events?.items ?? [];
 				let messageBus = platform.Events.MessageBus;
-				await t.notThrows(async () => await messageBus.emit(event))
+				await t.notThrows(async () => await messageBus.emitMultiple(events))
 			});
 		};
 		return {
-			title: 'Event Emission succeeds with the proper parameters',
+			title: 'Multiple Event Emission succeeds with the proper parameters',
 			expectedResult: null,
 			initialState: undefined,
 			parameters: {
-				events: { items: [Events.Events()] }
+				events: { items: [
+					Events.Events(),
+					Events.Events(),
+					Events.Events(),
+					Events.Events(),
+					Events.Events(),
+				]}
 			},
 			implementation,
 		};
@@ -33,18 +40,24 @@ export const testSuites: TestSuite[] = [
 	(() => {
 		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
 			test(title, async t => {
-				let [event] = parameters?.events?.items ?? [];
+				let events = parameters?.events?.items ?? [];
 				let messageBus = platform.Events.MessageBus;
-				let result = await messageBus.emit(event);
+				let result = await messageBus.emitMultiple(events)
 				t.is(result, (() => { })());
 			});
 		};
 		return {
-			title: 'Event Emission returns void on success',
+			title: 'Multiple Event Emission returns void on success',
 			expectedResult: null,
 			initialState: undefined,
 			parameters: {
-				events: { items: [Events.Events()] }
+				events: { items: [
+					Events.Events(),
+					Events.Events(),
+					Events.Events(),
+					Events.Events(),
+					Events.Events(),
+				]}
 			},
 			implementation,
 		};

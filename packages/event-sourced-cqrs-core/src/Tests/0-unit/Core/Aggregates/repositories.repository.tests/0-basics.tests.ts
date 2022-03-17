@@ -19,7 +19,7 @@ export const testSuites: TestSuite[] = [
 			});
 		};
 		return {
-			title: 'Agggregates - Repositories Repository - Succesfully initializes Aggregates Repositories Repository',
+			title: 'Succesfully initializes Aggregates Repositories Repository',
 			expectedResult: null,
 			initialState: undefined,
 			parameters: undefined,
@@ -36,7 +36,7 @@ export const testSuites: TestSuite[] = [
 			});
 		};
 		return {
-			title: 'Agggregates - Repositories Repository - Aggregates Repositories Repository has the proper methods',
+			title: 'Aggregates Repositories Repository has the proper methods',
 			expectedResult: null,
 			initialState: undefined,
 			parameters: undefined,

@@ -2,7 +2,7 @@
  * @Author: Thomas Léger 
  * @Date: 2022-03-12 17:40:15 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-15 18:38:35
+ * @Last Modified time: 2022-03-17 15:07:30
  */
 
 import { Core } from "event-sourced-cqrs-core";
@@ -13,7 +13,7 @@ export const EventsReducersRepository = (repository: { [key: string]: Core.Event
 			repository[id] = reducer;
 			return Promise.resolve(reducer);
 		},
-		get: (definition: Core.Events.Reducers.Definitions.Definition) => repository[definition.reducerId] === undefined ? Promise.reject() : Promise.resolve(repository[definition.id]),
+		get: ({ reducerId }: Core.Events.Reducers.Definitions.Definition) => repository[reducerId] === undefined ? Promise.reject(new Error(`Reducer not found for id: ${reducerId}`)) : Promise.resolve(repository[reducerId]),
 	})
 }
 

@@ -1,20 +1,20 @@
 /*
  * @Author: Thomas Léger 
- * @Date: 2021-06-19 17:26:53 
+ * @Date: 2021-06-19 17:27:26 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-15 19:16:13
+ * @Last Modified time: 2022-03-17 14:07:47
  */
 
-import { TestInterface } from 'ava';
+import { v4 as uuid } from "uuid";
 
+import { TestInterface } from 'ava';
+import { TestSuite, TestSuiteExpectedResult, TestSuiteParameters } from '../../../../../../Domain';
 import { Platform } from "../../../../../../../index.js";
 import * as Factories from '../../../../../../Factories/index.js';
-import { TestSuite, TestSuiteExpectedResult, TestSuiteParameters } from '../../../../../../Domain';
-
 
 export const testSuites: TestSuite[] = [
 	(() => {
-		const title = 'Reducers Definitions Creation succeeds with proper parameter';
+		const title = 'Reducer Definition can be retrieved after creation';
 		const initialState = undefined;
 		const parameters = {
 			events: {
@@ -23,9 +23,10 @@ export const testSuites: TestSuite[] = [
 		};
 		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
 			test(title, async t => {
-				let service = platform.Events.Reducers.Definitions.Service;
+				const service = platform.Events.Reducers.Definitions.Service;
 				const [definition] = parameters?.events?.reducersDefinitions ?? [];
-				await t.notThrows(async () => service.create(definition));
+				await service.create(definition);
+				await t.notThrows(async () => await service.get(definition.id))
 			});
 		};
 		return {
@@ -37,7 +38,7 @@ export const testSuites: TestSuite[] = [
 		};
 	})(),
 	(() => {
-		const title = 'Reducers Definitions is returned after creation';
+		const title = 'The service returns the expected reducer definition';
 		const initialState = undefined;
 		const parameters = {
 			events: {
@@ -50,13 +51,36 @@ export const testSuites: TestSuite[] = [
 				const service = platform.Events.Reducers.Definitions.Service;
 				const [definition] = parameters?.events?.reducersDefinitions ?? [];
 				await service.create(definition);
-				const createdReducerDefinition = 	await service.create(definition)
-				t.deepEqual(createdReducerDefinition, expectedResult)
+				let fetchedDefinition = await service.get(definition.id)
+				t.deepEqual(fetchedDefinition, expectedResult)
 			});
 		};
 		return {
 			title,
 			expectedResult: expectedResults,
+			initialState,
+			parameters,
+			implementation,
+		};
+	})(),
+	(() => {
+		const title = 'The service returns null when the requested reducer definition does not exist';
+		const initialState = undefined;
+		const parameters = {
+			events: {
+				reducersDefinitions: [Factories.Events.Reducers.Definitions()]
+			}
+		};
+		const implementation = (title: string) => (_parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+			test(title, async t => {
+				const service = platform.Events.Reducers.Definitions.Service;
+				let fetchedDefinition = await service.get(uuid())
+				t.deepEqual(fetchedDefinition, expectedResult)
+			});
+		};
+		return {
+			title,
+			expectedResult: null,
 			initialState,
 			parameters,
 			implementation,

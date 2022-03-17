@@ -26,7 +26,7 @@ export const testSuites: TestSuite[] = [
 			});
 		};
 		return {
-			title: 'Agggregates - Repositories Repository - Aggregates Repository Creation succeeds with proper parameter',
+			title: 'Aggregates Repository Creation succeeds with proper parameter',
 			expectedResult: null,
 			initialState: undefined,
 			parameters,
@@ -48,7 +48,7 @@ export const testSuites: TestSuite[] = [
 			});
 		};
 		return {
-			title: 'Agggregates - Repositories Repository - Aggregates Repository is returned after creation',
+			title: 'Aggregates Repository is returned after creation',
 			expectedResult: parameters.aggregates.repositories[0],
 			initialState: undefined,
 			parameters,

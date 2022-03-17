@@ -28,7 +28,7 @@ export const testSuites: TestSuite[] = [
 			});
 		};
 		return {
-			title: 'Agggregates - Repositories Repository - Aggregates Repository can be retrieved after creation',
+			title: 'Aggregates Repository can be retrieved after creation',
 			expectedResult: null,
 			initialState: undefined,
 			parameters,
@@ -51,7 +51,7 @@ export const testSuites: TestSuite[] = [
 			});
 		};
 		return {
-			title: 'Agggregates - Repositories Repository - The repository returns the expected Aggregates Repository',
+			title: 'The repository returns the expected Aggregates Repository',
 			expectedResult: parameters.aggregates.repositories[0],
 			initialState: undefined,
 			parameters,
@@ -74,7 +74,7 @@ export const testSuites: TestSuite[] = [
 			});
 		};
 		return {
-			title: 'Agggregates - Repositories Repository - The repository returns null when the requested Aggregates Repository does not exist',
+			title: 'The repository returns null when the requested Aggregates Repository does not exist',
 			expectedResult: null,
 			initialState: undefined,
 			parameters,

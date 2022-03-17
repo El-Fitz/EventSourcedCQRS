@@ -1,22 +1,47 @@
-// /*
-//  * @Author: Thomas Léger 
-//  * @Date: 2021-06-19 17:38:11 
-//  * @Last Modified by: Thomas Léger
-//  * @Last Modified time: 2021-06-26 19:22:13
-//  */
+/*
+ * @Author: Thomas Léger 
+ * @Date: 2021-06-19 17:38:11 
+ * @Last Modified by: Thomas Léger
+ * @Last Modified time: 2022-03-17 13:47:17
+ */
 
-// import test from 'ava';
-// import Platform from "../../../../../../index.js"
+import { TestInterface } from 'ava';
 
-// test('Succesfully initializes Event Reducers Definitions Repository', t => {
-// 	let repository = Platform.Events.Reducers.Definitions.Repository()
-// 	t.not(repository, undefined);
-// });
+import { Platform } from "../../../../../../../index.js";
+import { TestSuite, TestSuiteExpectedResult, TestSuiteParameters } from '../../../../../../Domain';
 
-// test('Event Reducers Definitions Repository has the proper methods', t => {
-// 	let repository = Platform.Events.Reducers.Definitions.Repository()
-// 	t.not(repository.create, undefined);
-// 	t.not(repository.get, undefined);
-// 	t.not(repository.query, undefined);
-// 	t.not(repository.delete, undefined);
-// });
+export const testSuites: TestSuite[] = [
+	(() => {
+		const implementation = (title: string) => (_parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+			test(title, async t => {
+				let repository = platform.Events.Reducers.Definitions.Repository;
+				t.not(repository, undefined);
+			});
+		};
+		return {
+			title: 'Succesfully initializes Reducers Definitions Repository',
+			expectedResult: null,
+			initialState: undefined,
+			parameters: undefined,
+			implementation,
+		};
+	})(),
+	(() => {
+		const implementation = (title: string) => (_parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+			test(title, async t => {
+				let repository = platform.Events.Reducers.Definitions.Repository;
+				t.not(repository.create, undefined);
+				t.not(repository.get, undefined);
+				t.not(repository.query, undefined);
+				t.not(repository.delete, undefined);
+			});
+		};
+		return {
+			title: 'Reducers Definitions Repository has the proper methods',
+			expectedResult: null,
+			initialState: undefined,
+			parameters: undefined,
+			implementation,
+		};
+	})(),
+];

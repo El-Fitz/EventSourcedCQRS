@@ -27,7 +27,7 @@ export const testSuites: TestSuite[] = [
 			});
 		};
 		return {
-			title: 'Agggregates - Repositories Repository - Projections Repository can be deleted after creation',
+			title: 'Projections Repository can be deleted after creation',
 			expectedResult: null,
 			initialState: undefined,
 			parameters,
@@ -51,7 +51,7 @@ export const testSuites: TestSuite[] = [
 			});
 		};
 		return {
-			title: 'Agggregates - Repositories Repository - The repository does not return the Projections Repository once it has been deleted',
+			title: 'The repository does not return the Projections Repository once it has been deleted',
 			expectedResult: null,
 			initialState: undefined,
 			parameters,
