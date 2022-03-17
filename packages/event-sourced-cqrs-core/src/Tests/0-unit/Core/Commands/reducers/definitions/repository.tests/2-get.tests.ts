@@ -2,7 +2,7 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-19 17:27:26 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-17 14:07:47
+ * @Last Modified time: 2022-03-17 14:08:05
  */
 
 import { v4 as uuid } from "uuid";
@@ -23,10 +23,10 @@ export const testSuites: TestSuite[] = [
 		};
 		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
 			test(title, async t => {
-				const service = platform.Commands.Reducers.Definitions.Service;
+				const repository = platform.Commands.Reducers.Definitions.Repository;
 				const [definition] = parameters?.commands?.reducersDefinitions ?? [];
-				await service.create(definition);
-				await t.notThrows(async () => await service.get(definition.id))
+				await repository.create(definition);
+				await t.notThrows(async () => await repository.get(definition.id))
 			});
 		};
 		return {
@@ -38,7 +38,7 @@ export const testSuites: TestSuite[] = [
 		};
 	})(),
 	(() => {
-		const title = 'The service returns the expected reducer definition';
+		const title = 'The repository returns the expected reducer definition';
 		const initialState = undefined;
 		const parameters = {
 			commands: {
@@ -48,10 +48,10 @@ export const testSuites: TestSuite[] = [
 		const expectedResults = parameters?.commands.reducersDefinitions[0];
 		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
 			test(title, async t => {
-				const service = platform.Commands.Reducers.Definitions.Service;
+				const repository = platform.Commands.Reducers.Definitions.Repository;
 				const [definition] = parameters?.commands?.reducersDefinitions ?? [];
-				await service.create(definition);
-				let fetchedDefinition = await service.get(definition.id)
+				await repository.create(definition);
+				let fetchedDefinition = await repository.get(definition.id)
 				t.deepEqual(fetchedDefinition, expectedResult)
 			});
 		};
@@ -64,7 +64,7 @@ export const testSuites: TestSuite[] = [
 		};
 	})(),
 	(() => {
-		const title = 'The service returns null when the requested reducer definition does not exist';
+		const title = 'The repository returns null when the requested reducer definition does not exist';
 		const initialState = undefined;
 		const parameters = {
 			commands: {
@@ -73,8 +73,8 @@ export const testSuites: TestSuite[] = [
 		};
 		const implementation = (title: string) => (_parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
 			test(title, async t => {
-				const service = platform.Commands.Reducers.Definitions.Service;
-				let fetchedDefinition = await service.get(uuid())
+				const repository = platform.Commands.Reducers.Definitions.Repository;
+				let fetchedDefinition = await repository.get(uuid())
 				t.deepEqual(fetchedDefinition, expectedResult)
 			});
 		};

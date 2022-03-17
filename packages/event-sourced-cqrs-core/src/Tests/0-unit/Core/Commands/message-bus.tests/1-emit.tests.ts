@@ -25,7 +25,7 @@ export const testSuites: TestSuite[] = [
 			expectedResult: null,
 			initialState: undefined,
 			parameters: {
-				commands: { items: [Commands.CommandsFactory()] }
+				commands: { items: [Commands.Commands()] }
 			},
 			implementation,
 		};
@@ -44,7 +44,7 @@ export const testSuites: TestSuite[] = [
 			expectedResult: null,
 			initialState: undefined,
 			parameters: {
-				commands: { items: [Commands.CommandsFactory()] }
+				commands: { items: [Commands.Commands()] }
 			},
 			implementation,
 		};

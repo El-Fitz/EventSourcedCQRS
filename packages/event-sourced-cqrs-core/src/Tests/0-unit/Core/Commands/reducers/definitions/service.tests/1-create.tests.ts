@@ -1,35 +1,65 @@
-// /*
-//  * @Author: Thomas Léger 
-//  * @Date: 2021-06-19 17:26:53 
-//  * @Last Modified by: Thomas Léger
-//  * @Last Modified time: 2021-06-26 19:10:11
-//  */
+/*
+ * @Author: Thomas Léger 
+ * @Date: 2021-06-19 17:26:53 
+ * @Last Modified by: Thomas Léger
+ * @Last Modified time: 2022-03-15 19:16:13
+ */
 
-// import test from 'ava';
-// import { v4 as uuid } from "uuid"
-// import { DateTime } from "luxon"
-// import Core from "event-sourced-cqrs-core"
-// import Platform from "../../../../../../index.js"
+import { TestInterface } from 'ava';
 
-// test('Command Reducers Definitions Service Creation succeeds with proper parameter', async t => {
-// 	let service = Platform.Commands.Reducers.Definitions.Service()
-// 	let definition: Core.Commands.Reducers.Definitions.Definition = {
-// 		id: uuid(),
-// 		creationDate: DateTime.now(),
-// 		triggeringCommandId: uuid(),
-// 		reducer: () => Promise.resolve((_command: Core.Commands.Command) => Promise.resolve([]))
-// 	}
-// 	await t.notThrows(async () => await service.create(definition));
-// });
+import { Platform } from "../../../../../../../index.js";
+import * as Factories from '../../../../../../Factories/index.js';
+import { TestSuite, TestSuiteExpectedResult, TestSuiteParameters } from '../../../../../../Domain';
 
-// test('Command Reducers Definition is returned after creation', async t => {
-// 	let service = Platform.Commands.Reducers.Definitions.Service()
-// 	let definition: Core.Commands.Reducers.Definitions.Definition = {
-// 		id: uuid(),
-// 		creationDate: DateTime.now(),
-// 		triggeringCommandId: uuid(),
-// 		reducer: () => Promise.resolve((_command: Core.Commands.Command) => Promise.resolve([]))
-// 	}
-// 	let createdDefinition= await service.create(definition)
-// 	t.deepEqual(createdDefinition, definition)
-// });
+
+export const testSuites: TestSuite[] = [
+	(() => {
+		const title = 'Reducers Definitions Creation succeeds with proper parameter';
+		const initialState = undefined;
+		const parameters = {
+			commands: {
+				reducersDefinitions: [Factories.Commands.Reducers.Definitions()]
+			}
+		};
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+			test(title, async t => {
+				let service = platform.Commands.Reducers.Definitions.Service;
+				const [definition] = parameters?.commands?.reducersDefinitions ?? [];
+				await t.notThrows(async () => service.create(definition));
+			});
+		};
+		return {
+			title,
+			expectedResult: null,
+			initialState,
+			parameters,
+			implementation,
+		};
+	})(),
+	(() => {
+		const title = 'Reducers Definitions is returned after creation';
+		const initialState = undefined;
+		const parameters = {
+			commands: {
+				reducersDefinitions: [Factories.Commands.Reducers.Definitions()]
+			}
+		};
+		const expectedResults = parameters?.commands.reducersDefinitions[0];
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+			test(title, async t => {
+				const service = platform.Commands.Reducers.Definitions.Service;
+				const [definition] = parameters?.commands?.reducersDefinitions ?? [];
+				await service.create(definition);
+				const createdReducerDefinition = 	await service.create(definition)
+				t.deepEqual(createdReducerDefinition, expectedResult)
+			});
+		};
+		return {
+			title,
+			expectedResult: expectedResults,
+			initialState,
+			parameters,
+			implementation,
+		};
+	})(),
+];

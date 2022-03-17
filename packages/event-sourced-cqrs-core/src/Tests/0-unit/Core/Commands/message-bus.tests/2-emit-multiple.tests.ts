@@ -2,7 +2,7 @@
  * @Author: Thomas Léger 
  * @Date: 2022-03-16 13:26:07 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-16 13:27:15
+ * @Last Modified time: 2022-03-17 13:54:55
  */
 
 
@@ -27,11 +27,11 @@ export const testSuites: TestSuite[] = [
 			initialState: undefined,
 			parameters: {
 				commands: { items: [
-					Commands.CommandsFactory(),
-					Commands.CommandsFactory(),
-					Commands.CommandsFactory(),
-					Commands.CommandsFactory(),
-					Commands.CommandsFactory(),
+					Commands.Commands(),
+					Commands.Commands(),
+					Commands.Commands(),
+					Commands.Commands(),
+					Commands.Commands(),
 				]}
 			},
 			implementation,
@@ -52,11 +52,11 @@ export const testSuites: TestSuite[] = [
 			initialState: undefined,
 			parameters: {
 				commands: { items: [
-					Commands.CommandsFactory(),
-					Commands.CommandsFactory(),
-					Commands.CommandsFactory(),
-					Commands.CommandsFactory(),
-					Commands.CommandsFactory(),
+					Commands.Commands(),
+					Commands.Commands(),
+					Commands.Commands(),
+					Commands.Commands(),
+					Commands.Commands(),
 				]}
 			},
 			implementation,
