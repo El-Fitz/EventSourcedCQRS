@@ -1,0 +1,41 @@
+{
+  "name": "event-sourced-cqrs-extensions-projections-core",
+  "version": "1.0.0",
+  "description": "> TODO: description",
+  "author": "Thomas Léger <8971906+El-Fitz@users.noreply.github.com>",
+  "homepage": "",
+  "license": "NONE",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "type": "module",
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "http://registry.npmjs.org/"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "private": true,
+  "dependencies": {
+    "ava": "4.3.0",
+    "luxon": "^1.27.0",
+    "typescript": "^4.3.2",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@ava/typescript": "^3.0.1",
+    "@types/luxon": "^1.26.5",
+    "@types/uuid": "^8.3.0",
+    "ava": "4.3.0",
+    "c8": "^7.7.3",
+    "commitizen": "^4.2.4",
+    "coveralls": "^3.1.0",
+    "nyc": "^15.1.0",
+    "semantic-release": "^19.0.2"
+  }
+}
