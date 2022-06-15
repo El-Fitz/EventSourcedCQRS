@@ -5,14 +5,14 @@
  * @Last Modified time: 2022-03-15 19:17:27
  */
 
-import { TestInterface } from 'ava';
+import { TestFn } from 'ava';
 
 import { Platform } from "../../../../../index.js";
 import { TestSuite, TestSuiteExpectedResult, TestSuiteParameters } from '../../../../Domain';
 
 export const testSuites: TestSuite[] = [
 	(() => {
-		const implementation = (title: string) => (_parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (_parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				let service = platform.Aggregates.ServicesService;
 				t.not(service, undefined);
@@ -27,7 +27,7 @@ export const testSuites: TestSuite[] = [
 		};
 	})(),
 	(() => {
-		const implementation = (title: string) => (_parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (_parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				let service = platform.Aggregates.ServicesService;
 				t.not(service.create, undefined);

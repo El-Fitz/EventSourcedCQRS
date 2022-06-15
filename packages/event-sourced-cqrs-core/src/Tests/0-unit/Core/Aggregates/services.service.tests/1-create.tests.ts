@@ -2,14 +2,14 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-19 17:26:53 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-15 19:17:34
+ * @Last Modified time: 2022-06-15 19:17:35
  */
 
-import { TestInterface } from 'ava';
+import { TestFn } from 'ava';
 
 import { Core, Platform } from "../../../../../index.js";
 import { TestSuite, TestSuiteExpectedResult, TestSuiteParameters } from '../../../../Domain';
-import { aggregateRepositoryFactory } from "../_aggregates-repository.factory";
+import { aggregateRepositoryFactory } from "../../../../Factories/Aggregates/_aggregates-repository.factory";
 
 export const testSuites: TestSuite[] = [
 	(() => {
@@ -18,7 +18,7 @@ export const testSuites: TestSuite[] = [
 				repositories: [aggregateRepositoryFactory()]
 			}
 		}
-		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				let service = platform.Aggregates.ServicesService;
 				let [aggregatesRepository] = parameters?.aggregates?.repositories ?? [];
@@ -39,12 +39,12 @@ export const testSuites: TestSuite[] = [
 				repositories: [aggregateRepositoryFactory()]
 			}
 		}
-		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				let service = platform.Aggregates.ServicesService;
 				let [aggregatesRepository] = parameters?.aggregates?.repositories ?? [];
 				let createdAggregatesService = await service.create(aggregatesRepository)
-				t.is(JSON.stringify(createdAggregatesService), expectedResult);
+				t.is(JSON.stringify(createdAggregatesService), expectedResult as string);
 			});
 		};
 		return {

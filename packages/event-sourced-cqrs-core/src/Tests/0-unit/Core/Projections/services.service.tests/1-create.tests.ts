@@ -2,10 +2,10 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-19 17:26:53 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-15 19:20:02
+ * @Last Modified time: 2022-06-15 19:18:08
  */
 
-import { TestInterface } from 'ava';
+import { TestFn } from 'ava';
 
 import { Core, Platform } from "../../../../../index.js";
 import { TestSuite, TestSuiteExpectedResult, TestSuiteParameters } from '../../../../Domain';
@@ -18,7 +18,7 @@ export const testSuites: TestSuite[] = [
 				repositories: [projectionRepositoryFactory()]
 			}
 		}
-		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				let service = platform.Projections.ServicesService;
 				let [projectionsRepository] = parameters?.projections?.repositories ?? [];
@@ -39,12 +39,12 @@ export const testSuites: TestSuite[] = [
 				repositories: [projectionRepositoryFactory()]
 			}
 		}
-		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				let service = platform.Projections.ServicesService;
 				let [projectionsRepository] = parameters?.projections?.repositories ?? [];
 				let createdProjectionsService = await service.create(projectionsRepository)
-				t.is(JSON.stringify(createdProjectionsService), expectedResult);
+				t.is(JSON.stringify(createdProjectionsService), expectedResult as string);
 			});
 		};
 		return {

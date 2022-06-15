@@ -5,7 +5,7 @@
  * @Last Modified time: 2022-03-15 19:19:46
  */
 
-import { TestInterface } from 'ava';
+import { TestFn } from 'ava';
 
 import { Platform } from "../../../../../index.js";
 import { TestSuite, TestSuiteExpectedResult, TestSuiteParameters } from '../../../../Domain';
@@ -18,7 +18,7 @@ export const testSuites: TestSuite[] = [
 				repositories: [projectionRepositoryFactory()]
 			}
 		}
-		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				let repository = platform.Projections.RepositoriesRepository;
 				let [projectionsRepository] = parameters?.projections?.repositories ?? [];
@@ -40,7 +40,7 @@ export const testSuites: TestSuite[] = [
 				repositories: [projectionRepositoryFactory()]
 			}
 		}
-		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				let repository = platform.Projections.RepositoriesRepository;
 				let [projectionsRepository] = parameters?.projections?.repositories ?? [];

@@ -2,11 +2,11 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-30 01:53:48 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-15 19:25:24
+ * @Last Modified time: 2022-06-15 19:46:38
  */
 
 import { Tests } from "event-sourced-cqrs-core"
-import { Aggregates, Commands, Events, Projections, PlatformFactory, PlatformParams } from "../src/index.js";
+import { Aggregates, Commands, Events, Projections, PlatformFactory, PlatformParams } from "../src";
 
 const platformParams: PlatformParams = {
 	aggregates: {
@@ -46,4 +46,4 @@ const platformParams: PlatformParams = {
 Tests.TestController({
 	parameters: platformParams,
 	factory: PlatformFactory
-});
+})

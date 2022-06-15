@@ -13,14 +13,14 @@ test('fn() returns foo', t => {
 	t.is(fn(), 'foo');
 });
 
-// import { TestInterface } from 'ava';
+// import { TestFn } from 'ava';
 // import { v4 as uuid } from "uuid";
 // import { DateTime } from "luxon";
 
 // import * as Core from "../../../"
 // import { Platform } from  "../../../"
 
-// export default (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+// export default (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 
 // 	test('A flow of events is ran the right number of times', async t => {
 		

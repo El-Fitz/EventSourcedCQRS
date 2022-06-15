@@ -2,10 +2,11 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-19 17:27:26 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-15 19:20:09
+ * @Last Modified time: 2022-06-15 19:20:14
  */
 
-import { TestInterface } from 'ava';
+import { TestFn } from 'ava';
+import { ProjectionsServiceInterface } from '../../../../../Core/Projections/domain/projections-service.domain';
 import { v4 as uuid } from 'uuid';
 
 import { Core, Platform } from "../../../../../index.js";
@@ -19,7 +20,7 @@ export const testSuites: TestSuite[] = [
 				repositories: [projectionRepositoryFactory()]
 			}
 		}
-		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				let service = platform.Projections.ServicesService;
 				let [projectionsRepository] = parameters?.projections?.repositories ?? [];
@@ -41,13 +42,13 @@ export const testSuites: TestSuite[] = [
 				repositories: [projectionRepositoryFactory()]
 			}
 		}
-		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				let service = platform.Projections.ServicesService;
 				let [projectionsRepository] = parameters?.projections?.repositories ?? [];
 				await service.create(projectionsRepository);
 				let fetchedService = await service.get(projectionsRepository.id)
-				t.is(JSON.stringify(fetchedService), expectedResult);
+				t.is(JSON.stringify(fetchedService), expectedResult as string);
 			});
 		};
 		return {
@@ -64,13 +65,13 @@ export const testSuites: TestSuite[] = [
 				repositories: [projectionRepositoryFactory()]
 			}
 		}
-		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				let service = platform.Projections.ServicesService;
 				let [projectionsRepository] = parameters?.projections?.repositories ?? [];
 				await service.create(projectionsRepository);
 				let fetchedService = await service.get(uuid());
-				t.is(fetchedService, expectedResult);
+				t.is(fetchedService, expectedResult as ProjectionsServiceInterface | null);
 			});
 		};
 		return {

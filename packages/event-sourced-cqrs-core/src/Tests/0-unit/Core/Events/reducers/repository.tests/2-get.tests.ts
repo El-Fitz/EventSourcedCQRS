@@ -7,7 +7,7 @@
 
 import { v4 as uuid } from "uuid";
 
-import { TestInterface } from 'ava';
+import { TestFn } from 'ava';
 import { TestSuite, TestSuiteExpectedResult, TestSuiteParameters } from '../../../../../Domain';
 import { Core, Platform } from "../../../../../../index.js";
 import { Factories } from '../../../../..';
@@ -24,7 +24,7 @@ export const testSuites: TestSuite[] = [
 				}]
 			}
 		};
-		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				const repository = platform.Events.Reducers.Repository;
 				const [{ id, reducer }] = parameters?.events?.reducers ?? [];
@@ -53,7 +53,7 @@ export const testSuites: TestSuite[] = [
 			}
 		};
 		const expectedResults = parameters?.events.reducers[0].reducer as Core.Events.Reducers.Reducer;
-		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				const repository = platform.Events.Reducers.Repository;
 				const [{ id, reducer }] = parameters?.events?.reducers ?? [];
@@ -82,7 +82,7 @@ export const testSuites: TestSuite[] = [
 				}]
 			}
 		};
-		const implementation = (title: string) => (_parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (_parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				const repository = platform.Events.Reducers.Repository;
 				const definition = Factories.Events.Reducers.Definitions();

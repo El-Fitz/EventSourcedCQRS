@@ -2,15 +2,15 @@
 * @Author: Thomas Léger 
 * @Date: 2021-06-19 17:27:26 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-15 19:17:12
+ * @Last Modified time: 2022-06-15 18:41:40
 */
 
-import { TestInterface } from 'ava';
+import { TestFn } from 'ava';
 import { v4 as uuid } from 'uuid';
 
 import { Platform } from "../../../../../index.js";
 import { TestSuite, TestSuiteExpectedResult, TestSuiteParameters } from '../../../../Domain';
-import { aggregateRepositoryFactory } from "../_aggregates-repository.factory";
+import { aggregateRepositoryFactory } from "../../../../Factories/Aggregates/_aggregates-repository.factory";
 
 export const testSuites: TestSuite[] = [
 	(() => {
@@ -19,7 +19,7 @@ export const testSuites: TestSuite[] = [
 				repositories: [aggregateRepositoryFactory()]
 			}
 		}
-		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				let repository = platform.Aggregates.RepositoriesRepository;
 				let [aggregatesRepository] = parameters?.aggregates?.repositories ?? [];
@@ -41,7 +41,7 @@ export const testSuites: TestSuite[] = [
 				repositories: [aggregateRepositoryFactory()]
 			}
 		}
-		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				let repository = platform.Aggregates.RepositoriesRepository;
 				let [aggregatesRepository] = parameters?.aggregates?.repositories ?? [];
@@ -64,7 +64,7 @@ export const testSuites: TestSuite[] = [
 				repositories: [aggregateRepositoryFactory()]
 			}
 		}
-		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				let repository = platform.Aggregates.RepositoriesRepository;
 				let [aggregatesRepository] = parameters?.aggregates?.repositories ?? [];

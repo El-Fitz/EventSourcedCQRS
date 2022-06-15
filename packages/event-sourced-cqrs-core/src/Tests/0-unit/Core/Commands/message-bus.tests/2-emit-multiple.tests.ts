@@ -6,7 +6,7 @@
  */
 
 
-import { TestInterface } from 'ava';
+import { TestFn } from 'ava';
 
 import { Platform } from "../../../../../index.js";
 import { TestSuite, TestSuiteExpectedResult, TestSuiteParameters } from '../../../../Domain';
@@ -14,7 +14,7 @@ import { Commands } from '../../../../Factories/index.js';
 
 export const testSuites: TestSuite[] = [
 	(() => {
-		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				let commands = parameters?.commands?.items ?? [];
 				let messageBus = platform.Commands.MessageBus;
@@ -38,7 +38,7 @@ export const testSuites: TestSuite[] = [
 		};
 	})(),
 	(() => {
-		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				let commands = parameters?.commands?.items ?? [];
 				let messageBus = platform.Commands.MessageBus;

@@ -2,7 +2,7 @@
  * @Author: Thomas Léger 
  * @Date: 2021-06-28 19:03:17 
  * @Last Modified by: Thomas Léger
- * @Last Modified time: 2022-03-12 18:10:29
+ * @Last Modified time: 2022-06-15 19:46:32
  */
 
 import { Core } from "event-sourced-cqrs-core"

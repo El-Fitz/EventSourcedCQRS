@@ -5,7 +5,7 @@
  * @Last Modified time: 2022-03-16 18:19:58
  */
 
-import { TestInterface } from 'ava';
+import { TestFn } from 'ava';
 
 import { Platform } from "../../../../../../../index.js";
 import * as Factories from '../../../../../../Factories/index.js';
@@ -20,7 +20,7 @@ export const testSuites: TestSuite[] = [
 				reducersDefinitions: [Factories.Events.Reducers.Definitions()]
 			}
 		};
-		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				let repository = platform.Events.Reducers.Definitions.Repository;
 				const [definition] = parameters?.events?.reducersDefinitions ?? [];
@@ -44,7 +44,7 @@ export const testSuites: TestSuite[] = [
 			}
 		};
 		const expectedResults = parameters?.events.reducersDefinitions[0];
-		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				const repository = platform.Events.Reducers.Definitions.Repository;
 				const [definition] = parameters?.events?.reducersDefinitions ?? [];

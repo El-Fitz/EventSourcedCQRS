@@ -6,7 +6,7 @@
  */
 
 import { Platform } from '../../';
-import { TestInterface } from 'ava';
+import { TestFn } from 'ava';
 import { TestSuiteParameters } from './testSuiteParameters.domain';
 import { TestSuiteInitialState } from './testSuiteInitialState.domain';
 import { TestSuiteExpectedResult } from './testSuiteExpectedResult.domain';
@@ -21,6 +21,6 @@ export interface TestSuite {
 		(parameters?: TestSuiteParameters) =>
 		(expectedResult?: TestSuiteExpectedResult) =>
 		(platform: Platform.PlatformInterface) =>
-		(test: TestInterface<unknown>) =>
+		(test: TestFn<unknown>) =>
 		void;
 }

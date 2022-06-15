@@ -5,7 +5,7 @@
  * @Last Modified time: 2022-03-17 13:58:57
  */
 
-import { TestInterface } from 'ava';
+import { TestFn } from 'ava';
 import { v4 as uuid } from 'uuid';
 
 import { Core, Platform } from "../../../../../../index.js";
@@ -21,7 +21,7 @@ export const testSuites: TestSuite[] = [
 				items: [Factories.Commands.Commands()]
 			}
 		};
-		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				const controller = platform.Commands.Reducers.Controller;
 				const [command] = parameters?.commands?.items ?? [];
@@ -44,7 +44,7 @@ export const testSuites: TestSuite[] = [
 				items: [Factories.Commands.Commands()]
 			}
 		};
-		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				const controller = platform.Commands.Reducers.Controller;
 				const [command] = parameters?.commands?.items ?? [];
@@ -74,7 +74,7 @@ export const testSuites: TestSuite[] = [
 				]), [])
 			},
 		};
-		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				const controller = platform.Commands.Reducers.Controller;
 				const reducersRepository = platform.Commands.Reducers.Repository;
@@ -113,7 +113,7 @@ export const testSuites: TestSuite[] = [
 			definition: parameters?.commands.reducersDefinitions[0],
 			reducer: parameters?.commands.reducers[0].reducer
 		}];
-		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				const controller = platform.Commands.Reducers.Controller;
 				const reducersRepository = platform.Commands.Reducers.Repository;
@@ -158,7 +158,7 @@ export const testSuites: TestSuite[] = [
 			definition: parameters?.commands.reducersDefinitions[0],
 			reducer: parameters?.commands.reducers[0].reducer
 		}];
-		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				const controller = platform.Commands.Reducers.Controller;
 				const reducersRepository = platform.Commands.Reducers.Repository;
@@ -210,7 +210,7 @@ export const testSuites: TestSuite[] = [
 			definition: parameters?.commands.reducersDefinitions[1],
 			reducer: parameters?.commands.reducers[1].reducer
 		}];
-		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				const controller = platform.Commands.Reducers.Controller;
 				const reducersRepository = platform.Commands.Reducers.Repository;
@@ -262,7 +262,7 @@ export const testSuites: TestSuite[] = [
 			definition: parameters?.commands.reducersDefinitions[2],
 			reducer: parameters?.commands.reducers[2].reducer
 		}];
-		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				const controller = platform.Commands.Reducers.Controller;
 				const reducersRepository = platform.Commands.Reducers.Repository;

@@ -7,7 +7,7 @@
 
 import { v4 as uuid } from "uuid";
 
-import { TestInterface } from 'ava';
+import { TestFn } from 'ava';
 import { TestSuite, TestSuiteExpectedResult, TestSuiteParameters } from '../../../../../../Domain';
 import { Platform } from "../../../../../../../index.js";
 import * as Factories from '../../../../../../Factories/index.js';
@@ -21,7 +21,7 @@ export const testSuites: TestSuite[] = [
 				reducersDefinitions: [Factories.Events.Reducers.Definitions()]
 			}
 		};
-		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				const service = platform.Events.Reducers.Definitions.Service;
 				const [definition] = parameters?.events?.reducersDefinitions ?? [];
@@ -46,7 +46,7 @@ export const testSuites: TestSuite[] = [
 			}
 		};
 		const expectedResults = parameters?.events.reducersDefinitions[0];
-		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				const service = platform.Events.Reducers.Definitions.Service;
 				const [definition] = parameters?.events?.reducersDefinitions ?? [];
@@ -71,7 +71,7 @@ export const testSuites: TestSuite[] = [
 				reducersDefinitions: [Factories.Events.Reducers.Definitions()]
 			}
 		};
-		const implementation = (title: string) => (_parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (_parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				const service = platform.Events.Reducers.Definitions.Service;
 				let fetchedDefinition = await service.get(uuid())

@@ -5,7 +5,7 @@
  * @Last Modified time: 2022-03-15 19:19:38
 */
 
-import { TestInterface } from 'ava';
+import { TestFn } from 'ava';
 import { v4 as uuid } from 'uuid';
 
 import { Platform } from "../../../../../index.js";
@@ -19,7 +19,7 @@ export const testSuites: TestSuite[] = [
 				repositories: [projectionRepositoryFactory()]
 			}
 		}
-		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				let repository = platform.Projections.RepositoriesRepository;
 				let [projectionsRepository] = parameters?.projections?.repositories ?? [];
@@ -41,7 +41,7 @@ export const testSuites: TestSuite[] = [
 				repositories: [projectionRepositoryFactory()]
 			}
 		}
-		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				let repository = platform.Projections.RepositoriesRepository;
 				let [projectionsRepository] = parameters?.projections?.repositories ?? [];
@@ -64,7 +64,7 @@ export const testSuites: TestSuite[] = [
 				repositories: [projectionRepositoryFactory()]
 			}
 		}
-		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				let repository = platform.Projections.RepositoriesRepository;
 				let [projectionsRepository] = parameters?.projections?.repositories ?? [];

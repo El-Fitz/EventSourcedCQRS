@@ -5,7 +5,7 @@
 //  * @Last Modified time: 2021-06-26 16:47:19
 //  */
 
-import { TestInterface } from 'ava';
+import { TestFn } from 'ava';
 
 import { Platform } from "../../../../../index.js";
 import { TestSuite, TestSuiteExpectedResult, TestSuiteParameters } from '../../../../Domain';
@@ -13,7 +13,7 @@ import { Events } from '../../../../Factories/index.js';
 
 export const testSuites: TestSuite[] = [
 	(() => {
-		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				let [event] = parameters?.events?.items ?? [];
 				let messageBus = platform.Events.MessageBus;
@@ -31,7 +31,7 @@ export const testSuites: TestSuite[] = [
 		};
 	})(),
 	(() => {
-		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestInterface<unknown>) => {
+		const implementation = (title: string) => (parameters?: TestSuiteParameters) => (_expectedResult?: TestSuiteExpectedResult) => (platform: Platform.PlatformInterface) => (test: TestFn<unknown>) => {
 			test(title, async t => {
 				let [event] = parameters?.events?.items ?? [];
 				let messageBus = platform.Events.MessageBus;
