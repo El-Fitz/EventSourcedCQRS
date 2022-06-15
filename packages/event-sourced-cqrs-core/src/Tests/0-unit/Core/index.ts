@@ -5,15 +5,12 @@
  * @Last Modified time: 2022-03-17 15:02:57
  */
 
-export * as Aggregates from "./Aggregates";
-export * as Commands from "./Commands";
-export * as Events from "./Events";
-export * as Projections from "./Projections";
-
 import * as Aggregates from "./Aggregates";
 import * as Commands from "./Commands";
 import * as Events from "./Events";
 import * as Projections from './Projections';
+
+export { Aggregates, Commands, Events, Projections };
 
 export const TestSuites = [
 	...Aggregates.TestSuites,

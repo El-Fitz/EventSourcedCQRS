@@ -5,13 +5,11 @@
  * @Last Modified time: 2022-03-14 19:33:32
  */
 
-export * as Reducers from "./reducers"
-export * as RepositoriesRepository from "./repositories.repository.tests"
-export * as ServicesService from "./services.service.tests"
-
 import * as Reducers from "./reducers"
 import * as RepositoriesRepository from "./repositories.repository.tests"
 import * as ServicesService from "./services.service.tests"
+
+export { Reducers, RepositoriesRepository, ServicesService };
 
 export const TestSuites = [
 	...Reducers.TestSuites,

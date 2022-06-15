@@ -5,7 +5,7 @@
  * @Last Modified time: 2022-03-14 19:10:09
  */
 
-import * as Core from "../../../../Core";
+import * as Core from "../../../Core";
 import { aggregateRepositoryFactory } from './_aggregates-repository.factory';
 
 export const aggregateServiceFactory = (): Core.Aggregates.ServiceInterface => {

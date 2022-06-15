@@ -9,6 +9,8 @@ import * as Basic from "./0-basics.tests"
 import * as Create from './1-create.tests';
 import * as Get from "./2-get.tests"
 
+export { Basic, Create, Get };
+
 export const TestSuites = [
 	...Basic.testSuites,
 	...Create.testSuites,

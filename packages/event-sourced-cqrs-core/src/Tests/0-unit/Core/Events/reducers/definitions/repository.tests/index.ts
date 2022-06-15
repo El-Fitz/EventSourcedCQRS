@@ -11,6 +11,8 @@ import * as Get from "./2-get.tests"
 import * as Query from "./3-query.tests"
 import * as Delete from "./4-delete.tests";
 
+export { Basic, Create, Get, Query, Delete };
+
 export const TestSuites = [
 	...Basic.testSuites,
 	...Create.testSuites,

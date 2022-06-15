@@ -5,15 +5,12 @@
  * @Last Modified time: 2022-03-17 11:07:39
  */
 
-export * as Controller from './controller.tests';
-export * as Definitions from './Definitions';
-export * as Repository from './repository.tests'
-export * as Service from './service.tests';
-
 import * as Controller from './controller.tests';
 import * as Definitions from './Definitions';
 import * as Repository from './repository.tests'
 import * as Service from './service.tests';
+
+export { Controller, Definitions, Repository, Service };
 
 export const TestSuites = [
 	...Controller.TestSuites,

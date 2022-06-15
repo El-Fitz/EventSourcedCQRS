@@ -5,11 +5,11 @@
  * @Last Modified time: 2022-03-14 19:28:08
  */
 
-export * as Repository from './repository.tests'
-export * as Service from "./service.tests"
+import * as Repository from "./repository.tests";
+import * as Service from "./service.tests";
 
-import * as Repository from "./repository.tests"
-import * as Service from "./service.tests"
+
+export { Repository, Service };
 
 export const TestSuites = [
 	...Repository.TestSuites,

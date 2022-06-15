@@ -10,6 +10,8 @@ import * as Create from "./1-create.tests"
 import * as Get from "./2-get.tests"
 import * as Delete from "./3-delete.tests"
 
+export { Basic, Create, Get, Delete };
+
 export const TestSuites = [
 	...Basic.testSuites,
 	...Create.testSuites,

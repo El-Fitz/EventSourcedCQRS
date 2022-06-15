@@ -6,7 +6,7 @@
  */
 
 import { v4 as uuid } from "uuid";
-import * as Core from "../../../../Core";
+import * as Core from "../../../Core";
 
 export const aggregateRepositoryFactory = (): Core.Aggregates.Repository => {
 	let aggregatesHashmap: { [key: string]: Core.Aggregates.Aggregate } = {};

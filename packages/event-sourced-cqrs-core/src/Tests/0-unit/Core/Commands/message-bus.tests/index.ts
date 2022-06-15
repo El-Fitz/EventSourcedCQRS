@@ -9,6 +9,8 @@ import * as Basic from "./0-basics.tests"
 import * as Emit from './1-emit.tests';
 import * as EmitMultiple from "./2-emit-multiple.tests"
 
+export { Basic, Emit, EmitMultiple };
+
 export const TestSuites = [
 	...Basic.testSuites,
 	...Emit.testSuites,

@@ -5,14 +5,16 @@
  * @Last Modified time: 2022-03-16 18:04:37
  */
 
-import * as Basic from "./0-basics.tests"
+import * as Basic from "./0-basics.tests";
 import * as Create from './1-create-definition.tests';
-import * as Get from "./2-query.tests"
+import * as Query from "./2-query.tests";
+
+export { Basic, Create, Query };
 
 export const TestSuites = [
 	...Basic.testSuites,
 	...Create.testSuites,
-	...Get.testSuites,
+	...Query.testSuites,
 ].map((testSuite) => ({
 	...testSuite,
 	title: `[CONTROLLER] - ${testSuite.title}`

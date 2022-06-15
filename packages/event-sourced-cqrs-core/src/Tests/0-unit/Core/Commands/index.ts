@@ -8,6 +8,8 @@
 import * as MessageBus from "./message-bus.tests";
 import * as Reducers from './Reducers';
 
+export { MessageBus, Reducers };
+
 export const TestSuites = [
 	...MessageBus.TestSuites,
 	...Reducers.TestSuites
